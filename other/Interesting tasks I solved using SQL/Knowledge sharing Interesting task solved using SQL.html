@@ -1,0 +1,379 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body>
+<div style="background-color:#1e1f22;color:#bcbec4;font-family:'JetBrains Mono',monospace;font-size:8.3pt;white-space:pre;">
+    <span style="color:#7a7e85;"><hr><br></span><span style="color:#7a7e85;">%md<br></span><span style="color:#cf8e6d;">#&#32;</span>Transpose&#32;1-row&#32;table<br>Use&#32;case:&#32;when&#32;u&#32;count&#32;distinct&#32;values&#32;by&#32;columns&#32;and&#32;after&#32;that&#32;you&#32;want&#32;to&#32;calculate&#32;some&#32;stats&#32;on&#32;the&#32;counts&#32;<br>Postgres&#32;analogy:<br><span
+        style="color:#cf8e6d;">*&#32;`</span>unnest<span style="color:#cf8e6d;">`&#32;</span>(stack)<br><span
+        style="color:#cf8e6d;">*&#32;`</span>crosstab<span style="color:#cf8e6d;">`&#32;</span>from&#32;<span
+        style="color:#cf8e6d;">`</span>tablefunc<span style="color:#cf8e6d;">`&#32;</span>extension&#32;(pivot)<br><br>PostgreSQL:<br><br><span
+        style="color:#cf8e6d;">```</span><span style="color:#c77dbb;font-style:italic;">sql<br></span><span
+        style="color:#6aab73;background-color:#293c40;">create&#32;table&#32;bruh&#32;(column1&#32;int,&#32;column2&#32;int,&#32;column3&#32;int);<br></span><span
+        style="color:#6aab73;background-color:#293c40;">insert&#32;into&#32;bruh&#32;(column1,&#32;column2,&#32;column3)&#32;values&#32;(1,&#32;2,&#32;3);<br></span><span
+        style="color:#6aab73;background-color:#293c40;"><br></span><span
+        style="color:#6aab73;background-color:#293c40;">select&#32;*&#32;<br></span><span
+        style="color:#6aab73;background-color:#293c40;">from&#32;bruh;<br></span><span
+        style="color:#6aab73;background-color:#293c40;"><br></span><span
+        style="color:#6aab73;background-color:#293c40;">select&#32;<br></span><span
+        style="color:#6aab73;background-color:#293c40;">unnest(array['column1',&#32;'column2',&#32;'column3'])&#32;as&#32;column,<br></span><span
+        style="color:#6aab73;background-color:#293c40;">unset(array[column1,&#32;column2,&#32;column3])&#32;as&#32;value<br></span><span
+        style="color:#6aab73;background-color:#293c40;">from&#32;bruh;</span><span
+        style="color:#6aab73;"><br></span><span style="color:#cf8e6d;">```<br></span><span style="color:#7a7e85;"><hr><br></span><span
+        style="color:#cf8e6d;">val&#32;</span>testCountDf&#32;=&#32;Seq((<span
+        style="color:#2aacb8;">1</span>,&#32;<span style="color:#2aacb8;">2</span>,&#32;<span
+        style="color:#2aacb8;">3</span>)).toDF((<span style="color:#2aacb8;">1&#32;</span>until&#32;<span
+        style="color:#2aacb8;">4</span>).map(c&#32;=&gt;&#32;<span style="color:#6aab73;">s"Column</span><span
+        style="color:#00b8bb;font-weight:bold;">$</span>c<span style="color:#6aab73;">"</span>):&#32;_*)<br><br>testCountDf.show(<span
+        style="color:#cf8e6d;">false</span>)<br><br><span style="color:#cf8e6d;">val&#32;</span>numberOfColumns&#32;=&#32;testCountDf.columns.length<br><span
+        style="color:#cf8e6d;">val&#32;</span>aliasAndColumns&#32;=&#32;testCountDf.columns.map(c&#32;=&gt;&#32;(c,&#32;<span
+        style="color:#6aab73;">"'"&#32;</span>+&#32;c&#32;+&#32;<span style="color:#6aab73;">"-label'"</span>)).map(x&#32;=&gt;&#32;x._1&#32;+&#32;<span
+        style="color:#6aab73;">",&#32;"&#32;</span>+&#32;x._2).mkString(<span
+        style="color:#6aab73;">","</span>)&#32;<span style="color:#7a7e85;">//&#32;Column1&#32;-&gt;&#32;Column1,&#32;'Column1-alias'<br></span><span
+        style="color:#7a7e85;"><br></span><span style="color:#7a7e85;">//testCountDf<br></span><span
+        style="color:#7a7e85;">//&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;//.select(expr(s"stack($numberOfColumns,&#32;$aliasAndColumns)&#32;as&#32;(Value,&#32;Column)"))<br></span><span
+        style="color:#7a7e85;">//&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.select(expr(s"stack($numberOfColumns,&#32;Column1,&#32;'Column1-label',&#32;Column2,&#32;'Column2-label',&#32;Column3,&#32;'Column3-label')&#32;as&#32;(Value,&#32;Column)"))&#32;//&#32;same&#32;as&#32;above,&#32;but&#32;explicitly&#32;show&#32;the&#32;columns<br></span><span
+        style="color:#7a7e85;">//&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.select($"Value",&#32;$"Column")<br></span><span
+        style="color:#7a7e85;">//&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.show(false)<br></span><span
+        style="color:#7a7e85;"><br></span><span style="color:#7a7e85;"><br></span>testCountDf<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.select(<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="font-style:italic;">explode</span>(<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="font-style:italic;">array</span>(<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="font-style:italic;">struct</span>(<span style="font-style:italic;">lit</span>(<span
+        style="color:#6aab73;">"Column1-label"</span>).alias(<span style="color:#6aab73;">"Column"</span>),&#32;<span
+        style="color:#6aab73;">$"Column1"</span>.alias(<span style="color:#6aab73;">"value"</span>)),<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="font-style:italic;">struct</span>(<span style="font-style:italic;">lit</span>(<span
+        style="color:#6aab73;">"Column2-label"</span>).alias(<span style="color:#6aab73;">"Column"</span>),&#32;<span
+        style="color:#6aab73;">$"Column2"</span>.alias(<span style="color:#6aab73;">"value"</span>)),<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="font-style:italic;">struct</span>(<span style="font-style:italic;">lit</span>(<span
+        style="color:#6aab73;">"Column3-label"</span>).alias(<span style="color:#6aab73;">"Column"</span>),&#32;<span
+        style="color:#6aab73;">$"Column3"</span>.alias(<span style="color:#6aab73;">"value"</span>))<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;).alias(<span
+        style="color:#6aab73;">"col"</span>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.select(<span
+        style="color:#6aab73;">$"col.*"</span>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.show(<span
+        style="color:#cf8e6d;">false</span>)<br><span style="color:#7a7e85;"><hr><br></span><span
+        style="color:#7a7e85;">%md<br></span><span style="color:#cf8e6d;">#&#32;</span>Days&#32;Before&#32;Arrival&#32;stats<br><span
+        style="color:#7a7e85;"><hr><br></span><span style="color:#cf8e6d;">import&#32;</span>org.apache.spark.sql.expressions.Window<br><br><span
+        style="color:#cf8e6d;">val&#32;</span>testDBA&#32;=&#32;Seq(<br>&#32;&#32;&#32;&#32;(<span
+        style="color:#2aacb8;">1</span>,&#32;<span style="color:#6aab73;">"2022-01-01"</span>,&#32;<span
+        style="color:#6aab73;">"shp_1"</span>,&#32;<span style="color:#6aab73;">"2022-01-08"</span>),<br>&#32;&#32;&#32;&#32;(<span
+        style="color:#2aacb8;">2</span>,&#32;<span style="color:#6aab73;">"2022-01-01"</span>,&#32;<span
+        style="color:#6aab73;">"shp_1"</span>,&#32;<span style="color:#6aab73;">"2022-01-08"</span>),<br>&#32;&#32;&#32;&#32;(<span
+        style="color:#2aacb8;">3</span>,&#32;<span style="color:#6aab73;">"2022-01-02"</span>,&#32;<span
+        style="color:#6aab73;">"shp_1"</span>,&#32;<span style="color:#6aab73;">"2022-01-08"</span>),<br>&#32;&#32;&#32;&#32;(<span
+        style="color:#2aacb8;">4</span>,&#32;<span style="color:#6aab73;">"2022-01-03"</span>,&#32;<span
+        style="color:#6aab73;">"shp_1"</span>,&#32;<span style="color:#6aab73;">"2022-01-08"</span>),<br>&#32;&#32;&#32;&#32;(<span
+        style="color:#2aacb8;">5</span>,&#32;<span style="color:#6aab73;">"2022-01-05"</span>,&#32;<span
+        style="color:#6aab73;">"shp_1"</span>,&#32;<span style="color:#6aab73;">"2022-01-08"</span>),<br>&#32;&#32;&#32;&#32;(<span
+        style="color:#2aacb8;">6</span>,&#32;<span style="color:#6aab73;">"2022-01-06"</span>,&#32;<span
+        style="color:#6aab73;">"shp_1"</span>,&#32;<span style="color:#6aab73;">"2022-01-08"</span>),<br>&#32;&#32;&#32;&#32;(<span
+        style="color:#2aacb8;">7</span>,&#32;<span style="color:#6aab73;">"2022-01-07"</span>,&#32;<span
+        style="color:#6aab73;">"shp_1"</span>,&#32;<span style="color:#6aab73;">"2022-01-08"</span>),<br>&#32;&#32;&#32;&#32;(<span
+        style="color:#2aacb8;">8</span>,&#32;<span style="color:#6aab73;">"2022-01-08"</span>,&#32;<span
+        style="color:#6aab73;">"shp_1"</span>,&#32;<span style="color:#6aab73;">"2022-01-08"</span>),<br><br>&#32;&#32;&#32;&#32;(<span
+        style="color:#2aacb8;">1</span>,&#32;<span style="color:#6aab73;">"2022-01-01"</span>,&#32;<span
+        style="color:#6aab73;">"shp_2"</span>,&#32;<span style="color:#6aab73;">"2022-01-15"</span>),<br>&#32;&#32;&#32;&#32;(<span
+        style="color:#2aacb8;">2</span>,&#32;<span style="color:#6aab73;">"2022-01-02"</span>,&#32;<span
+        style="color:#6aab73;">"shp_2"</span>,&#32;<span style="color:#6aab73;">"2022-01-15"</span>),<br>&#32;&#32;&#32;&#32;(<span
+        style="color:#2aacb8;">3</span>,&#32;<span style="color:#6aab73;">"2022-01-03"</span>,&#32;<span
+        style="color:#6aab73;">"shp_2"</span>,&#32;<span style="color:#6aab73;">"2022-01-15"</span>),<br>&#32;&#32;&#32;&#32;(<span
+        style="color:#2aacb8;">4</span>,&#32;<span style="color:#6aab73;">"2022-01-04"</span>,&#32;<span
+        style="color:#6aab73;">"shp_2"</span>,&#32;<span style="color:#6aab73;">"2022-01-15"</span>),<br>&#32;&#32;&#32;&#32;(<span
+        style="color:#2aacb8;">5</span>,&#32;<span style="color:#6aab73;">"2022-01-05"</span>,&#32;<span
+        style="color:#6aab73;">"shp_2"</span>,&#32;<span style="color:#6aab73;">"2022-01-15"</span>),<br>&#32;&#32;&#32;&#32;(<span
+        style="color:#2aacb8;">6</span>,&#32;<span style="color:#6aab73;">"2022-01-06"</span>,&#32;<span
+        style="color:#6aab73;">"shp_2"</span>,&#32;<span style="color:#6aab73;">"2022-01-15"</span>),<br>&#32;&#32;&#32;&#32;(<span
+        style="color:#2aacb8;">7</span>,&#32;<span style="color:#6aab73;">"2022-01-07"</span>,&#32;<span
+        style="color:#6aab73;">"shp_2"</span>,&#32;<span style="color:#6aab73;">"2022-01-15"</span>),<br>&#32;&#32;&#32;&#32;(<span
+        style="color:#2aacb8;">8</span>,&#32;<span style="color:#6aab73;">"2022-01-08"</span>,&#32;<span
+        style="color:#6aab73;">"shp_2"</span>,&#32;<span style="color:#6aab73;">"2022-01-15"</span>),<br>&#32;&#32;&#32;&#32;(<span
+        style="color:#2aacb8;">9</span>,&#32;<span style="color:#6aab73;">"2022-01-09"</span>,&#32;<span
+        style="color:#6aab73;">"shp_2"</span>,&#32;<span style="color:#6aab73;">"2022-01-15"</span>),<br>&#32;&#32;&#32;&#32;(<span
+        style="color:#2aacb8;">10</span>,&#32;<span style="color:#6aab73;">"2022-01-10"</span>,&#32;<span
+        style="color:#6aab73;">"shp_2"</span>,&#32;<span style="color:#6aab73;">"2022-01-15"</span>),<br>&#32;&#32;&#32;&#32;(<span
+        style="color:#2aacb8;">11</span>,&#32;<span style="color:#6aab73;">"2022-01-11"</span>,&#32;<span
+        style="color:#6aab73;">"shp_2"</span>,&#32;<span style="color:#6aab73;">"2022-01-15"</span>),<br>&#32;&#32;&#32;&#32;(<span
+        style="color:#2aacb8;">12</span>,&#32;<span style="color:#6aab73;">"2022-01-12"</span>,&#32;<span
+        style="color:#6aab73;">"shp_2"</span>,&#32;<span style="color:#6aab73;">"2022-01-15"</span>),<br>&#32;&#32;&#32;&#32;(<span
+        style="color:#2aacb8;">13</span>,&#32;<span style="color:#6aab73;">"2022-01-15"</span>,&#32;<span
+        style="color:#6aab73;">"shp_2"</span>,&#32;<span style="color:#6aab73;">"2022-01-15"</span>)<br>).toDF(<span
+        style="color:#6aab73;">"#"</span>,&#32;<span style="color:#6aab73;">"date"</span>,&#32;<span
+        style="color:#6aab73;">"shipment"</span>,&#32;<span style="color:#6aab73;">"ata"</span>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.select(<span
+        style="color:#6aab73;">$"#"</span>,&#32;<span style="color:#6aab73;">$"date"</span>.cast(<span
+        style="color:#6aab73;">"date"</span>).alias(<span style="color:#6aab73;">"date"</span>),&#32;<span
+        style="color:#6aab73;">$"shipment"</span>,&#32;<span style="color:#6aab73;">$"ata"</span>.cast(<span
+        style="color:#6aab73;">"date"</span>).alias(<span style="color:#6aab73;">"ata"</span>))<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<span
+        style="color:#6aab73;">"DBA"</span>,&#32;<span style="font-style:italic;">datediff</span>(<span
+        style="color:#6aab73;">$"ata"</span>,&#32;<span
+        style="color:#6aab73;">$"date"</span>))<br><br>testDBA.show(<span style="color:#2aacb8;">100</span>,&#32;<span
+        style="color:#cf8e6d;">false</span>)<br><span style="color:#7a7e85;"><hr><br></span><span
+        style="color:#cf8e6d;">val&#32;</span>daysBeforeArrival&#32;=&#32;<span style="color:#2aacb8;">14<br></span>testDBA<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<span
+        style="color:#6aab73;">"daysBeforeArrivalArray"</span>,&#32;<span style="font-style:italic;">lit</span>((<span
+        style="color:#2aacb8;">0&#32;</span>to&#32;daysBeforeArrival).toArray))<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<span
+        style="color:#6aab73;">"daysBeforeArrivalArrayVal"</span>,&#32;<span
+        style="font-style:italic;">explode</span>(<span style="color:#6aab73;">$"daysBeforeArrivalArray"</span>))<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.filter(<span
+        style="color:#6aab73;">$"DBA"&#32;</span>&gt;=&#32;<span
+        style="color:#6aab73;">$"daysBeforeArrivalArrayVal"</span>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<span
+        style="color:#6aab73;">"rn"</span>,&#32;<span style="font-style:italic;">row_number</span>.over(Window.<span
+        style="font-style:italic;">partitionBy</span>(<span style="color:#6aab73;">$"shipment"</span>,&#32;<span
+        style="color:#6aab73;">$"daysBeforeArrivalArrayVal"</span>).orderBy(<span style="color:#6aab73;">$"date"</span>.desc)))<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.filter(<span
+        style="color:#6aab73;">$"rn"&#32;</span>===&#32;<span style="color:#2aacb8;">1</span>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.drop(<span
+        style="color:#6aab73;">$"daysBeforeArrivalArray"</span>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.orderBy(<span
+        style="color:#6aab73;">$"shipment"</span>,&#32;<span style="color:#6aab73;">$"#"</span>,&#32;<span
+        style="color:#6aab73;">$"daysBeforeArrivalArrayVal"</span>.desc)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.show(<span
+        style="color:#2aacb8;">100</span>,&#32;<span style="color:#cf8e6d;">false</span>)<br><span
+        style="color:#7a7e85;"><hr><br></span><span style="color:#cf8e6d;">val&#32;</span>testMBA&#32;=&#32;Seq(<br><br>&#32;&#32;&#32;&#32;(<span
+        style="color:#2aacb8;">1</span>,&#32;<span style="color:#6aab73;">"2022-01-01"</span>,&#32;<span
+        style="color:#6aab73;">"shp_1"</span>,&#32;<span style="color:#6aab73;">"null"</span>,&#32;<span
+        style="color:#6aab73;">"null"</span>),<br>&#32;&#32;&#32;&#32;(<span style="color:#2aacb8;">2</span>,&#32;<span
+        style="color:#6aab73;">"2022-01-01"</span>,&#32;<span style="color:#6aab73;">"shp_1"</span>,&#32;<span
+        style="color:#6aab73;">"null"</span>,&#32;<span
+        style="color:#6aab73;">"null"</span>),<br>&#32;&#32;&#32;&#32;(<span style="color:#2aacb8;">3</span>,&#32;<span
+        style="color:#6aab73;">"2022-01-02"</span>,&#32;<span style="color:#6aab73;">"shp_1"</span>,&#32;<span
+        style="color:#6aab73;">"null"</span>,&#32;<span
+        style="color:#6aab73;">"null"</span>),<br>&#32;&#32;&#32;&#32;(<span style="color:#2aacb8;">4</span>,&#32;<span
+        style="color:#6aab73;">"2022-01-03"</span>,&#32;<span style="color:#6aab73;">"shp_1"</span>,&#32;<span
+        style="color:#6aab73;">"2022-01-03"</span>,&#32;<span style="color:#6aab73;">"null"</span>),<br>&#32;&#32;&#32;&#32;(<span
+        style="color:#2aacb8;">5</span>,&#32;<span style="color:#6aab73;">"2022-01-05"</span>,&#32;<span
+        style="color:#6aab73;">"shp_1"</span>,&#32;<span style="color:#6aab73;">"2022-01-03"</span>,&#32;<span
+        style="color:#6aab73;">"null"</span>),<br>&#32;&#32;&#32;&#32;(<span style="color:#2aacb8;">6</span>,&#32;<span
+        style="color:#6aab73;">"2022-01-06"</span>,&#32;<span style="color:#6aab73;">"shp_1"</span>,&#32;<span
+        style="color:#6aab73;">"2022-01-03"</span>,&#32;<span style="color:#6aab73;">"null"</span>),<br>&#32;&#32;&#32;&#32;(<span
+        style="color:#2aacb8;">7</span>,&#32;<span style="color:#6aab73;">"2022-01-07"</span>,&#32;<span
+        style="color:#6aab73;">"shp_1"</span>,&#32;<span style="color:#6aab73;">"2022-01-03"</span>,&#32;<span
+        style="color:#6aab73;">"null"</span>),<br>&#32;&#32;&#32;&#32;(<span style="color:#2aacb8;">8</span>,&#32;<span
+        style="color:#6aab73;">"2022-01-08"</span>,&#32;<span style="color:#6aab73;">"shp_1"</span>,&#32;<span
+        style="color:#6aab73;">"2022-01-03"</span>,&#32;<span style="color:#6aab73;">"2022-01-08"</span>),<br><br>&#32;&#32;&#32;&#32;(<span
+        style="color:#2aacb8;">1</span>,&#32;<span style="color:#6aab73;">"2022-01-01"</span>,&#32;<span
+        style="color:#6aab73;">"shp_2"</span>,&#32;<span style="color:#6aab73;">"null"</span>,&#32;<span
+        style="color:#6aab73;">"null"</span>),<br>&#32;&#32;&#32;&#32;(<span style="color:#2aacb8;">2</span>,&#32;<span
+        style="color:#6aab73;">"2022-01-02"</span>,&#32;<span style="color:#6aab73;">"shp_2"</span>,&#32;<span
+        style="color:#6aab73;">"null"</span>,&#32;<span
+        style="color:#6aab73;">"null"</span>),<br>&#32;&#32;&#32;&#32;(<span style="color:#2aacb8;">3</span>,&#32;<span
+        style="color:#6aab73;">"2022-01-03"</span>,&#32;<span style="color:#6aab73;">"shp_2"</span>,&#32;<span
+        style="color:#6aab73;">"null"</span>,&#32;<span
+        style="color:#6aab73;">"null"</span>),<br>&#32;&#32;&#32;&#32;(<span style="color:#2aacb8;">4</span>,&#32;<span
+        style="color:#6aab73;">"2022-01-04"</span>,&#32;<span style="color:#6aab73;">"shp_2"</span>,&#32;<span
+        style="color:#6aab73;">"null"</span>,&#32;<span
+        style="color:#6aab73;">"null"</span>),<br>&#32;&#32;&#32;&#32;(<span style="color:#2aacb8;">5</span>,&#32;<span
+        style="color:#6aab73;">"2022-01-05"</span>,&#32;<span style="color:#6aab73;">"shp_2"</span>,&#32;<span
+        style="color:#6aab73;">"null"</span>,&#32;<span
+        style="color:#6aab73;">"null"</span>),<br>&#32;&#32;&#32;&#32;(<span style="color:#2aacb8;">6</span>,&#32;<span
+        style="color:#6aab73;">"2022-01-06"</span>,&#32;<span style="color:#6aab73;">"shp_2"</span>,&#32;<span
+        style="color:#6aab73;">"2022-01-06"</span>,&#32;<span style="color:#6aab73;">"null"</span>),<br>&#32;&#32;&#32;&#32;(<span
+        style="color:#2aacb8;">7</span>,&#32;<span style="color:#6aab73;">"2022-01-07"</span>,&#32;<span
+        style="color:#6aab73;">"shp_2"</span>,&#32;<span style="color:#6aab73;">"2022-01-06"</span>,&#32;<span
+        style="color:#6aab73;">"null"</span>),<br>&#32;&#32;&#32;&#32;(<span style="color:#2aacb8;">8</span>,&#32;<span
+        style="color:#6aab73;">"2022-01-08"</span>,&#32;<span style="color:#6aab73;">"shp_2"</span>,&#32;<span
+        style="color:#6aab73;">"2022-01-06"</span>,&#32;<span style="color:#6aab73;">"null"</span>),<br>&#32;&#32;&#32;&#32;(<span
+        style="color:#2aacb8;">9</span>,&#32;<span style="color:#6aab73;">"2022-01-09"</span>,&#32;<span
+        style="color:#6aab73;">"shp_2"</span>,&#32;<span style="color:#6aab73;">"2022-01-06"</span>,&#32;<span
+        style="color:#6aab73;">"null"</span>),<br>&#32;&#32;&#32;&#32;(<span style="color:#2aacb8;">10</span>,&#32;<span
+        style="color:#6aab73;">"2022-01-10"</span>,&#32;<span style="color:#6aab73;">"shp_2"</span>,&#32;<span
+        style="color:#6aab73;">"2022-01-06"</span>,&#32;<span style="color:#6aab73;">"null"</span>),<br>&#32;&#32;&#32;&#32;(<span
+        style="color:#2aacb8;">11</span>,&#32;<span style="color:#6aab73;">"2022-01-11"</span>,&#32;<span
+        style="color:#6aab73;">"shp_2"</span>,&#32;<span style="color:#6aab73;">"2022-01-06"</span>,&#32;<span
+        style="color:#6aab73;">"null"</span>),<br>&#32;&#32;&#32;&#32;(<span style="color:#2aacb8;">12</span>,&#32;<span
+        style="color:#6aab73;">"2022-01-14"</span>,&#32;<span style="color:#6aab73;">"shp_2"</span>,&#32;<span
+        style="color:#6aab73;">"2022-01-06"</span>,&#32;<span style="color:#6aab73;">"2022-01-14"</span>),<br><br>&#32;&#32;&#32;&#32;(<span
+        style="color:#2aacb8;">1</span>,&#32;<span style="color:#6aab73;">"2022-01-14"</span>,&#32;<span
+        style="color:#6aab73;">"shp_3"</span>,&#32;<span style="color:#6aab73;">"2022-01-14"</span>,&#32;<span
+        style="color:#6aab73;">"2022-01-14"</span>),<br><br>&#32;&#32;&#32;&#32;(<span style="color:#2aacb8;">1</span>,&#32;<span
+        style="color:#6aab73;">"2022-02-04"</span>,&#32;<span style="color:#6aab73;">"shp_4"</span>,&#32;<span
+        style="color:#6aab73;">"2022-02-04"</span>,&#32;<span style="color:#6aab73;">"null"</span>),<br>&#32;&#32;&#32;&#32;(<span
+        style="color:#2aacb8;">2</span>,&#32;<span style="color:#6aab73;">"2022-02-05"</span>,&#32;<span
+        style="color:#6aab73;">"shp_4"</span>,&#32;<span style="color:#6aab73;">"2022-02-04"</span>,&#32;<span
+        style="color:#6aab73;">"2022-02-05"</span>)<br><br>).toDF(<span style="color:#6aab73;">"#"</span>,&#32;<span
+        style="color:#6aab73;">"date"</span>,&#32;<span style="color:#6aab73;">"shipment"</span>,&#32;<span
+        style="color:#6aab73;">"atd"</span>,&#32;<span style="color:#6aab73;">"ata"</span>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.select(<span
+        style="color:#6aab73;">$"#"</span>,&#32;<span style="color:#6aab73;">$"date"</span>.cast(<span
+        style="color:#6aab73;">"date"</span>).alias(<span style="color:#6aab73;">"date"</span>),&#32;<span
+        style="color:#6aab73;">$"shipment"</span>,&#32;<span style="color:#6aab73;">$"atd"</span>.cast(<span
+        style="color:#6aab73;">"date"</span>).alias(<span style="color:#6aab73;">"atd"</span>),&#32;<span
+        style="color:#6aab73;">$"ata"</span>.cast(<span style="color:#6aab73;">"date"</span>).alias(<span
+        style="color:#6aab73;">"ata"</span>))<br>testMBA.show(<span style="color:#2aacb8;">100</span>,&#32;<span
+        style="color:#cf8e6d;">false</span>)<br><span style="color:#7a7e85;"><hr><br></span><span
+        style="color:#cf8e6d;">val&#32;</span>ShipmentCreationString:&#32;String&#32;=&#32;<span style="color:#6aab73;">"1.&#32;Shipment&#32;Creation"<br></span><span
+        style="color:#cf8e6d;">val&#32;</span>CreatedAtdMiddleMilestoneString:&#32;String&#32;=&#32;<span
+        style="color:#6aab73;">"2.&#32;Creation-ATD&#32;Middle"<br></span><span style="color:#cf8e6d;">val&#32;</span>AtdString:&#32;String&#32;=&#32;<span
+        style="color:#6aab73;">"3.&#32;ATD"<br></span><span style="color:#cf8e6d;">val&#32;</span>AtdAtaMiddleMilestoneString:&#32;String&#32;=&#32;<span
+        style="color:#6aab73;">"4.&#32;ATD-ATA&#32;Middle"<br></span><span style="color:#cf8e6d;">val&#32;</span>AtaString:&#32;String&#32;=&#32;<span
+        style="color:#6aab73;">"5.&#32;ATA"<br></span><span style="color:#6aab73;"><br></span><span
+        style="color:#cf8e6d;">val&#32;</span>withMilestones&#32;=&#32;testMBA<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<span
+        style="color:#6aab73;">"master_atd_first"</span>,&#32;<span style="font-style:italic;">first</span>(<span
+        style="color:#6aab73;">$"atd"</span>,&#32;ignoreNulls&#32;=&#32;<span style="color:#cf8e6d;">true</span>).over(Window.<span
+        style="font-style:italic;">partitionBy</span>(<span style="color:#6aab73;">$"shipment"</span>).orderBy(<span
+        style="color:#6aab73;">$"date"</span>).rangeBetween(Window.<span
+        style="font-style:italic;">unboundedPreceding</span>,&#32;Window.<span style="font-style:italic;">unboundedFollowing</span>)))<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<span
+        style="color:#6aab73;">"master_ata"</span>,&#32;<span style="font-style:italic;">first</span>(<span
+        style="color:#6aab73;">$"ata"</span>,&#32;ignoreNulls&#32;=&#32;<span style="color:#cf8e6d;">true</span>).over(Window.<span
+        style="font-style:italic;">partitionBy</span>(<span style="color:#6aab73;">$"shipment"</span>).orderBy(<span
+        style="color:#6aab73;">$"date"</span>).rangeBetween(Window.<span
+        style="font-style:italic;">unboundedPreceding</span>,&#32;Window.<span style="font-style:italic;">unboundedFollowing</span>)))<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#6aab73;">"shipmentCreationRN"</span>,<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="font-style:italic;">row_number</span>().over(Window.<span
+        style="font-style:italic;">partitionBy</span>(<span style="color:#6aab73;">$"shipment"</span>).orderBy(<span
+        style="color:#6aab73;">$"date"</span>,&#32;<span style="color:#6aab73;">$"#"</span>))<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#6aab73;">"shipmentCreation"</span>,<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="font-style:italic;">when</span>(<span
+        style="color:#6aab73;">$"shipmentCreationRN"&#32;</span>===&#32;<span style="color:#2aacb8;">1</span>,&#32;ShipmentCreationString).otherwise(<span
+        style="color:#cf8e6d;">null</span>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#6aab73;">"atdCatRN"</span>,<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="font-style:italic;">row_number</span>().over(<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Window<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.<span
+        style="font-style:italic;">partitionBy</span>(<span style="color:#6aab73;">$"shipment"</span>,&#32;<span
+        style="color:#6aab73;">$"atd"&#32;</span>===&#32;<span style="color:#6aab73;">$"master_atd_first"</span>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.orderBy(<span
+        style="color:#6aab73;">$"date"</span>,&#32;<span style="color:#6aab73;">$"#"</span>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#6aab73;">"atdCat"</span>,<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="font-style:italic;">when</span>(<span style="color:#6aab73;">$"atd"</span>.isNotNull&#32;and&#32;<span
+        style="color:#6aab73;">$"atd"&#32;</span>===&#32;<span style="color:#6aab73;">$"master_atd_first"&#32;</span>and&#32;<span
+        style="color:#6aab73;">$"atdCatRN"&#32;</span>===&#32;<span style="color:#2aacb8;">1</span>,&#32;AtdString)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.otherwise(<span
+        style="color:#cf8e6d;">null</span>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#6aab73;">"ataCatRn"</span>,<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="font-style:italic;">row_number</span>().over(<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Window.<span
+        style="font-style:italic;">partitionBy</span>(<span style="color:#6aab73;">$"shipment"</span>,&#32;<span
+        style="color:#6aab73;">$"ata"&#32;</span>===&#32;<span
+        style="color:#6aab73;">$"master_ata"</span>).orderBy(<span style="color:#6aab73;">$"date"</span>,&#32;<span
+        style="color:#6aab73;">$"#"</span>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#6aab73;">"ataCat"</span>,<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="font-style:italic;">when</span>(<span style="color:#6aab73;">$"ata"</span>.isNotNull&#32;and&#32;<span
+        style="color:#6aab73;">$"ata"&#32;</span>===&#32;<span
+        style="color:#6aab73;">$"master_ata"&#32;</span>and&#32;<span style="color:#6aab73;">$"ataCatRn"&#32;</span>===&#32;<span
+        style="color:#2aacb8;">1</span>,&#32;AtaString)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.otherwise(<span
+        style="color:#cf8e6d;">null</span>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#6aab73;">"creationMilestoneTime"</span>,<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="font-style:italic;">first</span>(<span style="font-style:italic;">when</span>(<span
+        style="color:#6aab73;">$"shipmentCreation"&#32;</span>===&#32;ShipmentCreationString,&#32;<span
+        style="color:#6aab73;">$"date"</span>).otherwise(<span style="color:#cf8e6d;">null</span>),&#32;ignoreNulls&#32;=&#32;<span
+        style="color:#cf8e6d;">true</span>).over(Window.<span style="font-style:italic;">partitionBy</span>(<span
+        style="color:#6aab73;">$"shipment"</span>).orderBy(<span style="color:#6aab73;">$"date"</span>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.rangeBetween(Window.<span
+        style="font-style:italic;">unboundedPreceding</span>,&#32;Window.<span style="font-style:italic;">unboundedFollowing</span>))<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#6aab73;">"atdMilestoneTime"</span>,<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="font-style:italic;">first</span>(<span style="font-style:italic;">when</span>(<span
+        style="color:#6aab73;">$"atdCat"&#32;</span>===&#32;AtdString,&#32;<span style="color:#6aab73;">$"date"</span>).otherwise(<span
+        style="color:#cf8e6d;">null</span>),&#32;ignoreNulls&#32;=&#32;<span style="color:#cf8e6d;">true</span>).over(Window.<span
+        style="font-style:italic;">partitionBy</span>(<span style="color:#6aab73;">$"shipment"</span>).orderBy(<span
+        style="color:#6aab73;">$"date"</span>,&#32;<span style="color:#6aab73;">$"#"</span>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.rangeBetween(Window.<span
+        style="font-style:italic;">unboundedPreceding</span>,&#32;Window.<span style="font-style:italic;">unboundedFollowing</span>))<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#6aab73;">"ataMilestoneTime"</span>,<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="font-style:italic;">first</span>(<span style="font-style:italic;">when</span>(<span
+        style="color:#6aab73;">$"ataCat"&#32;</span>===&#32;AtaString,&#32;<span style="color:#6aab73;">$"date"</span>).otherwise(<span
+        style="color:#cf8e6d;">null</span>),&#32;ignoreNulls&#32;=&#32;<span style="color:#cf8e6d;">true</span>).over(Window.<span
+        style="font-style:italic;">partitionBy</span>(<span style="color:#6aab73;">$"shipment"</span>).orderBy(<span
+        style="color:#6aab73;">$"date"</span>,&#32;<span style="color:#6aab73;">$"#"</span>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.rangeBetween(Window.<span
+        style="font-style:italic;">unboundedPreceding</span>,&#32;Window.<span style="font-style:italic;">unboundedFollowing</span>))<br><br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<span
+        style="color:#6aab73;">"crAtdMiddle"</span>,&#32;<span
+        style="color:#6aab73;">$"creationMilestoneTime"&#32;</span>+&#32;(<span
+        style="font-style:italic;">datediff</span>(<span style="color:#6aab73;">$"atdMilestoneTime"</span>,&#32;<span
+        style="color:#6aab73;">$"creationMilestoneTime"</span>)&#32;/&#32;<span
+        style="color:#2aacb8;">2</span>).cast(<span style="color:#6aab73;">"int"</span>))<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<span
+        style="color:#6aab73;">"deviationFromCrAtdMiddle"</span>,&#32;<span
+        style="font-style:italic;">datediff</span>(<span style="color:#6aab73;">$"date"</span>,&#32;<span
+        style="color:#6aab73;">$"crAtdMiddle"</span>))<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#6aab73;">"crAtdRN"</span>,<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="font-style:italic;">row_number</span>().over(<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Window<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.<span
+        style="font-style:italic;">partitionBy</span>(<span style="color:#6aab73;">$"shipment"</span>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.orderBy(<span
+        style="font-style:italic;">abs</span>(<span
+        style="color:#6aab73;">$"deviationFromCrAtdMiddle"</span>),&#32;<span style="color:#6aab73;">$"deviationFromCrAtdMiddle"</span>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#6aab73;">"crAtdMiddleMilestone"</span>,<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="font-style:italic;">when</span>(<span style="color:#6aab73;">$"crAtdRN"&#32;</span>===&#32;<span
+        style="color:#2aacb8;">1</span>,&#32;CreatedAtdMiddleMilestoneString).otherwise(<span style="color:#cf8e6d;">null</span>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<span
+        style="color:#6aab73;">"atdAtaMiddle"</span>,&#32;<span style="color:#6aab73;">$"atdMilestoneTime"&#32;</span>+&#32;(<span
+        style="font-style:italic;">datediff</span>(<span style="color:#6aab73;">$"ataMilestoneTime"</span>,&#32;<span
+        style="color:#6aab73;">$"atdMilestoneTime"</span>)&#32;/&#32;<span style="color:#2aacb8;">2</span>).cast(<span
+        style="color:#6aab73;">"int"</span>))<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<span
+        style="color:#6aab73;">"deviationFromAtdAtaMiddle"</span>,&#32;<span style="font-style:italic;">datediff</span>(<span
+        style="color:#6aab73;">$"date"</span>,&#32;<span style="color:#6aab73;">$"atdAtaMiddle"</span>))<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#6aab73;">"atdAtaRN"</span>,<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="font-style:italic;">row_number</span>().over(<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Window<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.<span
+        style="font-style:italic;">partitionBy</span>(<span style="color:#6aab73;">$"shipment"</span>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.orderBy(<span
+        style="font-style:italic;">abs</span>(<span
+        style="color:#6aab73;">$"deviationFromAtdAtaMiddle"</span>),&#32;<span style="color:#6aab73;">$"deviationFromAtdAtaMiddle"</span>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#6aab73;">"atdAtaMiddleMilestone"</span>,<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="font-style:italic;">when</span>(<span style="color:#6aab73;">$"atdAtaRN"&#32;</span>===&#32;<span
+        style="color:#2aacb8;">1</span>,&#32;AtdAtaMiddleMilestoneString).otherwise(<span
+        style="color:#cf8e6d;">null</span>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.orderBy(<span
+        style="color:#6aab73;">$"shipment"</span>,&#32;<span style="color:#6aab73;">$"date"</span>,&#32;<span
+        style="color:#6aab73;">$"#"</span>)<br><br>withMilestones.show(<span
+        style="color:#2aacb8;">200</span>,&#32;<span style="color:#cf8e6d;">false</span>)<br><span
+        style="color:#7a7e85;"><hr><br></span>withMilestones<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<span
+        style="color:#6aab73;">"milestone"</span>,&#32;<span style="font-style:italic;">expr</span>(<span
+        style="color:#6aab73;">"stack(5,shipmentCreation,&#32;crAtdMiddleMilestone,&#32;atdCat,&#32;atdAtaMiddleMilestone,&#32;ataCat)&#32;as&#32;(Milestone)"</span>))<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.filter(<span
+        style="color:#6aab73;">$"milestone"</span>.isNotNull)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.select(<span
+        style="color:#6aab73;">$"#"</span>,&#32;<span style="color:#6aab73;">$"date"</span>,&#32;<span
+        style="color:#6aab73;">$"shipment"</span>,&#32;<span style="color:#6aab73;">$"atd"</span>,&#32;<span
+        style="color:#6aab73;">$"ata"</span>,&#32;<span style="color:#6aab73;">$"milestone"</span>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.orderBy(<span
+        style="color:#6aab73;">$"shipment"</span>,&#32;<span style="color:#6aab73;">$"milestone"</span>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.show(<span
+        style="color:#cf8e6d;">false</span>)<br><span style="color:#7a7e85;"><hr><br></span><span
+        style="color:#7a7e85;">%md<br></span><span style="color:#cf8e6d;">#&#32;</span>Row&#32;duplication&#32;for&#32;ML&#32;weights<br>Postgres<br><span
+        style="color:#cf8e6d;">```</span><span style="color:#c77dbb;font-style:italic;">sql<br></span><span
+        style="color:#6aab73;background-color:#293c40;">select&#32;col,&#32;UNNEST(array_fill(1,&#32;array[col]))&#32;as&#32;bruh<br></span><span
+        style="color:#6aab73;background-color:#293c40;">from&#32;(<br></span><span
+        style="color:#6aab73;background-color:#293c40;">select&#32;unnest(array[1,&#32;2,&#32;3])&#32;as&#32;col<br></span><span
+        style="color:#6aab73;background-color:#293c40;">from&#32;bruh<br></span><span
+        style="color:#6aab73;background-color:#293c40;">&#32;&#32;)&#32;as&#32;bruh2;</span><span
+        style="color:#6aab73;"><br></span><span style="color:#cf8e6d;">```<br></span><span style="color:#7a7e85;"><hr><br></span><span
+        style="color:#cf8e6d;">val&#32;</span>testDf&#32;=&#32;Seq(<span style="color:#2aacb8;">1</span>,&#32;<span
+        style="color:#2aacb8;">2</span>,&#32;<span style="color:#2aacb8;">3</span>,&#32;<span
+        style="color:#2aacb8;">4</span>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.toDF(<span style="color:#6aab73;">"duplication_multiplier"</span>)<br><br><span
+        style="color:#cf8e6d;">val&#32;</span>withArray&#32;=&#32;testDf<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<span
+        style="color:#6aab73;">"bruh"</span>,&#32;<span style="font-style:italic;">array_repeat</span>(<span
+        style="font-style:italic;">lit</span>(<span style="color:#6aab73;">"a"</span>),&#32;<span
+        style="color:#6aab73;">$"duplication_multiplier"</span>))<br><br><span style="color:#cf8e6d;">val&#32;</span>duplicated&#32;=&#32;withArray<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<span
+        style="color:#6aab73;">"duplication"</span>,&#32;<span style="font-style:italic;">explode</span>(<span
+        style="color:#6aab73;">$"bruh"</span>))<br><br>testDf.show(<span style="color:#cf8e6d;">false</span>)<br>withArray.show(<span
+        style="color:#cf8e6d;">false</span>)<br>duplicated.show(<span style="color:#cf8e6d;">false</span>)<br><span
+        style="color:#7a7e85;"><hr><br></span><span style="color:#7a7e85;">%md<br></span><span style="color:#cf8e6d;">#&#32;</span>Language&#32;processing<br><span
+        style="color:#7a7e85;"><hr><br></span><span style="color:#cf8e6d;">val&#32;</span>comments&#32;=&#32;<span
+        style="color:#c77dbb;font-style:italic;">spark<br></span><span style="color:#c77dbb;font-style:italic;">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;</span>.read<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.json(<span
+        style="color:#6aab73;">"s3://tv-datascience-lab/kostia/result_filtered_valid_json.json"</span>)<br><span
+        style="color:#7a7e85;"><hr><br></span>comments<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.show(<span
+        style="color:#2aacb8;">100</span>,&#32;<span style="color:#cf8e6d;">false</span>)<br><span
+        style="color:#7a7e85;"><hr><br></span><span
+        style="color:#7a7e85;">//val&#32;final_comments&#32;=<br></span><span style="color:#7a7e85;">&#32;&#32;&#32;&#32;</span>comments<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.filter(<span
+        style="color:#6aab73;">$"text"</span>.contains(<span style="color:#6aab73;">"Scarlet&#32;Witch&#32;and&#32;Doctor&#32;Strange"</span>))<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<span
+        style="color:#6aab73;">"label"</span>,&#32;<span style="font-style:italic;">explode</span>(<span
+        style="color:#6aab73;">$"label"</span>))<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<span
+        style="color:#6aab73;">"previousLabel"</span>,&#32;<span style="font-style:italic;">lag</span>(<span
+        style="color:#6aab73;">$"label"</span>,&#32;<span style="color:#2aacb8;">1</span>).over(Window.<span
+        style="font-style:italic;">partitionBy</span>(<span style="color:#6aab73;">$"text"</span>).orderBy(<span
+        style="color:#6aab73;">$"label.start"</span>)))<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<span
+        style="color:#6aab73;">"combine"</span>,&#32;(<span style="color:#6aab73;">$"previousLabel.end"&#32;</span>===&#32;<span
+        style="color:#6aab73;">$"label.start"&#32;</span>-&#32;<span style="color:#2aacb8;">1</span>)&#32;or&#32;(<span
+        style="color:#6aab73;">$"previousLabel.end"&#32;</span>===&#32;<span
+        style="color:#6aab73;">$"label.start"</span>))<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.na.fill(<span
+        style="color:#cf8e6d;">false</span>,&#32;Seq(<span style="color:#6aab73;">"combine"</span>))<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<span
+        style="color:#6aab73;">"rn"</span>,&#32;<span style="font-style:italic;">row_number</span>().over(Window.<span
+        style="font-style:italic;">partitionBy</span>(<span style="color:#6aab73;">$"text"</span>,&#32;<span
+        style="color:#6aab73;">$"combine"</span>).orderBy(<span style="color:#6aab73;">$"label.start"</span>)))<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<span
+        style="color:#6aab73;">"rn"</span>,&#32;<span style="font-style:italic;">when</span>(<span
+        style="color:#6aab73;">$"combine"</span>,&#32;<span style="color:#cf8e6d;">null</span>).otherwise(<span
+        style="color:#6aab73;">$"rn"</span>))<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<span
+        style="color:#6aab73;">"group"</span>,<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="font-style:italic;">last</span>(<span
+        style="color:#6aab73;">$"rn"</span>,&#32;ignoreNulls&#32;=&#32;<span style="color:#cf8e6d;">true</span>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.over(Window.<span
+        style="font-style:italic;">partitionBy</span>(<span style="color:#6aab73;">$"text"</span>).orderBy(<span
+        style="color:#6aab73;">$"label.start"</span>).rowsBetween(Window.<span style="font-style:italic;">unboundedPreceding</span>,&#32;Window.<span
+        style="font-style:italic;">currentRow</span>))<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<span
+        style="color:#6aab73;">"hash"</span>,&#32;<span style="font-style:italic;">hash</span>(<span
+        style="color:#6aab73;">$"text"</span>))<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.groupBy(<span
+        style="color:#6aab73;">$"text"</span>,&#32;<span style="color:#6aab73;">$"hash"</span>,&#32;<span
+        style="color:#6aab73;">$"group"</span>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.agg(<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="font-style:italic;">collect_set</span>(<span style="font-style:italic;">struct</span>(<span
+        style="color:#6aab73;">$"label.start"</span>,&#32;<span style="color:#6aab73;">$"label.word"</span>,&#32;<span
+        style="color:#6aab73;">$"label.entity"</span>)).alias(<span style="color:#6aab73;">"arr"</span>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<span
+        style="color:#6aab73;">"arr"</span>,&#32;<span style="font-style:italic;">sort_array</span>(<span
+        style="color:#6aab73;">$"arr"</span>))<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<span
+        style="color:#6aab73;">"word"</span>,&#32;<span style="font-style:italic;">concat_ws</span>(<span
+        style="color:#6aab73;">""</span>,&#32;<span style="color:#6aab73;">$"arr.word"</span>))<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.withColumn(<span
+        style="color:#6aab73;">"final_word"</span>,&#32;<span style="font-style:italic;">lower</span>(<span
+        style="font-style:italic;">trim</span>(<span style="font-style:italic;">regexp_replace</span>(<span
+        style="color:#6aab73;">$"word"</span>,&#32;<span style="color:#6aab73;">"▁+"</span>,&#32;<span
+        style="color:#6aab73;">"&#32;"</span>))))<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.select(<span
+        style="color:#6aab73;">$"text"</span>,&#32;<span style="color:#6aab73;">$"word"</span>,&#32;<span
+        style="color:#6aab73;">$"final_word"</span>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.orderBy(<span
+        style="color:#6aab73;">$"text"</span>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.show(<span
+        style="color:#cf8e6d;">false</span>)<br><br><span style="color:#7a7e85;">//final_comments<br></span><span
+        style="color:#7a7e85;">//&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.show(20,&#32;false)<br></span><span
+        style="color:#7a7e85;"><hr><br></span>final_comments<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.show(<span
+        style="color:#2aacb8;">20</span>,&#32;<span style="color:#cf8e6d;">false</span>)<br><span
+        style="color:#7a7e85;"><hr><br></span></div>
+</body>
+</html>
