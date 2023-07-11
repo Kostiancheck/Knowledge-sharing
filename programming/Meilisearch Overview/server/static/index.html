@@ -1,0 +1,27 @@
+<html>
+
+<head>
+    <title>Mind Upload</title>
+    <link rel="stylesheet" href="/base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div id="main">
+        <div class="search-wrapper">
+            <p id="papers-available" style="font-size: smaller;">Papers available: 0</p>
+            <p>Search for articles on arXiv.org:</p>
+            <input type="text" id="search">
+            <p id="execution-time" style="font-size: smaller;" class="hidden" data-execution-time=0>Execution time: 0 ms</p>
+            <p id="estimated-count" style="font-size: smaller;" class="hidden" data-count=0>Estimated count: 0</p>
+            <div id="pagination" class="hidden"><span id="current-page" data-page=1>Page: 1</span><span id="prev-page-btn" class="hidden"> | <a>prev</a></span><span id="next-page-btn" class="hidden"> | <a>next</a></span></div>
+        </div>
+        <hr>
+        <div id="papers">
+            <ul id="papers-list"></ul>
+        </div>
+    </div>
+    <script src="/search.js"></script>
+</body>
+
+</html>

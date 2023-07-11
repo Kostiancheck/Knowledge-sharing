@@ -1,0 +1,1 @@
+Simple Rust webserver for serving static files
