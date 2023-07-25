@@ -1,0 +1,49 @@
+version: '3'
+services:
+  neo4j:
+    image: neo4j:5.8.0
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    volumes:
+      - mind_upload_friends_neo4j:/data
+    environment:
+      - NEO4J_PLUGINS=["apoc"]
+      - NEO4J_AUTH=neo4j/testtest
+      - NEO4J_dbms_security_procedures_unrestricted=apoc.*
+      - NEO4J_apoc_export_file_enabled=true
+      - NEO4J_apoc_import_file_enabled=true
+      - NEO4J_apoc_import_file_use__neo4j__config=true
+      - NEO4J_apoc_export_file_use__neo4j__config=true
+
+  postgres:
+    image: apache/age:PG13_latest
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=testtest
+      - POSTGRES_DB=neo4j
+    ports:
+      - "5432:5432"
+    volumes:
+      - mind_upload_friends_postgres:/var/lib/postgresql/data
+    shm_size: 1g
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_LISTEN_PORT=54321
+      - PGADMIN_DEFAULT_EMAIL=test@test.com
+      - PGADMIN_DEFAULT_PASSWORD=testtest
+    ports:
+      - "54321:54321"
+    volumes:
+      - mind_upload_friends_pgadmin:/var/lib/pgadmin4
+
+volumes:
+  mind_upload_friends_postgres:
+    driver: local
+  mind_upload_friends_pgadmin:
+    driver: local
+  mind_upload_friends_neo4j:
+    driver: local
