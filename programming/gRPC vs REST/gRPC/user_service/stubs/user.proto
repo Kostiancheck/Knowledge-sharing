@@ -1,4 +1,9 @@
 syntax = "proto3";
+package user;
+
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
 
 enum Country {
     UKRAINE = 0;
@@ -38,14 +43,25 @@ message GetUserListResponse {
     repeated User users = 1;
 }
 
+// Request message containing User to create User
+message CreateUserRequest {
+    User user = 1;
+}
+
+// Request message containing User fields and FieldMask to update User
+message UpdateUserRequest {
+    User user = 1;
+    google.protobuf.FieldMask update_mask = 2;
+}
+
 // Request message containing user email to delete User
 message DeleteUserRequest {
     string email = 1;
 }
 
-// Request message containing User to create User
-message CreateUserRequest {
-    User user = 1;
+// Response message containing email of deleted user
+message DeleteUserResponse {
+    string email = 1;
 }
 
 // User service definition
@@ -57,7 +73,10 @@ service UserService {
     // Create User
     rpc CreateUser (CreateUserRequest) returns (User) {}
     // Update user
-    rpc UpdateUser (User) returns (User) {}
+    rpc UpdateUser (UpdateUserRequest) returns (User) {}
     // Delete user by email
-    rpc DeleteUser (DeleteUserRequest) returns (DeleteUserRequest) {}
+    rpc DeleteUser (DeleteUserRequest) returns (DeleteUserResponse) {}
+    // Count users
+    rpc CountUsers (google.protobuf.Empty) returns (google.protobuf.Int32Value) {}
+
 }

@@ -13,9 +13,9 @@ services:
     volumes:
       - user_db:/var/lib/postgresql/data
 
-  gateway_db:
+  auth_db:
     image: postgres
-    container_name: gateway_db
+    container_name: auth_db
     restart: always
     ports:
       - "5436:5432"
@@ -24,7 +24,7 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: db
     volumes:
-      - gateway_db:/var/lib/postgresql/data
+      - auth_db:/var/lib/postgresql/data
 
   pgadmin:
     image: dpage/pgadmin4
@@ -40,5 +40,5 @@ services:
 
 volumes:
   user_db:
-  gateway_db:
+  auth_db:
   pgadmin-data:
