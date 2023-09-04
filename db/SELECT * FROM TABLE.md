@@ -1,0 +1,3 @@
+- https://medium.com/@hnasr/how-slow-is-select-8d4308ca1f0c
+- https://medium.com/@hnasr/database-pages-a-deep-dive-38cdb2c79eb5
+- https://www.youtube.com/watch?v=wybjsKtA9hI
