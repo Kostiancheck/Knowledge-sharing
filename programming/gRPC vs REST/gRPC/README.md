@@ -1,5 +1,6 @@
-gRPC implementation of Auth + User microservices
+gRPC implementation of simple User CRUD microservice
 https://github.com/jeffhollan/grpc-sample-python/blob/main/protos/greet_pb2_grpc.py
 
-Generate users microservice with grpc tools based on .proto files:
-`python -m grpc_tools.protoc  -I. --pyi_out=. --python_out=. --grpc_python_out=. ./protobufs/users/users.proto`
+1. Generate users microservice stubs from .proto definition (see proto)
+2. Run server (see server)
+3. Run client (see client)

@@ -1,8 +1,7 @@
 version: "3.8"
 services:
-  user_db:
+  grpc_db:
     image: postgres
-    container_name: user_db
     restart: always
     ports:
       - "5435:5432"
@@ -11,20 +10,7 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: db
     volumes:
-      - user_db:/var/lib/postgresql/data
-
-  auth_db:
-    image: postgres
-    container_name: auth_db
-    restart: always
-    ports:
-      - "5436:5432"
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: db
-    volumes:
-      - auth_db:/var/lib/postgresql/data
+      - grpc_db:/var/lib/postgresql/data
 
   pgadmin:
     image: dpage/pgadmin4
@@ -39,6 +25,5 @@ services:
       - pgadmin-data:/var/lib/pgadmin
 
 volumes:
-  user_db:
-  auth_db:
+  grpc_db:
   pgadmin-data:

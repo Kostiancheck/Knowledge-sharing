@@ -2,14 +2,14 @@ from concurrent import futures
 import logging
 
 import grpc
-from auth_service.stubs import auth_pb2_grpc
-from auth_service.auth import AuthServicer
+from proto import user_pb2_grpc
+from server.user import UserServicer
 
 
 def serve():
-    port = "50052"
+    port = "50051"
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=1))
-    auth_pb2_grpc.add_AuthServiceServicer_to_server(AuthServicer(), server)
+    user_pb2_grpc.add_UserServiceServicer_to_server(UserServicer(), server)
     server.add_insecure_port("[::]:" + port)
     server.start()
     print("Server started, listening on " + port)

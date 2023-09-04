@@ -1,8 +1,8 @@
 from google.protobuf.wrappers_pb2 import Int32Value
 from sqlalchemy import column, func, select, table
-from stubs import user_pb2, user_pb2_grpc
-from user_service.db import models
-from user_service.db.database import session
+from proto import user_pb2, user_pb2_grpc
+from server.db import models
+from server.db.database import session
 from utils import msg_to_dict
 
 
