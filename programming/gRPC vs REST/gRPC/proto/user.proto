@@ -1,0 +1,82 @@
+syntax = "proto3";
+package user;
+
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+
+enum Country {
+    UKRAINE = 0;
+    USA = 1;
+    UK = 2;
+    POLAND = 3;   
+    JAPAN = 4;   
+    AUSTRALIA = 5;
+}
+
+message Address {
+    optional string street = 1;
+    string city = 2;
+    Country country = 3;
+}
+
+message User {
+    string email = 1;
+    optional string first_name = 2;
+    optional string last_name = 3;
+    optional Address address = 4;
+}
+
+// Request message containing user email to get User
+message GetUserRequest {
+    string email = 1;
+}
+
+// Request message containing limit and offset to get Users
+message GetUserListRequest {
+    int32 limit = 1;
+    int32 offset = 2;
+}
+
+// Response message containing repeated User (list of Users)
+message GetUserListResponse {
+    repeated User users = 1;
+}
+
+// Request message containing User to create User
+message CreateUserRequest {
+    User user = 1;
+}
+
+// Request message containing User fields and FieldMask to update User
+message UpdateUserRequest {
+    User user = 1;
+    google.protobuf.FieldMask update_mask = 2;
+}
+
+// Request message containing user email to delete User
+message DeleteUserRequest {
+    string email = 1;
+}
+
+// Response message containing email of deleted user
+message DeleteUserResponse {
+    string email = 1;
+}
+
+// User service definition
+service UserService {
+    // Get User by email
+    rpc GetUser (GetUserRequest) returns (User) {}
+    // Get Users (alternatively can use stream https://stackoverflow.com/questions/43167762/how-to-return-an-array-in-protobuf-service-rpc)
+    rpc GetUserList (GetUserListRequest) returns (GetUserListResponse) {}
+    // Create User
+    rpc CreateUser (CreateUserRequest) returns (User) {}
+    // Update user
+    rpc UpdateUser (UpdateUserRequest) returns (User) {}
+    // Delete user by email
+    rpc DeleteUser (DeleteUserRequest) returns (DeleteUserResponse) {}
+    // Count users
+    rpc CountUsers (google.protobuf.Empty) returns (google.protobuf.Int32Value) {}
+
+}
