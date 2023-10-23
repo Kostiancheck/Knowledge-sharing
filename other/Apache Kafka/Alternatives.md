@@ -1,0 +1,6 @@
+1. [Apache pulsar](https://pulsar.apache.org/)
+2. [RabbitMQ](https://www.rabbitmq.com/)
+3. [AWS Kinesis](https://aws.amazon.com/kinesis/?nc1=h_ls)
+4. [AWS SNS](https://aws.amazon.com/sns/?nc1=h_ls)
+5. [AWS SQS](https://aws.amazon.com/sqs/?nc1=h_ls)
+6. [Google Pub/Sub](https://cloud.google.com/pubsub?hl=uk)
