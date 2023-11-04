@@ -61,7 +61,7 @@ class UserServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def GetUserList(self, request, context):
-        """Get Users (alternatively can use stream https://stackoverflow.com/questions/43167762/how-to-return-an-array-in-protobuf-service-rpc)
+        """Get Users
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
