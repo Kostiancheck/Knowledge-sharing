@@ -1,0 +1,1 @@
+ALTER SYSTEM SET shared_preload_libraries TO 'arrow_flight_sql';
