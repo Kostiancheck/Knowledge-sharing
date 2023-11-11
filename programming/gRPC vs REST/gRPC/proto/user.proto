@@ -38,7 +38,8 @@ message GetUserListRequest {
     int32 offset = 2;
 }
 
-// Response message containing repeated User (list of Users)
+// Response message containing repeated User (list of Users) 
+// (alternatively can use stream https://stackoverflow.com/questions/43167762/how-to-return-an-array-in-protobuf-service-rpc)
 message GetUserListResponse {
     repeated User users = 1;
 }
@@ -68,7 +69,7 @@ message DeleteUserResponse {
 service UserService {
     // Get User by email
     rpc GetUser (GetUserRequest) returns (User) {}
-    // Get Users (alternatively can use stream https://stackoverflow.com/questions/43167762/how-to-return-an-array-in-protobuf-service-rpc)
+    // Get Users
     rpc GetUserList (GetUserListRequest) returns (GetUserListResponse) {}
     // Create User
     rpc CreateUser (CreateUserRequest) returns (User) {}

@@ -2,7 +2,6 @@ version: "3.8"
 services:
   grpc_db:
     image: postgres
-    restart: always
     ports:
       - "5435:5432"
     environment:
@@ -15,7 +14,6 @@ services:
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin4_container
-    restart: always
     ports:
       - "5050:80"
     environment:
