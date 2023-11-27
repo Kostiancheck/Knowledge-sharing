@@ -1,0 +1,1045 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n# RDD",
+      "user": "anonymous",
+      "dateUpdated": "2023-11-22 13:22:34.282",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch1\u003eRDD\u003c/h1\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1700578041496_1036239333",
+      "id": "paragraph_1700578041496_1036239333",
+      "dateCreated": "2023-11-21 14:47:21.496",
+      "dateStarted": "2023-11-22 13:22:34.398",
+      "dateFinished": "2023-11-22 13:22:34.401",
+      "status": "FINISHED"
+    },
+    {
+      "text": "val data \u003d Seq(1, 2, 3, 4, 5)\nval distData \u003d sc.parallelize(data)",
+      "user": "anonymous",
+      "dateUpdated": "2023-11-22 12:55:04.767",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mdata\u001b[0m: \u001b[1m\u001b[32mSeq[Int]\u001b[0m \u003d List(1, 2, 3, 4, 5)\n\u001b[1m\u001b[34mdistData\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.rdd.RDD[Int]\u001b[0m \u003d ParallelCollectionRDD[0] at parallelize at \u003cconsole\u003e:24\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1700577442390_1969565385",
+      "id": "paragraph_1700577442390_1969565385",
+      "dateCreated": "2023-11-21 14:37:22.390",
+      "dateStarted": "2023-11-22 12:55:36.728",
+      "dateFinished": "2023-11-22 12:56:19.562",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// transformations only\n\nval squares \u003d distData\n//        .map(x \u003d\u003e x.toString)\n        .map(x \u003d\u003e x * x)\n\nval filtered \u003d squares\n        .filter(x \u003d\u003e x % 2 \u003d\u003d 0)\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-11-22 17:10:51.045",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34msquares\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.rdd.RDD[Int]\u001b[0m \u003d MapPartitionsRDD[146] at map at \u003cconsole\u003e:28\n\u001b[1m\u001b[34mfiltered\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.rdd.RDD[Int]\u001b[0m \u003d MapPartitionsRDD[147] at filter at \u003cconsole\u003e:31\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1700577983963_361340328",
+      "id": "paragraph_1700577983963_361340328",
+      "dateCreated": "2023-11-21 14:46:23.963",
+      "dateStarted": "2023-11-22 17:10:51.310",
+      "dateFinished": "2023-11-22 17:10:51.456",
+      "status": "FINISHED"
+    },
+    {
+      "text": "//filtered.collect().foreach(println)",
+      "user": "anonymous",
+      "dateUpdated": "2023-11-21 15:22:15.271",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1700577984936_83035777",
+      "id": "paragraph_1700577984936_83035777",
+      "dateCreated": "2023-11-21 14:46:24.936",
+      "dateStarted": "2023-11-21 15:22:15.433",
+      "dateFinished": "2023-11-21 15:22:15.583",
+      "status": "FINISHED"
+    },
+    {
+      "title": "",
+      "text": "// action. DAG created, transformations executed\nval sum_res \u003d filtered\n        .reduce(_ + _)\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-11-22 17:11:25.534",
+      "progress": 0,
+      "config": {
+        "title": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34msum_res\u001b[0m: \u001b[1m\u001b[32mInt\u001b[0m \u003d 20\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://ip-10-10-200-195.ec2.internal:4040/jobs/job?id\u003d48"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1700577986482_1216946271",
+      "id": "paragraph_1700577986482_1216946271",
+      "dateCreated": "2023-11-21 14:46:26.482",
+      "dateStarted": "2023-11-22 17:11:25.602",
+      "dateFinished": "2023-11-22 17:11:31.892",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n# DataFrames and Datasets in JSON",
+      "user": "anonymous",
+      "dateUpdated": "2023-11-22 13:14:12.951",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1700658844203_2137743500",
+      "id": "paragraph_1700658844203_2137743500",
+      "dateCreated": "2023-11-22 13:14:04.203",
+      "status": "READY"
+    },
+    {
+      "text": "import spark.implicits._",
+      "user": "anonymous",
+      "dateUpdated": "2023-11-22 13:15:49.724",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1700658846610_130730223",
+      "id": "paragraph_1700658846610_130730223",
+      "dateCreated": "2023-11-22 13:14:06.610",
+      "status": "READY"
+    },
+    {
+      "text": "val data1 \u003d Seq((\"1\", \"Java\", \"20000\"),\n    (\"2\", \"Python\", \"100000\"),\n    (\"3\", \"Scala\", \"3000\"))\n\nval data2 \u003d Seq((\"1\", \"studentA\"),\n    (\"1\", \"studentB\"),\n    (\"2\", \"studentA\"),\n    (\"3\", \"studentC\"))",
+      "user": "anonymous",
+      "dateUpdated": "2023-11-22 17:22:22.566",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mdata1\u001b[0m: \u001b[1m\u001b[32mSeq[(String, String, String)]\u001b[0m \u003d List((1,Java,20000), (2,Python,100000), (3,Scala,3000))\n\u001b[1m\u001b[34mdata2\u001b[0m: \u001b[1m\u001b[32mSeq[(String, String)]\u001b[0m \u003d List((1,studentA), (1,studentB), (2,studentA), (3,studentC))\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1700658853337_973030454",
+      "id": "paragraph_1700658853337_973030454",
+      "dateCreated": "2023-11-22 13:14:13.337",
+      "dateStarted": "2023-11-22 17:20:02.296",
+      "dateFinished": "2023-11-22 17:20:02.374",
+      "status": "FINISHED"
+    },
+    {
+      "text": "\n// Create languages DF\ndata1\n        .toDF(\"id\", \"language\", \"tution_fees\")\n        .write\n        .mode(\"overwrite\")\n        .json(\"s3://tv-datascience-lab/kostia/test_json/language/\")\n\nval languagesJson \u003d spark\n        .read\n        .json(\"s3://tv-datascience-lab/kostia/test_json/language/\")\n\n// Create students DF\ndata2\n        .toDF(\"language_id\", \"studentName\")\n        .write\n        .mode(\"overwrite\")\n        .json(\"s3://tv-datascience-lab/kostia/test_json/student/\")\n\nval studentsJson \u003d spark\n        .read\n        .json(\"s3://tv-datascience-lab/kostia/test_json/student/\")\n\n//languagesJson: org.apache.spark.sql.DataFrame \u003d [id: string, language: string ... 1 more field]\n//studentsJson: org.apache.spark.sql.DataFrame \u003d [language_id: string, studentName: string]",
+      "user": "anonymous",
+      "dateUpdated": "2023-11-22 17:30:46.455",
+      "progress": 100,
+      "config": {},
+      "settings": {
+        "params": {
+          "bdtMeta": {
+            "ZTOOLS_DATA_FRAMES": [
+              {
+                "columns": [
+                  {
+                    "name": "id",
+                    "tpe": {
+                      "presentableName": "string"
+                    },
+                    "nullable": true
+                  },
+                  {
+                    "name": "language",
+                    "tpe": {
+                      "presentableName": "string"
+                    },
+                    "nullable": true
+                  },
+                  {
+                    "name": "tution_fees",
+                    "tpe": {
+                      "presentableName": "string"
+                    },
+                    "nullable": true
+                  }
+                ]
+              },
+              {
+                "columns": [
+                  {
+                    "name": "language_id",
+                    "tpe": {
+                      "presentableName": "string"
+                    },
+                    "nullable": true
+                  },
+                  {
+                    "name": "studentName",
+                    "tpe": {
+                      "presentableName": "string"
+                    },
+                    "nullable": true
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mlanguagesJson\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [id: string, language: string ... 1 more field]\n\u001b[1m\u001b[34mstudentsJson\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [language_id: string, studentName: string]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://ip-10-10-200-195.ec2.internal:4040/jobs/job?id\u003d49"
+            },
+            {
+              "jobUrl": "http://ip-10-10-200-195.ec2.internal:4040/jobs/job?id\u003d50"
+            },
+            {
+              "jobUrl": "http://ip-10-10-200-195.ec2.internal:4040/jobs/job?id\u003d51"
+            },
+            {
+              "jobUrl": "http://ip-10-10-200-195.ec2.internal:4040/jobs/job?id\u003d52"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1700658854469_693650202",
+      "id": "paragraph_1700658854469_693650202",
+      "dateCreated": "2023-11-22 13:14:14.469",
+      "dateStarted": "2023-11-22 17:20:12.592",
+      "dateFinished": "2023-11-22 17:20:23.309",
+      "status": "FINISHED"
+    },
+    {
+      "text": "",
+      "user": "anonymous",
+      "dateUpdated": "2023-11-22 17:34:43.598",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1700674319693_526980457",
+      "id": "paragraph_1700674319693_526980457",
+      "dateCreated": "2023-11-22 17:31:59.693",
+      "status": "READY"
+    },
+    {
+      "text": "languagesJson.printSchema()\nprintln(\"-----------------------\")\nstudentsJson.printSchema()\n//root\n// |-- id: string (nullable \u003d true)\n// |-- language: string (nullable \u003d true)\n// |-- tution_fees: string (nullable \u003d true)\n//\n//-----------------------\n//root\n// |-- language_id: string (nullable \u003d true)\n// |-- studentName: string (nullable \u003d true)",
+      "user": "anonymous",
+      "dateUpdated": "2023-11-22 17:21:24.653",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- id: string (nullable \u003d true)\n |-- language: string (nullable \u003d true)\n |-- tution_fees: string (nullable \u003d true)\n\n-----------------------\nroot\n |-- language_id: string (nullable \u003d true)\n |-- studentName: string (nullable \u003d true)\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1700658855093_416811564",
+      "id": "paragraph_1700658855093_416811564",
+      "dateCreated": "2023-11-22 13:14:15.093",
+      "dateStarted": "2023-11-22 17:21:17.823",
+      "dateFinished": "2023-11-22 17:21:17.897",
+      "status": "FINISHED"
+    },
+    {
+      "text": "languagesJson.show(false)\nprintln(\"-----------------------\")\nstudentsJson.show(false)",
+      "user": "anonymous",
+      "dateUpdated": "2023-11-22 17:21:36.235",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---+--------+-----------+\n|id |language|tution_fees|\n+---+--------+-----------+\n|2  |Python  |100000     |\n|1  |Java    |20000      |\n|3  |Scala   |3000       |\n+---+--------+-----------+\n\n-----------------------\n+-----------+-----------+\n|language_id|studentName|\n+-----------+-----------+\n|1          |studentA   |\n|1          |studentB   |\n|2          |studentA   |\n|3          |studentC   |\n+-----------+-----------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://ip-10-10-200-195.ec2.internal:4040/jobs/job?id\u003d53"
+            },
+            {
+              "jobUrl": "http://ip-10-10-200-195.ec2.internal:4040/jobs/job?id\u003d54"
+            },
+            {
+              "jobUrl": "http://ip-10-10-200-195.ec2.internal:4040/jobs/job?id\u003d55"
+            },
+            {
+              "jobUrl": "http://ip-10-10-200-195.ec2.internal:4040/jobs/job?id\u003d56"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1700658856636_292985424",
+      "id": "paragraph_1700658856636_292985424",
+      "dateCreated": "2023-11-22 13:14:16.636",
+      "dateStarted": "2023-11-22 17:21:36.386",
+      "dateFinished": "2023-11-22 17:21:44.596",
+      "status": "FINISHED"
+    },
+    {
+      "text": "val dfJson \u003d\n    studentsJson\n            .join(languagesJson, studentsJson(\"language_id\") \u003d\u003d\u003d languagesJson(\"id\"))\n            .filter($\"studentName\" \u003d\u003d\u003d \"studentA\")\n            .groupBy($\"studentName\")\n            .agg(sum($\"language_id\").alias(\"c\"))",
+      "user": "anonymous",
+      "dateUpdated": "2023-11-22 17:38:20.110",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {
+          "bdtMeta": {
+            "ZTOOLS_DATA_FRAMES": [
+              {
+                "columns": [
+                  {
+                    "name": "studentName",
+                    "tpe": {
+                      "presentableName": "string"
+                    },
+                    "nullable": true
+                  },
+                  {
+                    "name": "c",
+                    "tpe": {
+                      "presentableName": "double"
+                    },
+                    "nullable": true
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mdfJson\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [studentName: string, c: double]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1700659066484_448546195",
+      "id": "paragraph_1700659066484_448546195",
+      "dateCreated": "2023-11-22 13:17:46.484",
+      "dateStarted": "2023-11-22 13:43:00.047",
+      "dateFinished": "2023-11-22 13:43:00.167",
+      "status": "FINISHED"
+    },
+    {
+      "text": "dfJson.printSchema()",
+      "user": "anonymous",
+      "dateUpdated": "2023-11-22 13:39:03.034",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- studentName: string (nullable \u003d true)\n |-- c: double (nullable \u003d true)\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1700659076137_1128671201",
+      "id": "paragraph_1700659076137_1128671201",
+      "dateCreated": "2023-11-22 13:17:56.137",
+      "dateStarted": "2023-11-22 13:39:03.070",
+      "dateFinished": "2023-11-22 13:39:03.141",
+      "status": "FINISHED"
+    },
+    {
+      "text": "dfJson.explain(true)",
+      "user": "anonymous",
+      "dateUpdated": "2023-11-22 13:43:31.283",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u003d\u003d Parsed Logical Plan \u003d\u003d\n\u0027Aggregate [\u0027studentName], [\u0027studentName, sum(\u0027language_id) AS c#341]\n+- Filter (studentName#164 \u003d studentA)\n   +- Join Inner, (language_id#163 \u003d id#136)\n      :- Relation [language_id#163,studentName#164] json\n      +- Relation [id#136,language#137,tution_fees#138] json\n\n\u003d\u003d Analyzed Logical Plan \u003d\u003d\nstudentName: string, c: double\nAggregate [studentName#164], [studentName#164, sum(cast(language_id#163 as double)) AS c#341]\n+- Filter (studentName#164 \u003d studentA)\n   +- Join Inner, (language_id#163 \u003d id#136)\n      :- Relation [language_id#163,studentName#164] json\n      +- Relation [id#136,language#137,tution_fees#138] json\n\n\u003d\u003d Optimized Logical Plan \u003d\u003d\nAggregate [studentName#164], [studentName#164, sum(cast(language_id#163 as double)) AS c#341]\n+- Project [language_id#163, studentName#164]\n   +- Join Inner, (language_id#163 \u003d id#136)\n      :- Filter ((isnotnull(studentName#164) AND (studentName#164 \u003d studentA)) AND isnotnull(language_id#163))\n      :  +- Relation [language_id#163,studentName#164] json\n      +- Project [id#136]\n         +- Filter isnotnull(id#136)\n            +- Relation [id#136,language#137,tution_fees#138] json\n\n\u003d\u003d Physical Plan \u003d\u003d\nAdaptiveSparkPlan isFinalPlan\u003dfalse\n+- HashAggregate(keys\u003d[studentName#164], functions\u003d[sum(cast(language_id#163 as double))], output\u003d[studentName#164, c#341])\n   +- Exchange hashpartitioning(studentName#164, 1000), ENSURE_REQUIREMENTS, [plan_id\u003d570]\n      +- HashAggregate(keys\u003d[studentName#164], functions\u003d[partial_sum(cast(language_id#163 as double))], output\u003d[studentName#164, sum#361])\n         +- Project [language_id#163, studentName#164]\n            +- BroadcastHashJoin [language_id#163], [id#136], Inner, BuildRight, false\n               :- Filter ((isnotnull(studentName#164) AND (studentName#164 \u003d studentA)) AND isnotnull(language_id#163))\n               :  +- FileScan json [language_id#163,studentName#164] Batched: false, DataFilters: [isnotnull(studentName#164), (studentName#164 \u003d studentA), isnotnull(language_id#163)], Format: JSON, Location: InMemoryFileIndex(1 paths)[s3://tv-datascience-lab/kostia/test_json/student], PartitionFilters: [], PushedFilters: [IsNotNull(studentName), EqualTo(studentName,studentA), IsNotNull(language_id)], ReadSchema: struct\u003clanguage_id:string,studentName:string\u003e\n               +- BroadcastExchange HashedRelationBroadcastMode(List(input[0, string, false]),false), [plan_id\u003d565]\n                  +- Filter isnotnull(id#136)\n                     +- FileScan json [id#136] Batched: false, DataFilters: [isnotnull(id#136)], Format: JSON, Location: InMemoryFileIndex(1 paths)[s3://tv-datascience-lab/kostia/test_json/language], PartitionFilters: [], PushedFilters: [IsNotNull(id)], ReadSchema: struct\u003cid:string\u003e\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1700659095624_2116343014",
+      "id": "paragraph_1700659095624_2116343014",
+      "dateCreated": "2023-11-22 13:18:15.624",
+      "dateStarted": "2023-11-22 13:43:31.347",
+      "dateFinished": "2023-11-22 13:43:31.420",
+      "status": "FINISHED"
+    },
+    {
+      "text": "dfJson.show(false)",
+      "user": "anonymous",
+      "dateUpdated": "2023-11-22 13:43:01.441",
+      "progress": 20,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-----------+---+\n|studentName|c  |\n+-----------+---+\n|studentA   |3.0|\n+-----------+---+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://ip-10-10-200-195.ec2.internal:4040/jobs/job?id\u003d15"
+            },
+            {
+              "jobUrl": "http://ip-10-10-200-195.ec2.internal:4040/jobs/job?id\u003d16"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1700659097288_66893446",
+      "id": "paragraph_1700659097288_66893446",
+      "dateCreated": "2023-11-22 13:18:17.288",
+      "dateStarted": "2023-11-22 13:43:01.491",
+      "dateFinished": "2023-11-22 13:43:11.510",
+      "status": "FINISHED"
+    },
+    {
+      "text": "dfJson.count()",
+      "user": "anonymous",
+      "dateUpdated": "2023-11-22 13:39:10.923",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mres18\u001b[0m: \u001b[1m\u001b[32mLong\u001b[0m \u003d 1\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://ip-10-10-200-195.ec2.internal:4040/jobs/job?id\u003d11"
+            },
+            {
+              "jobUrl": "http://ip-10-10-200-195.ec2.internal:4040/jobs/job?id\u003d12"
+            },
+            {
+              "jobUrl": "http://ip-10-10-200-195.ec2.internal:4040/jobs/job?id\u003d13"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1700659111793_951178952",
+      "id": "paragraph_1700659111793_951178952",
+      "dateCreated": "2023-11-22 13:18:31.793",
+      "dateStarted": "2023-11-22 13:39:11.010",
+      "dateFinished": "2023-11-22 13:39:21.311",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n# DataFrames and Datasets in parquet",
+      "user": "anonymous",
+      "dateUpdated": "2023-11-22 13:13:37.616",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch1\u003eDataFrames and Datasets\u003c/h1\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1700578560291_321048908",
+      "id": "paragraph_1700578560291_321048908",
+      "dateCreated": "2023-11-21 14:56:00.291",
+      "dateStarted": "2023-11-21 15:22:17.931",
+      "dateFinished": "2023-11-21 15:22:17.942",
+      "status": "FINISHED"
+    },
+    {
+      "text": "\n\n\n// Create languages DF\ndata1\n        .toDF(\"id\", \"language\", \"tution_fees\")\n        .write\n        .mode(\"overwrite\")\n        .parquet(\"s3://tv-datascience-lab/kostia/test/language/\")\n\nval languagesPar \u003d spark\n        .read\n        .parquet(\"s3://tv-datascience-lab/kostia/test/language/\")\n\n// Create students DF\ndata2\n        .toDF(\"language_id\", \"studentName\")\n        .write\n        .partitionBy(\"studentName\")\n        .mode(\"overwrite\")\n        .parquet(\"s3://tv-datascience-lab/kostia/test/student/\")\n\nval studentsPar \u003d spark\n        .read\n        .parquet(\"s3://tv-datascience-lab/kostia/test/student/\")\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-11-22 17:10:56.656",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {
+          "bdtMeta": {
+            "ZTOOLS_DATA_FRAMES": [
+              {
+                "columns": [
+                  {
+                    "name": "id",
+                    "tpe": {
+                      "presentableName": "string"
+                    },
+                    "nullable": true
+                  },
+                  {
+                    "name": "language",
+                    "tpe": {
+                      "presentableName": "string"
+                    },
+                    "nullable": true
+                  },
+                  {
+                    "name": "tution_fees",
+                    "tpe": {
+                      "presentableName": "string"
+                    },
+                    "nullable": true
+                  }
+                ]
+              },
+              {
+                "columns": [
+                  {
+                    "name": "language_id",
+                    "tpe": {
+                      "presentableName": "string"
+                    },
+                    "nullable": true
+                  },
+                  {
+                    "name": "studentName",
+                    "tpe": {
+                      "presentableName": "string"
+                    },
+                    "nullable": true
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mlanguagesPar\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [id: string, language: string ... 1 more field]\n\u001b[1m\u001b[34mstudentsPar\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [language_id: string, studentName: string]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://ip-10-10-200-195.ec2.internal:4040/jobs/job?id\u003d37"
+            },
+            {
+              "jobUrl": "http://ip-10-10-200-195.ec2.internal:4040/jobs/job?id\u003d38"
+            },
+            {
+              "jobUrl": "http://ip-10-10-200-195.ec2.internal:4040/jobs/job?id\u003d39"
+            },
+            {
+              "jobUrl": "http://ip-10-10-200-195.ec2.internal:4040/jobs/job?id\u003d40"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1700578561144_2131778795",
+      "id": "paragraph_1700578561144_2131778795",
+      "dateCreated": "2023-11-21 14:56:01.144",
+      "dateStarted": "2023-11-22 14:45:18.678",
+      "dateFinished": "2023-11-22 14:45:30.228",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%sh\naws s3 ls s3://tv-datascience-lab/kostia/test/student/",
+      "user": "anonymous",
+      "dateUpdated": "2023-11-22 14:51:22.459",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "                           PRE studentName\u003dstudentA/\n                           PRE studentName\u003dstudentB/\n                           PRE studentName\u003dstudentC/\n2023-11-22 14:45:30          0 _SUCCESS\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1700664672540_544726006",
+      "id": "paragraph_1700664672540_544726006",
+      "dateCreated": "2023-11-22 14:51:12.540",
+      "dateStarted": "2023-11-22 14:51:22.505",
+      "dateFinished": "2023-11-22 14:51:25.322",
+      "status": "FINISHED"
+    },
+    {
+      "text": "languagesPar.printSchema()",
+      "user": "anonymous",
+      "dateUpdated": "2023-11-22 14:45:30.285",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- id: string (nullable \u003d true)\n |-- language: string (nullable \u003d true)\n |-- tution_fees: string (nullable \u003d true)\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1700578562877_1368904156",
+      "id": "paragraph_1700578562877_1368904156",
+      "dateCreated": "2023-11-21 14:56:02.878",
+      "dateStarted": "2023-11-22 14:45:30.435",
+      "dateFinished": "2023-11-22 14:45:30.505",
+      "status": "FINISHED"
+    },
+    {
+      "text": "\n\n// Join tables\nval df \u003d\n    studentsPar\n            .join(languagesPar, studentsPar(\"language_id\") \u003d\u003d\u003d languagesPar(\"id\"))\n            .filter($\"studentName\" \u003d\u003d\u003d \"studentA\")\n            .groupBy($\"studentName\")\n            .agg(sum($\"language_id\").alias(\"c\")) \n\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-11-22 17:55:22.768",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {
+          "bdtMeta": {
+            "ZTOOLS_DATA_FRAMES": [
+              {
+                "columns": [
+                  {
+                    "name": "studentName",
+                    "tpe": {
+                      "presentableName": "string"
+                    },
+                    "nullable": true
+                  },
+                  {
+                    "name": "c",
+                    "tpe": {
+                      "presentableName": "double"
+                    },
+                    "nullable": true
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mdf\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [studentName: string, c: double]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1700579631939_261012305",
+      "id": "paragraph_1700579631939_261012305",
+      "dateCreated": "2023-11-21 15:13:51.939",
+      "dateStarted": "2023-11-22 14:45:31.036",
+      "dateFinished": "2023-11-22 14:45:31.133",
+      "status": "FINISHED"
+    },
+    {
+      "text": "df.printSchema()",
+      "user": "anonymous",
+      "dateUpdated": "2023-11-22 14:45:31.178",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- studentName: string (nullable \u003d true)\n |-- c: double (nullable \u003d true)\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1700580239177_2117424989",
+      "id": "paragraph_1700580239177_2117424989",
+      "dateCreated": "2023-11-21 15:23:59.177",
+      "dateStarted": "2023-11-22 14:45:31.462",
+      "dateFinished": "2023-11-22 14:45:32.220",
+      "status": "FINISHED"
+    },
+    {
+      "text": "df.explain(extended\u003dtrue)\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-11-22 14:45:32.221",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u003d\u003d Parsed Logical Plan \u003d\u003d\n\u0027Aggregate [\u0027studentName], [\u0027studentName, sum(\u0027language_id) AS c#749]\n+- Filter (studentName#728 \u003d studentA)\n   +- Join Inner, (language_id#727 \u003d id#707)\n      :- Relation [language_id#727,studentName#728] parquet\n      +- Relation [id#707,language#708,tution_fees#709] parquet\n\n\u003d\u003d Analyzed Logical Plan \u003d\u003d\nstudentName: string, c: double\nAggregate [studentName#728], [studentName#728, sum(cast(language_id#727 as double)) AS c#749]\n+- Filter (studentName#728 \u003d studentA)\n   +- Join Inner, (language_id#727 \u003d id#707)\n      :- Relation [language_id#727,studentName#728] parquet\n      +- Relation [id#707,language#708,tution_fees#709] parquet\n\n\u003d\u003d Optimized Logical Plan \u003d\u003d\nAggregate [studentName#728], [studentName#728, sum(cast(language_id#727 as double)) AS c#749]\n+- Project [language_id#727, studentName#728]\n   +- Join Inner, (language_id#727 \u003d id#707)\n      :- Filter ((isnotnull(studentName#728) AND (studentName#728 \u003d studentA)) AND isnotnull(language_id#727))\n      :  +- Relation [language_id#727,studentName#728] parquet\n      +- Project [id#707]\n         +- Filter isnotnull(id#707)\n            +- Relation [id#707,language#708,tution_fees#709] parquet\n\n\u003d\u003d Physical Plan \u003d\u003d\nAdaptiveSparkPlan isFinalPlan\u003dfalse\n+- HashAggregate(keys\u003d[studentName#728], functions\u003d[sum(cast(language_id#727 as double))], output\u003d[studentName#728, c#749])\n   +- Exchange hashpartitioning(studentName#728, 1000), ENSURE_REQUIREMENTS, [plan_id\u003d1491]\n      +- HashAggregate(keys\u003d[studentName#728], functions\u003d[partial_sum(cast(language_id#727 as double))], output\u003d[studentName#728, sum#763])\n         +- Project [language_id#727, studentName#728]\n            +- BroadcastHashJoin [language_id#727], [id#707], Inner, BuildRight, false\n               :- Filter isnotnull(language_id#727)\n               :  +- FileScan parquet [language_id#727,studentName#728] Batched: true, DataFilters: [isnotnull(language_id#727)], Format: Parquet, Location: InMemoryFileIndex(1 paths)[s3://tv-datascience-lab/kostia/test/student], PartitionFilters: [isnotnull(studentName#728), (studentName#728 \u003d studentA)], PushedFilters: [IsNotNull(language_id)], ReadSchema: struct\u003clanguage_id:string\u003e\n               +- BroadcastExchange HashedRelationBroadcastMode(List(input[0, string, false]),false), [plan_id\u003d1486]\n                  +- Filter isnotnull(id#707)\n                     +- FileScan parquet [id#707] Batched: true, DataFilters: [isnotnull(id#707)], Format: Parquet, Location: InMemoryFileIndex(1 paths)[s3://tv-datascience-lab/kostia/test/language], PartitionFilters: [], PushedFilters: [IsNotNull(id)], ReadSchema: struct\u003cid:string\u003e\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1700578557322_1612969951",
+      "id": "paragraph_1700578557322_1612969951",
+      "dateCreated": "2023-11-21 14:55:57.322",
+      "dateStarted": "2023-11-22 14:45:32.894",
+      "dateFinished": "2023-11-22 14:45:32.986",
+      "status": "FINISHED"
+    },
+    {
+      "text": "df.show(false)",
+      "user": "anonymous",
+      "dateUpdated": "2023-11-22 14:45:32.994",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-----------+---+\n|studentName|c  |\n+-----------+---+\n|studentA   |3.0|\n+-----------+---+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://ip-10-10-200-195.ec2.internal:4040/jobs/job?id\u003d42"
+            },
+            {
+              "jobUrl": "http://ip-10-10-200-195.ec2.internal:4040/jobs/job?id\u003d43"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1700580252596_381701572",
+      "id": "paragraph_1700580252596_381701572",
+      "dateCreated": "2023-11-21 15:24:12.596",
+      "dateStarted": "2023-11-22 14:45:33.215",
+      "dateFinished": "2023-11-22 14:45:34.748",
+      "status": "FINISHED"
+    },
+    {
+      "text": "df.count()",
+      "user": "anonymous",
+      "dateUpdated": "2023-11-22 14:45:34.816",
+      "progress": 20,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mres49\u001b[0m: \u001b[1m\u001b[32mLong\u001b[0m \u003d 1\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://ip-10-10-200-195.ec2.internal:4040/jobs/job?id\u003d45"
+            },
+            {
+              "jobUrl": "http://ip-10-10-200-195.ec2.internal:4040/jobs/job?id\u003d46"
+            },
+            {
+              "jobUrl": "http://ip-10-10-200-195.ec2.internal:4040/jobs/job?id\u003d47"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1700580282907_443556274",
+      "id": "paragraph_1700580282907_443556274",
+      "dateCreated": "2023-11-21 15:24:42.907",
+      "dateStarted": "2023-11-22 14:45:35.361",
+      "dateFinished": "2023-11-22 14:45:36.325",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark \na \u003d {\"A\": 1, \"B\":2}\n\ndef foo(n: int):\n    for k, v in a.items():\n        if v \u003d\u003d n:\n            print(k)\n            \n           ",
+      "user": "anonymous",
+      "dateUpdated": "2023-11-22 18:08:31.043",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1700660729950_820928421",
+      "id": "paragraph_1700660729950_820928421",
+      "dateCreated": "2023-11-22 13:45:29.950",
+      "status": "FINISHED"
+    }
+  ],
+  "name": "Knowledge sharing Apache Spark",
+  "id": "2JFKTYWFW",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.10.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {
+    "isRunning": false
+  }
+}
