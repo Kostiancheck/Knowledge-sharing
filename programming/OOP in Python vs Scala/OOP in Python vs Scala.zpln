@@ -1,0 +1,1118 @@
+﻿{
+  "paragraphs": [
+    {
+      "text": "%md\n<center>\n\n# Python 🐍\n\n</center>",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10T20:12:04+0000",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 6,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<center>\n<h1>Python 🐍</h1>\n</center>\n\n</div>"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702234571568_961901189",
+      "id": "paragraph_1702045619089_1343288020",
+      "dateCreated": "2023-12-10T18:56:11+0000",
+      "status": "READY",
+      "focus": true,
+      "$$hashKey": "object:337"
+    },
+    {
+      "text": "%md\n<center>\n\n# Scala 🍎\n\n</center>",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10T18:56:11+0000",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 6,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<center>\n<h1>Scala 🍎</h1>\n</center>\n\n</div>"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702234571568_1354791656",
+      "id": "paragraph_1702045626875_1604793846",
+      "dateCreated": "2023-12-10T18:56:11+0000",
+      "status": "READY",
+      "$$hashKey": "object:338"
+    },
+    {
+      "text": "%md\n# ❗ Disclaimer\nThis note is NOT about \n1. Why Python/Scala is better than Scala/Python\n2. How to do OOP\n3. Why do we need OOP\n\nI'm using Scala only for Spark, so I don't know a lot of stuff. \nIt's the same as ask Data Scientist who worked only with Pandas about polymorphism in Python ",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10T20:12:06+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<h1>❗ Disclaimer</h1>\n<p>This note is NOT about</p>\n<ol>\n<li>Why Python/Scala is better than Scala/Python</li>\n<li>How to do OOP</li>\n<li>Why do we need OOP</li>\n</ol>\n<p>I&rsquo;m using Scala only for Spark, so I don&rsquo;t know a lot of stuff.<br />\nIt&rsquo;s the same as ask Data Scientist who worked only with Pandas about polymorphism in Python</p>\n\n</div>"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702234571568_59273525",
+      "id": "paragraph_1702221558089_1270124492",
+      "dateCreated": "2023-12-10T18:56:11+0000",
+      "status": "READY",
+      "$$hashKey": "object:339"
+    },
+    {
+      "text": "%md\n<center>\n\n# Test run\n\n</center>",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10T18:56:11+0000",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<center>\n<h1>Test run</h1>\n</center>\n\n</div>"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702234571568_860893007",
+      "id": "paragraph_1702045666932_1999834089",
+      "dateCreated": "2023-12-10T18:56:11+0000",
+      "status": "READY",
+      "$$hashKey": "object:340"
+    },
+    {
+      "text": "%python\nboyyyyyyzzzz = \"Bohdan and Illya\"\nprint(f\"Hello World and {boyyyyyyzzzz}\")",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10T18:56:11+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 6,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Hello World and Bohdan and Illya\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702234571568_1405121246",
+      "id": "paragraph_1702045667856_621071488",
+      "dateCreated": "2023-12-10T18:56:11+0000",
+      "status": "READY",
+      "$$hashKey": "object:341"
+    },
+    {
+      "text": "val boyyyyyyzzzz = \"Bohdan and Illya\"\nprintln(f\"Hello World and $boyyyyyyzzzz\")",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10T18:56:11+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 6,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Hello World and Bohdan and Illya\n\u001b[1m\u001b[34mboyyyyyyzzzz\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m = Bohdan and Illya\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702234571568_923937618",
+      "id": "paragraph_1702045669014_678367357",
+      "dateCreated": "2023-12-10T18:56:11+0000",
+      "status": "READY",
+      "$$hashKey": "object:342"
+    },
+    {
+      "text": "%md\n<center>\n\n# Abstraction, Inheritance, Mixins and override\n\n</center>\n\nIn scala there are:\n- classes (similar to python class)\n- abstract classes (similar to python class with ABC)\n- case classes (similar to python data classes)\n- traits (similar to python class with ABC). Can be used for mixins\n\nDifference between abstract classe and traits in scala is that classes are limited to inherit from a single abstract class but can inherit from multiple traits. Also before scala 3 traits didn't have parameters.\nSo you can say that trait in Scala some kind of combination of Interface and Abstract Classes in Java\n\n\nIn python to make method abstract you need to use `@abstractmethod`, but it make app slower because the Python interpreter must perform additional work to resolve the abstract methods at runtime.\n\nTo show:\n- abstract classes in Scala doesn't work\n- traits with no implementations in Scala doesn't work\n- Python with no @abstractmethod doesn't raise en error\n- class with no implementations in Python doesn't work \n- override in Scala in unnecessary if you are implementing for the first time (but it's nice to have), but it's required if you're really overriding\n- there is no \"override\" key-word in Python",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10T18:56:11+0000",
+      "progress": 0,
+      "config": {
+        "lineNumbers": false,
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<center>\n<h1>Abstraction, Inheritance, Mixins and override</h1>\n</center>\n<p>In scala there are:</p>\n<ul>\n<li>classes (similar to python class)</li>\n<li>abstract classes (similar to python class with ABC)</li>\n<li>case classes (similar to python data classes)</li>\n<li>traits (similar to python class with ABC). Can be used for mixins</li>\n</ul>\n<p>Difference between abstract classe and traits in scala is that classes are limited to inherit from a single abstract class but can inherit from multiple traits. Also before scala 3 traits didn&rsquo;t have parameters.<br />\nSo you can say that trait in Scala some kind of combination of Interface and Abstract Classes in Java</p>\n<p>In python to make method abstract you need to use <code>@abstractmethod</code>, but it make app slower because the Python interpreter must perform additional work to resolve the abstract methods at runtime.</p>\n<p>To show:</p>\n<ul>\n<li>abstract classes in Scala doesn&rsquo;t work</li>\n<li>traits with no implementations in Scala doesn&rsquo;t work</li>\n<li>Python with no @abstractmethod doesn&rsquo;t raise en error</li>\n<li>class with no implementations in Python doesn&rsquo;t work</li>\n<li>override in Scala in unnecessary if you are implementing for the first time (but it&rsquo;s nice to have), but it&rsquo;s required if you&rsquo;re really overriding</li>\n<li>there is no &ldquo;override&rdquo; key-word in Python</li>\n</ul>\n\n</div>"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702234571569_410282791",
+      "id": "paragraph_1702045989846_1932525986",
+      "dateCreated": "2023-12-10T18:56:11+0000",
+      "status": "READY",
+      "$$hashKey": "object:343"
+    },
+    {
+      "text": "%python\nfrom abc import ABC, abstractmethod\n\nclass Reader(ABC):\n    @abstractmethod\n    def read(self):\n        pass\n\n    def defaultRead(seld):\n        print(\"Mama ama default reader\")\n\nclass Archiver:\n    @abstractmethod\n    def archive(self):\n        pass\n\n    def defaultArchive(self):\n        print(\"Mama ama default archiver\")\n\nclass FileManager(Archiver, Reader):\n    # pass # Error: Can't instantiate abstract class FileManager with abstract methods read\n    def archive(self):\n        print(\"Mama ama archiver\")\n\n    def read(self):\n        print(\"Mama ama reader\")\n\n    def defaultArchive(self):\n        print(\"Mama ama archiver v2\")\n\nfile_manager = FileManager()\nfile_manager.read()\nfile_manager.defaultRead()\nfile_manager.archive()\nfile_manager.defaultArchive()",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10T18:56:11+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 6,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Mama ama reader\nMama ama default reader\nMama ama archiver\nMama ama archiver v2\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702234571569_705434003",
+      "id": "paragraph_1702045669903_839043047",
+      "dateCreated": "2023-12-10T18:56:11+0000",
+      "status": "READY",
+      "$$hashKey": "object:344"
+    },
+    {
+      "text": "// // DOESN'T WORK BECAUSE CLASS CAN EXTEND AT MOST 1 ABSTRACT CLASS\n//abstract class Reader {\n//    def read(): Unit\n//}\n//\n//abstract class Archiver {\n//    def archive(): Unit\n//}\n//\n//class FileManager extends Reader with Archiver\n\n\n// // STILL DOESN'T WORK BECAUSE class FileManager needs to be abstract or must define abstract methods\n\n//trait Reader {\n//    def read(): Unit\n//}\n//\n//trait Archiver {\n//    def archive(): Unit\n//}\n//\n//class FileManager extends Reader with Archiver\n\ntrait Reader {\n    def read(): Unit;\n\n    def defaultRead(): Unit = println(\"Mama ama default reader\")\n}\n\ntrait Archiver {\n    def archive(): Unit;\n\n    def defaultArchive(): Unit = println(\"Mama ama default archiver\")\n}\n\nclass FileManager extends Reader with Archiver {\n    override def read(): Unit = println(\"Mama ama reader\") // override is unnecessary \n\n    override def archive(): Unit = println(\"Mama ama archiver\") // override is unnecessary \n\n    override def defaultArchive(): Unit = println(\"Mama ama archiver v2\") // override is necessary \n}\n\nval fileManager = new FileManager()\n\nfileManager.read()\nfileManager.defaultRead()\nfileManager.archive()\nfileManager.defaultArchive()\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10T18:56:11+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 6,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Mama ama reader\nMama ama default reader\nMama ama archiver\nMama ama archiver v2\ndefined trait Reader\ndefined trait Archiver\ndefined class FileManager\n\u001b[1m\u001b[34mfileManager\u001b[0m: \u001b[1m\u001b[32mFileManager\u001b[0m = FileManager@e86674f\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702234571569_1768320160",
+      "id": "paragraph_1702045670847_1667685913",
+      "dateCreated": "2023-12-10T18:56:11+0000",
+      "status": "READY",
+      "$$hashKey": "object:345"
+    },
+    {
+      "text": "%md\n<center>\n\n# Composition\n\n</center>\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10T18:56:11+0000",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<center>\n<h1>Composition</h1>\n</center>\n\n</div>"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702234571569_1344240666",
+      "id": "paragraph_1702217311027_1250851574",
+      "dateCreated": "2023-12-10T18:56:11+0000",
+      "status": "READY",
+      "$$hashKey": "object:346"
+    },
+    {
+      "text": "%python\n\nclass Address:\n    def __init__(self, country, city):\n        self.country = country\n        self.city = city\n\n\nclass Person:\n    def __init__(self, name: str, address: Address):\n        self.name = name\n        self.address = address\n\n    def __str__(self):\n        return f\"I'm {self.name} from {self.address.city}, {self.address.country}\"\n\n\nme = Person(\"Kostia\", Address(\"Ukraine\", \"Kyiv\"))\n\nprint(me)",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10T18:56:11+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 6,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "I'm Kostia from Kyiv, Ukraine\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702234571569_1141315745",
+      "id": "paragraph_1702045671983_172645910",
+      "dateCreated": "2023-12-10T18:56:11+0000",
+      "status": "READY",
+      "$$hashKey": "object:347"
+    },
+    {
+      "text": "\nclass Address(val country: String, val city: String)\n\nclass Person(val name: String, val address: Address) {\n    override def toString: String = s\"I'm $name from ${address.city}, ${address.country}\"\n}\n\nval me = new Person(\"Kostia\", new Address(\"Ukraine\", \"Kyiv\"))\n\nprintln(me)\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10T18:56:11+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 6,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "I'm Kostia from Kyiv, Ukraine\ndefined class Address\ndefined class Person\n\u001b[1m\u001b[34mme\u001b[0m: \u001b[1m\u001b[32mPerson\u001b[0m = I'm Kostia from Kyiv, Ukraine\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702234571569_755933044",
+      "id": "paragraph_1702045673346_1403411049",
+      "dateCreated": "2023-12-10T18:56:11+0000",
+      "status": "READY",
+      "$$hashKey": "object:348"
+    },
+    {
+      "text": "%md\n<center>\n\n# Encapsulation\n\n</center>\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10T20:12:23+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<center>\n<h1>Encapsulation</h1>\n</center>\n\n</div>"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702234571569_1239476697",
+      "id": "paragraph_1702045674525_2131739927",
+      "dateCreated": "2023-12-10T18:56:11+0000",
+      "dateStarted": "2023-12-10T18:58:36+0000",
+      "dateFinished": "2023-12-10T18:58:36+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:349"
+    },
+    {
+      "text": "%python\nclass Secure:\n    def __privateHash(self):\n        return \"111\"\n\n    def _protectedHash(self):\n        return f\"AasdkASASlkdja123'ASL:ASF'ds;f+{self.__privateHash()}\"\n\n    def publicHash(self):\n        return \"Suck my BALLZ\"\n\nclass SecureChild(Secure):\n    def tryParentProtected(self):\n        return self._protectedHash()\n\nsecure = Secure()\nchild = SecureChild()\n\nprint(secure._Secure__privateHash())\nprint(secure._protectedHash())\nprint(secure.publicHash())\n\nprint(child._Secure__privateHash())\nprint(child.tryParentProtected())\nprint(child.publicHash())",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10T20:12:41+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 6,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702234701654_278171078",
+      "id": "paragraph_1702234701654_278171078",
+      "dateCreated": "2023-12-10T18:58:21+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:350",
+      "dateFinished": "2023-12-10T20:12:32+0000",
+      "dateStarted": "2023-12-10T20:12:32+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "111\nAasdkASASlkdja123'ASL:ASF'ds;f+111\nSuck my BALLZ\n111\nAasdkASASlkdja123'ASL:ASF'ds;f+111\nSuck my BALLZ\n"
+          }
+        ]
+      }
+    },
+    {
+      "text": "class Secure {\n    private def privateHash() = \"111\"\n\n    protected def protectedHash() = s\"AasdkASASlkdja123'ASL:ASF'ds;f+${privateHash()}\"\n\n    def publicHash() = \"Suck my BALLZ\"\n}\n\nclass SecureChild extends Secure {\n    def tryParentProtected() = protectedHash()\n    //    def tryParentPrivate() = privateHash()\n}\n\nval secure = new Secure()\nval child = new SecureChild()\n\n//println{secure.privateHash()}\n//println{secure.protectedHash()}\nprintln {\n    secure.publicHash()\n}\n\n//println(child.privateHash())\nprintln(child.tryParentProtected())\nprintln(child.publicHash())\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10T18:56:11+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 6,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Suck my BALLZ\nAasdkASASlkdja123'ASL:ASF'ds;f+111\nSuck my BALLZ\ndefined class Secure\ndefined class SecureChild\n\u001b[1m\u001b[34msecure\u001b[0m: \u001b[1m\u001b[32mSecure\u001b[0m = Secure@34ec2035\n\u001b[1m\u001b[34mchild\u001b[0m: \u001b[1m\u001b[32mSecureChild\u001b[0m = SecureChild@1af5d0b8\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702234571569_977384279",
+      "id": "paragraph_1702045676743_295799736",
+      "dateCreated": "2023-12-10T18:56:11+0000",
+      "status": "READY",
+      "$$hashKey": "object:351"
+    },
+    {
+      "text": "%md\n<center>\n\n# Polymorphism\n\n</center>\n\nPolymorphism describes situations in which something occurs in several different forms. \nIn computer science, polymorphism describes the concept that you can access objects of \ndifferent types through the same interface. \nEach type can provide its own independent implementation of this interface.\n\n<details>\n  <summary> Байт </summary>\n  Але Ілюха ж розповідав 2 тижні тому, що треба зробити універсальний метод `work` в кожному класі, ти, дурачок! (с) Ілюха і Бодя\n</details>",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10T20:12:55+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<center>\n<h1>Polymorphism</h1>\n</center>\n<p>Polymorphism describes situations in which something occurs in several different forms.<br />\nIn computer science, polymorphism describes the concept that you can access objects of<br />\ndifferent types through the same interface.<br />\nEach type can provide its own independent implementation of this interface.</p>\n<details>\n  <summary> Байт </summary>\n  Але Ілюха ж розповідав 2 тижні тому, що треба зробити універсальний метод `work` в кожному класі, ти, дурачок! (с) Ілюха і Бодя\n</details>\n\n</div>"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702234571569_753577738",
+      "id": "paragraph_1702045677924_492115382",
+      "dateCreated": "2023-12-10T18:56:11+0000",
+      "status": "READY",
+      "$$hashKey": "object:352"
+    },
+    {
+      "text": "%python\nclass Employee:\n    pass\n\nclass Tester(Employee):\n    def test(self):\n        print(\"I'm testing\")\n\nclass Developer(Employee):\n    def develop(self):\n        print(\"I'm developing\")\n\nclass Manager(Employee):\n    def manage(self):\n        print(\"I'm doing nothing XDD\")\n\n\nclass Company:\n    def work(self, worker: Employee):\n        if isinstance(worker, Tester):\n            worker.test()\n        if isinstance(worker, Developer):\n            worker.develop()\n        if isinstance(worker, Manager):\n            worker.manage()\n\n\ntester = Tester()\ndeveloper = Developer()\nmanager = Manager()\n\nKnowledgeSharingEnterprise = Company()\n\nKnowledgeSharingEnterprise.work(tester)\nKnowledgeSharingEnterprise.work(developer)\nKnowledgeSharingEnterprise.work(manager)\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10T20:13:15+0000",
+      "progress": 0,
+      "config": {
+        "colWidth": 6,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "I'm testing\nI'm developing\nI'm doing nothing XDD\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702234571569_743529448",
+      "id": "paragraph_1702222794076_1042398360",
+      "dateCreated": "2023-12-10T18:56:11+0000",
+      "status": "READY",
+      "$$hashKey": "object:353"
+    },
+    {
+      "text": "class Employee\n\nclass Tester extends Employee {\n    def test(): Unit = println(\"I'm testing\")\n}\n\nclass Developer extends Employee {\n    def develop(): Unit = println(\"I'm developing\")\n}\n\nclass Manager extends Employee {\n    def manage(): Unit = println(\"I'm doing nothing XDD\")\n}\n\nclass Company {\n    def work(employee: Tester): Unit = employee.test()\n\n    def work(employee: Developer): Unit = employee.develop()\n\n    def work(employee: Manager): Unit = employee.manage()\n}\n\nval tester = new Tester\nval developer = new Developer\nval manager = new Manager\n\nval KnowledgeSharingEnterprise = new Company\n\nKnowledgeSharingEnterprise.work(tester)\nKnowledgeSharingEnterprise.work(developer)\nKnowledgeSharingEnterprise.work(manager)\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10T20:13:20+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 6,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "I'm testing\nI'm developing\nI'm doing nothing XDD\ndefined class Employee\ndefined class Tester\ndefined class Developer\ndefined class Manager\ndefined class Company\n\u001b[1m\u001b[34mtester\u001b[0m: \u001b[1m\u001b[32mTester\u001b[0m = Tester@30867bdc\n\u001b[1m\u001b[34mdeveloper\u001b[0m: \u001b[1m\u001b[32mDeveloper\u001b[0m = Developer@6818b288\n\u001b[1m\u001b[34mmanager\u001b[0m: \u001b[1m\u001b[32mManager\u001b[0m = Manager@3a1229d0\n\u001b[1m\u001b[34mKnowledgeSharingEnterprise\u001b[0m: \u001b[1m\u001b[32mCompany\u001b[0m = Company@81901ba\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702234571569_1788644840",
+      "id": "paragraph_1702222794900_1474470604",
+      "dateCreated": "2023-12-10T18:56:11+0000",
+      "status": "READY",
+      "$$hashKey": "object:354"
+    },
+    {
+      "text": "%md\n<center>\n\n# Data Classes and Case Classes\n\n</center>\n\nIn Python 3.7 they added Data Classe. They are similar to case classes in Scala",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10T20:13:29+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702234571569_378266747",
+      "id": "paragraph_1702222796860_1241429662",
+      "dateCreated": "2023-12-10T18:56:11+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:355",
+      "dateFinished": "2023-12-10T20:13:27+0000",
+      "dateStarted": "2023-12-10T20:13:27+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<center>\n<h1>Data Classes and Case Classes</h1>\n</center>\n<p>In Python 3.7 they added Data Classe. They are similar to case classes in Scala</p>\n\n</div>"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%python\nfrom dataclasses import dataclass\n\ncountry, city, zip_code = \"Ukraine\", \"Kyiv\", \"0200\"\n\n@dataclass(frozen=True)\nclass DAddress:\n    country: str\n    city: str\n    zip_code: str\n\nfirst_da = DAddress(country, city, zip_code)\nsecond_da = DAddress(country, city, zip_code)\n\nclass CAddress:\n    def __init__(self, country, city, zip_code):\n        self.country = country\n        self.city = city\n        self.zip_code = zip_code\n\nfirst_ca = CAddress(country, city, zip_code)\nsecond_ca = CAddress(country, city, zip_code)\n\n\nprint(\"Regular Class\")\nprint(\"1)\", first_ca)\nprint(\"2)\", second_ca)\nprint(\"Equals\", first_ca == second_ca)\nprint(\"----------------------\")\nprint(\"Data Class\")\nprint(\"1)\", first_da)\nprint(\"2)\", second_da)\nprint(\"Equals\", first_da == second_da)\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10T20:13:42+0000",
+      "progress": 0,
+      "config": {
+        "colWidth": 6,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Regular Class\n1) <__main__.CAddress object at 0x7fc215082ed0>\n2) <__main__.CAddress object at 0x7fc215082e90>\nEquals False\n----------------------\nData Class\n1) DAddress(country='Ukraine', city='Kyiv', zip_code='0200')\n2) DAddress(country='Ukraine', city='Kyiv', zip_code='0200')\nEquals True\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702234571569_613492645",
+      "id": "paragraph_1702222797370_142201178",
+      "dateCreated": "2023-12-10T18:56:11+0000",
+      "status": "READY",
+      "$$hashKey": "object:356"
+    },
+    {
+      "text": "val (country, city, zip_code) = (\"Ukraine\", \"Kyiv\", \"0200\")\n\nclass CAddress(\n                      country: String,\n                      city: String,\n                      zip_code: String\n              )\n              \nval first_ca = new CAddress(country, city, zip_code)\nval second_ca = new CAddress(country, city, zip_code)\n\ncase class CCAddress(\n                            country: String,\n                            city: String,\n                            zip_code: String\n                    )\n                    \nval first_cca = CCAddress(country, city, zip_code)\nval second_cca = CCAddress(country, city, zip_code)\n\nprintln(\"Regular Class\")\nprintln(s\"1) $first_ca\")\nprintln(s\"2) $second_ca\")\nprintln(s\"Equals ${first_ca == second_ca}\")\nprintln(\"----------------------\")\nprintln(\"Case Class\")\nprintln(s\"1) $first_cca\")\nprintln(s\"2) $second_cca\")\nprintln(s\"Equals ${first_cca == second_cca}\")\n         ",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10T20:13:48+0000",
+      "progress": 0,
+      "config": {
+        "colWidth": 6,
+        "fontSize": 9,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Regular Class\n1) $line87004285149.$read$$iw$$iw$CAddress@54ea2f4a\n2) $line87004285149.$read$$iw$$iw$CAddress@4b37595b\nEquals false\n----------------------\nCase Class\n1) CCAddress(Ukraine,Kyiv,0200)\n2) CCAddress(Ukraine,Kyiv,0200)\nEquals true\n\u001b[1m\u001b[34mcountry\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m = Ukraine\n\u001b[1m\u001b[34mcity\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m = Kyiv\n\u001b[1m\u001b[34mzip_code\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m = 0200\ndefined class CAddress\n\u001b[1m\u001b[34mfirst_ca\u001b[0m: \u001b[1m\u001b[32mCAddress\u001b[0m = CAddress@54ea2f4a\n\u001b[1m\u001b[34msecond_ca\u001b[0m: \u001b[1m\u001b[32mCAddress\u001b[0m = CAddress@4b37595b\ndefined class CCAddress\n\u001b[1m\u001b[34mfirst_cca\u001b[0m: \u001b[1m\u001b[32mCCAddress\u001b[0m = CCAddress(Ukraine,Kyiv,0200)\n\u001b[1m\u001b[34msecond_cca\u001b[0m: \u001b[1m\u001b[32mCCAddress\u001b[0m = CCAddress(Ukraine,Kyiv,0200)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702234571570_1750795352",
+      "id": "paragraph_1702222799936_2080220810",
+      "dateCreated": "2023-12-10T18:56:11+0000",
+      "status": "READY",
+      "$$hashKey": "object:357"
+    },
+    {
+      "text": "%md\n<center>\n\n# Typing\n\n</center>",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10T20:13:51+0000",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<center>\n<h1>Typing</h1>\n</center>\n\n</div>"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702234571570_1450252189",
+      "id": "paragraph_1702222800865_1620191377",
+      "dateCreated": "2023-12-10T18:56:11+0000",
+      "dateStarted": "2023-12-10T20:13:51+0000",
+      "dateFinished": "2023-12-10T20:13:51+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:358"
+    },
+    {
+      "text": "%python\n\nclass Animal:\n    face: str\n\n    def voice(self) -> str:\n        return \"Bruh\"\n    \n\nclass Duck(Animal):\n    face = 0\n    \n    def voice(self):\n        return 5\n\nduck = Duck()    \nprint(duck.face, duck.voice())\n    ",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10T20:14:11+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 6,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "0 5\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702234671003_1298140392",
+      "id": "paragraph_1702234671003_1298140392",
+      "dateCreated": "2023-12-10T18:57:51+0000",
+      "dateStarted": "2023-12-10T20:14:11+0000",
+      "dateFinished": "2023-12-10T20:14:11+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:359"
+    },
+    {
+      "text": "trait Animal {\n    def face: String\n\n    def voice(): String = \"bruh\"\n\n    def die(): String = \"X_X\"\n}\n\ntrait Bird extends Animal \n\nclass Duck extends Bird {\n    override val face = \"(o-o)\"\n}\n\nclass Lion extends Animal {\n    val face = \"\\uD83E\\uDD81\"\n\n    override def voice() = \"RRRRRRRR\"\n\n    def eat[T <: Bird](lunch: T) = lunch.die()\n}\n\nval duck = new Duck()\n\nval lion = new Lion()\n\nprintln(lion.eat(duck))\n\n    \n    ",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10T20:14:17+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 6,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "X_X\ndefined trait Animal\ndefined trait Bird\ndefined class Duck\ndefined class Lion\n\u001b[1m\u001b[34mduck\u001b[0m: \u001b[1m\u001b[32mDuck\u001b[0m = Duck@434f3d1e\n\u001b[1m\u001b[34mlion\u001b[0m: \u001b[1m\u001b[32mLion\u001b[0m = Lion@4676e97a\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702234596015_257174309",
+      "id": "paragraph_1702234596015_257174309",
+      "dateCreated": "2023-12-10T18:56:36+0000",
+      "dateStarted": "2023-12-10T20:14:17+0000",
+      "dateFinished": "2023-12-10T20:14:17+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:360"
+    },
+    {
+      "text": "%md\n<center>\n\n# A little bit of Scala\n\n</center>",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10T20:14:26+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<center>\n<h1>A little bit of Scala</h1>\n</center>\n\n</div>"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702235365586_814202552",
+      "id": "paragraph_1702235365586_814202552",
+      "dateCreated": "2023-12-10T19:09:25+0000",
+      "dateStarted": "2023-12-10T19:10:11+0000",
+      "dateFinished": "2023-12-10T19:10:11+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:361"
+    },
+    {
+      "text": "// val and def\n\nimport java.time.LocalDate\n\ntrait Day {\n    def day: LocalDate\n}\n\nclass Yesterday extends Day {\n    override def day = LocalDate.now().minusDays(1)\n}\n\nclass MyBD extends Day {\n    override val day = LocalDate.parse(\"2000-08-16\")\n}\n\n\nval yesterday =   new Yesterday()       \nval bd = new MyBD()\n\nprintln(yesterday.day)\nprintln(bd.day)\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10T20:14:30+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "2023-12-09\n2000-08-16\nimport java.time.LocalDate\ndefined trait Day\ndefined class Yesterday\ndefined class MyBD\n\u001b[1m\u001b[34myesterday\u001b[0m: \u001b[1m\u001b[32mYesterday\u001b[0m = Yesterday@7a627b92\n\u001b[1m\u001b[34mbd\u001b[0m: \u001b[1m\u001b[32mMyBD\u001b[0m = MyBD@125392ab\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702234597329_1630760175",
+      "id": "paragraph_1702234597329_1630760175",
+      "dateCreated": "2023-12-10T18:56:37+0000",
+      "dateStarted": "2023-12-10T20:14:30+0000",
+      "dateFinished": "2023-12-10T20:14:30+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:362"
+    },
+    {
+      "text": "\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10T20:11:53+0000",
+      "progress": 0,
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702234601401_609201017",
+      "id": "paragraph_1702234601401_609201017",
+      "dateCreated": "2023-12-10T18:56:41+0000",
+      "status": "READY",
+      "$$hashKey": "object:363"
+    }
+  ],
+  "name": "OOP in Python vs Scala",
+  "id": "2JGK2ZE2F",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.10.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false,
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
+  "info": {},
+  "path": "/OOP in Python vs Scala"
+}
