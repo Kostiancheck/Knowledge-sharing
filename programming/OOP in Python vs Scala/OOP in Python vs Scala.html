@@ -1,0 +1,397 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body>
+<div style="background-color:#1e1f22;color:#bcbec4;font-family:'JetBrains Mono',monospace;font-size:8.3pt;white-space:pre;">
+    <span style="color:#7a7e85;"><hr><br></span><span style="color:#7a7e85;">%md<br></span>&lt;center&gt;<br><br><span
+        style="color:#cf8e6d;">#&#32;</span>Python&#32;<span style="font-family:'Menlo-Regular',monospace;">🐍<br></span><span
+        style="font-family:'Menlo-Regular',monospace;"><br></span>&lt;/center&gt;<br><span style="color:#7a7e85;"><hr><br></span><span
+        style="color:#7a7e85;">%md<br></span>&lt;center&gt;<br><br><span
+        style="color:#cf8e6d;">#&#32;</span>Scala&#32;<span
+        style="font-family:'Menlo-Regular',monospace;">🍎<br></span><span style="font-family:'Menlo-Regular',monospace;"><br></span>&lt;/center&gt;<br><span
+        style="color:#7a7e85;"><hr><br></span><span style="color:#7a7e85;">%md<br></span><span style="color:#cf8e6d;">#&#32;</span><span
+        style="font-family:'Menlo-Regular',monospace;">❗&#32;</span>Disclaimer<br>This&#32;note&#32;is&#32;NOT&#32;about&#32;<br><span
+        style="color:#cf8e6d;">1.&#32;</span>Why&#32;Python/Scala&#32;is&#32;better&#32;than&#32;Scala/Python<br><span
+        style="color:#cf8e6d;">2.&#32;</span>How&#32;to&#32;do&#32;OOP<br><span style="color:#cf8e6d;">3.&#32;</span>Why&#32;do&#32;we&#32;need&#32;OOP<br><br>I'm&#32;using&#32;Scala&#32;only&#32;for&#32;Spark,&#32;so&#32;I&#32;don't&#32;know&#32;a&#32;lot&#32;of&#32;stuff.&#32;<br>It's&#32;the&#32;same&#32;as&#32;ask&#32;Data&#32;Scientist&#32;who&#32;worked&#32;only&#32;with&#32;Pandas&#32;about&#32;polymorphism&#32;in&#32;Python&#32;<br>I'm&#32;gonna&#32;use&#32;a&#32;lot&#32;of&#32;"Hello&#32;World"ish&#32;examples<br><span
+        style="color:#7a7e85;"><hr><br></span><span style="color:#7a7e85;">%md<br></span>&lt;center&gt;<br><br><span
+        style="color:#cf8e6d;">#&#32;</span>Test&#32;run<br><br>&lt;/center&gt;<br><span style="color:#7a7e85;"><hr><br></span><span
+        style="color:#7a7e85;">%python<br></span>boyyyyyyzzzz&#32;=&#32;<span style="color:#6aab73;">"Bohdan&#32;and&#32;Illya"<br></span><span
+        style="color:#8888c6;">print</span>(<span style="color:#6aab73;">f"Hello&#32;World&#32;and&#32;</span><span
+        style="color:#cf8e6d;">{</span>boyyyyyyzzzz<span style="color:#cf8e6d;">}</span><span
+        style="color:#6aab73;">"</span>)<br><span style="color:#7a7e85;"><hr><br></span><span style="color:#cf8e6d;">val&#32;</span>boyyyyyyzzzz&#32;=&#32;<span
+        style="color:#6aab73;">"Bohdan&#32;and&#32;Illya"<br></span><span
+        style="font-style:italic;">println</span>(<span
+        style="color:#6aab73;">s"Hello&#32;World&#32;and&#32;</span><span
+        style="color:#00b8bb;font-weight:bold;">$</span>boyyyyyyzzzz<span style="color:#6aab73;">"</span>)<br><span
+        style="color:#7a7e85;"><hr><br></span><span style="color:#7a7e85;">%md<br></span>&lt;center&gt;<br><br><span
+        style="color:#cf8e6d;">#&#32;</span>Abstraction,&#32;Inheritance,&#32;Mixins&#32;and&#32;override<br><br>&lt;/center&gt;<br><br>In&#32;scala&#32;there&#32;are:<br><span
+        style="color:#cf8e6d;">-&#32;</span>classes&#32;(similar&#32;to&#32;python&#32;class)<br><span
+        style="color:#cf8e6d;">-&#32;</span>abstract&#32;classes&#32;(similar&#32;to&#32;python&#32;class&#32;with&#32;ABC)<br><span
+        style="color:#cf8e6d;">-&#32;</span>case&#32;classes&#32;(similar&#32;to&#32;python&#32;data&#32;classes)<br><span
+        style="color:#cf8e6d;">-&#32;</span>traits&#32;(similar&#32;to&#32;python&#32;class&#32;with&#32;ABC).&#32;Can&#32;be&#32;used&#32;for&#32;mixins<br><br>Difference&#32;between&#32;abstract&#32;classe&#32;and&#32;traits&#32;in&#32;scala&#32;is&#32;that&#32;classes&#32;are&#32;limited&#32;to&#32;inherit&#32;from&#32;a&#32;single&#32;abstract&#32;class&#32;but&#32;can&#32;inherit&#32;from&#32;multiple&#32;traits.&#32;Also&#32;before&#32;scala&#32;3&#32;traits&#32;didn't&#32;have&#32;parameters.<br>So&#32;you&#32;can&#32;say&#32;that&#32;trait&#32;in&#32;Scala&#32;some&#32;kind&#32;of&#32;combination&#32;of&#32;Interface&#32;and&#32;Abstract&#32;Classes&#32;in&#32;Java<br><br><br>In&#32;python&#32;to&#32;make&#32;method&#32;abstract&#32;you&#32;need&#32;to&#32;use&#32;<span
+        style="color:#cf8e6d;">`</span>@abstractmethod<span style="color:#cf8e6d;">`</span>,&#32;but&#32;it&#32;make&#32;app&#32;slower&#32;because&#32;the&#32;Python&#32;interpreter&#32;must&#32;perform&#32;additional&#32;work&#32;to&#32;resolve&#32;the&#32;abstract&#32;methods&#32;at&#32;runtime.<br><br>To&#32;show:<br><span
+        style="color:#cf8e6d;">-&#32;</span>abstract&#32;classes&#32;in&#32;Scala&#32;doesn't&#32;work<br><span
+        style="color:#cf8e6d;">-&#32;</span>traits&#32;with&#32;no&#32;implementations&#32;in&#32;Scala&#32;doesn't&#32;work<br><span
+        style="color:#cf8e6d;">-&#32;</span>Python&#32;with&#32;no&#32;@abstractmethod&#32;doesn't&#32;raise&#32;en&#32;error<br><span
+        style="color:#cf8e6d;">-&#32;</span>class&#32;with&#32;no&#32;implementations&#32;in&#32;Python&#32;doesn't&#32;work&#32;<br><span
+        style="color:#cf8e6d;">-&#32;</span>override&#32;in&#32;Scala&#32;in&#32;unnecessary&#32;if&#32;you&#32;are&#32;implementing&#32;for&#32;the&#32;first&#32;time&#32;(but&#32;it's&#32;nice&#32;to&#32;have),&#32;but&#32;it's&#32;required&#32;if&#32;you're&#32;really&#32;overriding<br><span
+        style="color:#cf8e6d;">-&#32;</span>there&#32;is&#32;no&#32;"override"&#32;key-word&#32;in&#32;Python<br><span
+        style="color:#7a7e85;"><hr><br></span><span style="color:#7a7e85;">%python<br></span><span
+        style="color:#cf8e6d;">from&#32;</span>abc&#32;<span style="color:#cf8e6d;">import&#32;</span>ABC,&#32;abstractmethod<br><br><span
+        style="color:#cf8e6d;">class&#32;</span>Reader(ABC):<br>&#32;&#32;&#32;&#32;<span style="color:#b3ae60;">@abstractmethod<br></span><span
+        style="color:#b3ae60;">&#32;&#32;&#32;&#32;</span><span style="color:#cf8e6d;">def&#32;</span><span
+        style="color:#56a8f5;">read</span>(<span style="color:#94558d;">self</span>):<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">pass<br></span><span style="color:#cf8e6d;"><br></span><span style="color:#cf8e6d;">&#32;&#32;&#32;&#32;def&#32;</span><span
+        style="color:#56a8f5;">defaultRead</span>(<span style="color:#94558d;">seld</span>):<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#8888c6;">print</span>(<span
+        style="color:#6aab73;">"Mama&#32;ama&#32;default&#32;reader"</span>)<br><br><span style="color:#cf8e6d;">class&#32;</span>Archiver:<br>&#32;&#32;&#32;&#32;<span
+        style="color:#b3ae60;">@abstractmethod<br></span><span style="color:#b3ae60;">&#32;&#32;&#32;&#32;</span><span
+        style="color:#cf8e6d;">def&#32;</span><span style="color:#56a8f5;">archive</span>(<span style="color:#94558d;">self</span>):<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">pass<br></span><span style="color:#cf8e6d;"><br></span><span style="color:#cf8e6d;">&#32;&#32;&#32;&#32;def&#32;</span><span
+        style="color:#56a8f5;">defaultArchive</span>(<span style="color:#94558d;">self</span>):<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#8888c6;">print</span>(<span style="color:#6aab73;">"Mama&#32;ama&#32;default&#32;archiver"</span>)<br><br><span
+        style="color:#cf8e6d;">class&#32;</span>FileManager(Archiver,&#32;Reader):<br>&#32;&#32;&#32;&#32;<span
+        style="color:#7a7e85;">#&#32;pass&#32;#&#32;Error:&#32;Can't&#32;instantiate&#32;abstract&#32;class&#32;FileManager&#32;with&#32;abstract&#32;methods&#32;read<br></span><span
+        style="color:#7a7e85;">&#32;&#32;&#32;&#32;</span><span style="color:#cf8e6d;">def&#32;</span><span
+        style="color:#56a8f5;">archive</span>(<span style="color:#94558d;">self</span>):<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#8888c6;">print</span>(<span style="color:#6aab73;">"Mama&#32;ama&#32;archiver"</span>)<br><br>&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">def&#32;</span><span style="color:#56a8f5;">read</span>(<span
+        style="color:#94558d;">self</span>):<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span style="color:#8888c6;">print</span>(<span
+        style="color:#6aab73;">"Mama&#32;ama&#32;reader"</span>)<br><br>&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">def&#32;</span><span style="color:#56a8f5;">defaultArchive</span>(<span
+        style="color:#94558d;">self</span>):<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span style="color:#8888c6;">print</span>(<span
+        style="color:#6aab73;">"Mama&#32;ama&#32;archiver&#32;v2"</span>)<br><br>file_manager&#32;=&#32;FileManager()<br>file_manager.read()<br>file_manager.defaultRead()<br>file_manager.archive()<br>file_manager.defaultArchive()<br><span
+        style="color:#7a7e85;"><hr><br></span><span style="color:#7a7e85;">//&#32;//&#32;DOESN'T&#32;WORK&#32;BECAUSE&#32;CLASS&#32;CAN&#32;EXTEND&#32;AT&#32;MOST&#32;1&#32;ABSTRACT&#32;CLASS<br></span><span
+        style="color:#7a7e85;">//abstract&#32;class&#32;Reader&#32;{<br></span><span style="color:#7a7e85;">//&#32;&#32;&#32;&#32;def&#32;read():&#32;Unit<br></span><span
+        style="color:#7a7e85;">//}<br></span><span style="color:#7a7e85;">//<br></span><span style="color:#7a7e85;">//abstract&#32;class&#32;Archiver&#32;{<br></span><span
+        style="color:#7a7e85;">//&#32;&#32;&#32;&#32;def&#32;archive():&#32;Unit<br></span><span style="color:#7a7e85;">//}<br></span><span
+        style="color:#7a7e85;">//<br></span><span style="color:#7a7e85;">//class&#32;FileManager&#32;extends&#32;Reader&#32;with&#32;Archiver<br></span><span
+        style="color:#7a7e85;"><br></span><span style="color:#7a7e85;"><br></span><span style="color:#7a7e85;">&#32;//&#32;STILL&#32;DOESN'T&#32;WORK&#32;BECAUSE&#32;class&#32;FileManager&#32;needs&#32;to&#32;be&#32;abstract&#32;or&#32;must&#32;define&#32;abstract&#32;methods<br></span><span
+        style="color:#7a7e85;"><br></span><span style="color:#7a7e85;">//trait&#32;Reader&#32;{<br></span><span
+        style="color:#7a7e85;">//&#32;&#32;&#32;&#32;def&#32;read():&#32;Unit<br></span><span style="color:#7a7e85;">//}<br></span><span
+        style="color:#7a7e85;">//<br></span><span style="color:#7a7e85;">//trait&#32;Archiver&#32;{<br></span><span
+        style="color:#7a7e85;">//&#32;&#32;&#32;&#32;def&#32;archive():&#32;Unit<br></span><span style="color:#7a7e85;">//}<br></span><span
+        style="color:#7a7e85;">//<br></span><span style="color:#7a7e85;">//class&#32;FileManager&#32;extends&#32;Reader&#32;with&#32;Archiver<br></span><span
+        style="color:#7a7e85;"><br></span><span style="color:#7a7e85;"><br></span><span style="color:#cf8e6d;">trait&#32;</span>Reader&#32;{<br>&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">def&#32;</span><span style="color:#56a8f5;">read</span>():&#32;Unit<br><br>&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">def&#32;</span><span
+        style="color:#56a8f5;">defaultRead</span>():&#32;Unit&#32;=&#32;<span style="font-style:italic;">println</span>(<span
+        style="color:#6aab73;">"Mama&#32;ama&#32;default&#32;reader"</span>)<br>}<br><br><span style="color:#cf8e6d;">trait&#32;</span>Archiver&#32;{<br>&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">def&#32;</span><span style="color:#56a8f5;">archive</span>():&#32;Unit<br><br>&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">def&#32;</span><span
+        style="color:#56a8f5;">defaultArchive</span>():&#32;Unit&#32;=&#32;<span
+        style="font-style:italic;">println</span>(<span
+        style="color:#6aab73;">"Mama&#32;ama&#32;default&#32;archiver"</span>)<br>}<br><br><span style="color:#cf8e6d;">class&#32;</span>FileManager&#32;<span
+        style="color:#cf8e6d;">extends&#32;</span>Reader&#32;<span style="color:#cf8e6d;">with&#32;</span>Archiver&#32;{<br>&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">override&#32;def&#32;</span><span style="color:#56a8f5;">read</span>():&#32;Unit&#32;=&#32;<span
+        style="font-style:italic;">println</span>(<span
+        style="color:#6aab73;">"Mama&#32;ama&#32;reader"</span>)&#32;<span style="color:#7a7e85;">//&#32;override&#32;is&#32;unnecessary&#32;<br></span><span
+        style="color:#7a7e85;"><br></span><span style="color:#7a7e85;">&#32;&#32;&#32;&#32;</span><span
+        style="color:#cf8e6d;">override&#32;def&#32;</span><span style="color:#56a8f5;">archive</span>():&#32;Unit&#32;=&#32;<span
+        style="font-style:italic;">println</span>(<span
+        style="color:#6aab73;">"Mama&#32;ama&#32;archiver"</span>)&#32;<span style="color:#7a7e85;">//&#32;override&#32;is&#32;unnecessary&#32;<br></span><span
+        style="color:#7a7e85;"><br></span><span style="color:#7a7e85;">&#32;&#32;&#32;&#32;</span><span
+        style="color:#cf8e6d;">override&#32;def&#32;</span><span style="color:#56a8f5;">defaultArchive</span>():&#32;Unit&#32;=&#32;<span
+        style="font-style:italic;">println</span>(<span style="color:#6aab73;">"Mama&#32;ama&#32;archiver&#32;v2"</span>)&#32;<span
+        style="color:#7a7e85;">//&#32;override&#32;is&#32;necessary&#32;<br></span>}<br><br><span
+        style="color:#cf8e6d;">val&#32;</span>fileManager&#32;=&#32;<span style="color:#cf8e6d;">new&#32;</span>FileManager()<br><br>fileManager.read()<br>fileManager.defaultRead()<br>fileManager.archive()<br>fileManager.defaultArchive()<br><br><span
+        style="color:#7a7e85;"><hr><br></span><span style="color:#7a7e85;">%md<br></span>&lt;center&gt;<br><br><span
+        style="color:#cf8e6d;">#&#32;</span>Composition<br><br>&lt;/center&gt;<br><br><span style="color:#7a7e85;"><hr><br></span><span
+        style="color:#7a7e85;">%python<br></span><span style="color:#7a7e85;"><br></span><span style="color:#cf8e6d;">class&#32;</span>Address:<br>&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">def&#32;</span><span style="color:#b200b2;">__init__</span>(<span style="color:#94558d;">self</span>,&#32;country,&#32;city):<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#94558d;">self</span>.country&#32;=&#32;country<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#94558d;">self</span>.city&#32;=&#32;city<br><br><br><span style="color:#cf8e6d;">class&#32;</span>Person:<br>&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">def&#32;</span><span style="color:#b200b2;">__init__</span>(<span style="color:#94558d;">self</span>,&#32;name:&#32;<span
+        style="color:#8888c6;">str</span>):<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#94558d;">self</span>.name&#32;=&#32;name<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#94558d;">self</span>.address&#32;=&#32;Address(<span style="color:#6aab73;">"Ukraine"</span>,&#32;<span
+        style="color:#6aab73;">"Kyiv"</span>)<br><br>&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">def&#32;</span><span style="color:#b200b2;">__str__</span>(<span style="color:#94558d;">self</span>):<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">return&#32;</span><span style="color:#6aab73;">f"I'm&#32;</span><span
+        style="color:#cf8e6d;">{</span><span style="color:#94558d;">self</span>.name<span
+        style="color:#cf8e6d;">}</span><span style="color:#6aab73;">&#32;from&#32;</span><span
+        style="color:#cf8e6d;">{</span><span style="color:#94558d;">self</span>.address.city<span
+        style="color:#cf8e6d;">}</span><span style="color:#6aab73;">,&#32;</span><span
+        style="color:#cf8e6d;">{</span><span style="color:#94558d;">self</span>.address.country<span
+        style="color:#cf8e6d;">}</span><span style="color:#6aab73;">"<br></span><span style="color:#6aab73;"><br></span><span
+        style="color:#6aab73;"><br></span>me&#32;=&#32;Person(<span style="color:#6aab73;">"Kostia"</span>)<br><br><span
+        style="color:#8888c6;">print</span>(me)<br><br>me.address.city&#32;=&#32;<span style="color:#6aab73;">"Lviv"<br></span><span
+        style="color:#6aab73;"><br></span><span style="color:#8888c6;">print</span>(me)<br><span style="color:#7a7e85;"><hr><br></span><span
+        style="color:#7a7e85;"><br></span><span style="color:#cf8e6d;">class&#32;</span>Address(<span
+        style="color:#cf8e6d;">val&#32;</span>country:&#32;String,&#32;<span style="color:#cf8e6d;">val&#32;</span>city:&#32;String)<br><br><span
+        style="color:#cf8e6d;">class&#32;</span>Person(<span style="color:#cf8e6d;">val&#32;</span>name:&#32;String,&#32;<span
+        style="color:#cf8e6d;">val&#32;</span>address:&#32;Address)&#32;{<br>&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">override&#32;def&#32;</span><span style="color:#56a8f5;">toString</span>:&#32;String&#32;=&#32;<span
+        style="color:#6aab73;">s"I'm&#32;</span><span style="color:#00b8bb;font-weight:bold;">$</span>name<span
+        style="color:#6aab73;">&#32;from&#32;</span><span style="color:#00b8bb;font-weight:bold;">$</span>{address.city}<span
+        style="color:#6aab73;">,&#32;</span><span style="color:#00b8bb;font-weight:bold;">$</span>{address.country}<span
+        style="color:#6aab73;">"<br></span>}<br><br><span style="color:#cf8e6d;">val&#32;</span>me&#32;=&#32;<span
+        style="color:#cf8e6d;">new&#32;</span>Person(<span style="color:#6aab73;">"Kostia"</span>,&#32;<span
+        style="color:#cf8e6d;">new&#32;</span>Address(<span style="color:#6aab73;">"Ukraine"</span>,&#32;<span
+        style="color:#6aab73;">"Kyiv"</span>))<br><br><span style="font-style:italic;">println</span>(me)<br><br><span
+        style="color:#7a7e85;"><hr><br></span><span style="color:#7a7e85;">%md<br></span>&lt;center&gt;<br><br><span
+        style="color:#cf8e6d;">#&#32;</span>Encapsulation<br><br>&lt;/center&gt;<br><br><span style="color:#7a7e85;"><hr><br></span><span
+        style="color:#7a7e85;">%python<br></span><span style="color:#cf8e6d;">class&#32;</span>Secure:<br>&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">def&#32;</span><span style="color:#56a8f5;">__privateHash</span>(<span
+        style="color:#94558d;">self</span>):<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span style="color:#cf8e6d;">return&#32;</span><span
+        style="color:#6aab73;">"111"<br></span><span style="color:#6aab73;"><br></span><span style="color:#6aab73;">&#32;&#32;&#32;&#32;</span><span
+        style="color:#cf8e6d;">def&#32;</span><span style="color:#56a8f5;">_protectedHash</span>(<span
+        style="color:#94558d;">self</span>):<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span style="color:#cf8e6d;">return&#32;</span><span
+        style="color:#6aab73;">f"AasdkASASlkdja123'ASL:ASF'ds;f+</span><span style="color:#cf8e6d;">{</span><span
+        style="color:#94558d;">self</span>.__privateHash()<span style="color:#cf8e6d;">}</span><span
+        style="color:#6aab73;">"<br></span><span style="color:#6aab73;"><br></span><span style="color:#6aab73;">&#32;&#32;&#32;&#32;</span><span
+        style="color:#cf8e6d;">def&#32;</span><span style="color:#56a8f5;">publicHash</span>(<span
+        style="color:#94558d;">self</span>):<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span style="color:#cf8e6d;">return&#32;</span><span
+        style="color:#6aab73;">"Suck&#32;my&#32;BALLZ"<br></span><span style="color:#6aab73;"><br></span><span
+        style="color:#cf8e6d;">class&#32;</span>SecureChild(Secure):<br>&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">def&#32;</span><span style="color:#56a8f5;">tryParentProtected</span>(<span
+        style="color:#94558d;">self</span>):<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span style="color:#cf8e6d;">return&#32;</span><span
+        style="color:#94558d;">self</span>._protectedHash()<br><br>secure&#32;=&#32;Secure()<br>child&#32;=&#32;SecureChild()<br><br><span
+        style="color:#8888c6;">print</span>(secure._Secure__privateHash())<br><span style="color:#8888c6;">print</span>(secure._protectedHash())<br><span
+        style="color:#8888c6;">print</span>(secure.publicHash())<br><br><span style="color:#8888c6;">print</span>(child._Secure__privateHash())<br><span
+        style="color:#8888c6;">print</span>(child.tryParentProtected())<br><span style="color:#8888c6;">print</span>(child.publicHash())<br><span
+        style="color:#7a7e85;"><hr><br></span><span style="color:#cf8e6d;">class&#32;</span>Secure&#32;{<br>&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">private&#32;def&#32;</span><span
+        style="color:#56a8f5;">privateHash</span>()&#32;=&#32;<span style="color:#6aab73;">"111"<br></span><span
+        style="color:#6aab73;"><br></span><span style="color:#6aab73;">&#32;&#32;&#32;&#32;</span><span
+        style="color:#cf8e6d;">protected&#32;def&#32;</span><span style="color:#56a8f5;">protectedHash</span>()&#32;=&#32;<span
+        style="color:#6aab73;">s"AasdkASASlkdja123'ASL:ASF'ds;f+</span><span
+        style="color:#00b8bb;font-weight:bold;">$</span>{privateHash()}<span style="color:#6aab73;">"<br></span><span
+        style="color:#6aab73;"><br></span><span style="color:#6aab73;">&#32;&#32;&#32;&#32;</span><span
+        style="color:#cf8e6d;">def&#32;</span><span style="color:#56a8f5;">publicHash</span>()&#32;=&#32;<span
+        style="color:#6aab73;">"Suck&#32;my&#32;BALLZ"<br></span>}<br><br><span style="color:#cf8e6d;">class&#32;</span>SecureChild&#32;<span
+        style="color:#cf8e6d;">extends&#32;</span>Secure&#32;{<br>&#32;&#32;&#32;&#32;<span style="color:#cf8e6d;">def&#32;</span><span
+        style="color:#56a8f5;">tryParentProtected</span>()&#32;=&#32;protectedHash()<br><span style="color:#7a7e85;">//&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;def&#32;tryParentPrivate()&#32;=&#32;privateHash()<br></span>}<br><br><span
+        style="color:#cf8e6d;">val&#32;</span>secure&#32;=&#32;<span
+        style="color:#cf8e6d;">new&#32;</span>Secure()<br><span
+        style="color:#cf8e6d;">val&#32;</span>child&#32;=&#32;<span
+        style="color:#cf8e6d;">new&#32;</span>SecureChild()<br><br><span style="color:#7a7e85;">//println{secure.privateHash()}<br></span><span
+        style="color:#7a7e85;">//println{secure.protectedHash()}<br></span><span
+        style="font-style:italic;">println&#32;</span>{secure.publicHash()}<br><br><span style="color:#7a7e85;">//println(child.privateHash())<br></span><span
+        style="font-style:italic;">println</span>(child.tryParentProtected())<br><span style="font-style:italic;">println</span>(child.publicHash())<br><br><br><span
+        style="color:#7a7e85;"><hr><br></span><span style="color:#7a7e85;">%md<br></span>&lt;center&gt;<br><br><span
+        style="color:#cf8e6d;">#&#32;</span>Polymorphism<br><br>&lt;/center&gt;<br><br>Polymorphism&#32;describes&#32;situations&#32;in&#32;which&#32;something&#32;occurs&#32;in&#32;several&#32;different&#32;forms.&#32;<br>In&#32;computer&#32;science,&#32;polymorphism&#32;describes&#32;the&#32;concept&#32;that&#32;you&#32;can&#32;access&#32;objects&#32;of&#32;<br>different&#32;types&#32;through&#32;the&#32;same&#32;interface.&#32;<br>Each&#32;type&#32;can&#32;provide&#32;its&#32;own&#32;independent&#32;implementation&#32;of&#32;this&#32;interface.<br><br>&lt;details&gt;<br>&#32;&#32;&lt;summary&gt;&#32;Байт&#32;&lt;/summary&gt;<br>&#32;&#32;Але&#32;Ілюха&#32;ж&#32;розповідав&#32;2&#32;тижні&#32;тому,&#32;що&#32;треба&#32;зробити&#32;універсальний&#32;метод&#32;`work`&#32;в&#32;кожному&#32;класі,&#32;ти,&#32;дурачок!&#32;(с)&#32;Ілюха&#32;і&#32;Бодя<br>&lt;/details&gt;<br><span
+        style="color:#7a7e85;"><hr><br></span><span style="color:#7a7e85;">%python<br></span><span
+        style="color:#cf8e6d;">class&#32;</span>Employee:<br>&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">pass<br></span><span style="color:#cf8e6d;"><br></span><span style="color:#cf8e6d;">class&#32;</span>Tester(Employee):<br>&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">def&#32;</span><span style="color:#56a8f5;">test</span>(<span
+        style="color:#94558d;">self</span>):<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span style="color:#8888c6;">print</span>(<span
+        style="color:#6aab73;">"I'm&#32;testing"</span>)<br><br><span style="color:#cf8e6d;">class&#32;</span>Developer(Employee):<br>&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">def&#32;</span><span style="color:#56a8f5;">develop</span>(<span style="color:#94558d;">self</span>):<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#8888c6;">print</span>(<span style="color:#6aab73;">"I'm&#32;developing"</span>)<br><br><span
+        style="color:#cf8e6d;">class&#32;</span>Manager(Employee):<br>&#32;&#32;&#32;&#32;<span style="color:#cf8e6d;">def&#32;</span><span
+        style="color:#56a8f5;">manage</span>(<span style="color:#94558d;">self</span>):<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#8888c6;">print</span>(<span style="color:#6aab73;">"I'm&#32;doing&#32;nothing&#32;XDD"</span>)<br><br><br><span
+        style="color:#cf8e6d;">class&#32;</span>Company:<br>&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">def&#32;</span><span style="color:#56a8f5;">work</span>(<span
+        style="color:#94558d;">self</span>,&#32;worker:&#32;Employee):<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">if&#32;</span><span style="color:#8888c6;">isinstance</span>(worker,&#32;Tester):<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;worker.test()<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">if&#32;</span><span style="color:#8888c6;">isinstance</span>(worker,&#32;Developer):<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;worker.develop()<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">if&#32;</span><span style="color:#8888c6;">isinstance</span>(worker,&#32;Manager):<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;worker.manage()<br><br><br>tester&#32;=&#32;Tester()<br>developer&#32;=&#32;Developer()<br>manager&#32;=&#32;Manager()<br><br>KnowledgeSharingEnterprise&#32;=&#32;Company()<br><br>KnowledgeSharingEnterprise.work(tester)<br>KnowledgeSharingEnterprise.work(developer)<br>KnowledgeSharingEnterprise.work(manager)<br><br><br><span
+        style="color:#7a7e85;"><hr><br></span><span style="color:#cf8e6d;">trait&#32;</span>Employee<br><br><span
+        style="color:#cf8e6d;">class&#32;</span>Tester&#32;<span style="color:#cf8e6d;">extends&#32;</span>Employee&#32;{<br>&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">def&#32;</span><span style="color:#56a8f5;">test</span>():&#32;Unit&#32;=&#32;<span
+        style="font-style:italic;">println</span>(<span
+        style="color:#6aab73;">"I'm&#32;testing"</span>)<br>}<br><br><span style="color:#cf8e6d;">class&#32;</span>Developer&#32;<span
+        style="color:#cf8e6d;">extends&#32;</span>Employee&#32;{<br>&#32;&#32;&#32;&#32;<span style="color:#cf8e6d;">def&#32;</span><span
+        style="color:#56a8f5;">develop</span>():&#32;Unit&#32;=&#32;<span
+        style="font-style:italic;">println</span>(<span style="color:#6aab73;">"I'm&#32;developing"</span>)<br>}<br><br><span
+        style="color:#cf8e6d;">class&#32;</span>Manager&#32;<span style="color:#cf8e6d;">extends&#32;</span>Employee&#32;{<br>&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">def&#32;</span><span style="color:#56a8f5;">manage</span>():&#32;Unit&#32;=&#32;<span
+        style="font-style:italic;">println</span>(<span
+        style="color:#6aab73;">"I'm&#32;doing&#32;nothing&#32;XDD"</span>)<br>}<br><br><span style="color:#cf8e6d;">class&#32;</span>Company&#32;{<br>&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">def&#32;</span><span style="color:#56a8f5;">work</span>(employee:&#32;Tester):&#32;Unit&#32;=&#32;employee.test()<br>&#32;&#32;&#32;&#32;<br>&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">def&#32;</span><span style="color:#56a8f5;">work</span>(employee:&#32;Tester,&#32;developer:&#32;Developer):&#32;Unit&#32;=&#32;employee.test()<br><br>&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">def&#32;</span><span style="color:#56a8f5;">work</span>(employee:&#32;Developer):&#32;Unit&#32;=&#32;employee.develop()<br><br>&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">def&#32;</span><span style="color:#56a8f5;">work</span>(employee:&#32;Manager):&#32;Unit&#32;=&#32;employee.manage()<br>}<br><br><span
+        style="color:#cf8e6d;">val&#32;</span>tester&#32;=&#32;<span
+        style="color:#cf8e6d;">new&#32;</span>Tester<br><span style="color:#cf8e6d;">val&#32;</span>developer&#32;=&#32;<span
+        style="color:#cf8e6d;">new&#32;</span>Developer<br><span style="color:#cf8e6d;">val&#32;</span>manager&#32;=&#32;<span
+        style="color:#cf8e6d;">new&#32;</span>Manager<br><br><span style="color:#cf8e6d;">val&#32;</span>KnowledgeSharingEnterprise&#32;=&#32;<span
+        style="color:#cf8e6d;">new&#32;</span>Company<br><br>KnowledgeSharingEnterprise.work(tester)<br>KnowledgeSharingEnterprise.work(developer)<br>KnowledgeSharingEnterprise.work(manager)<br>KnowledgeSharingEnterprise.work(tester,&#32;developer)<br><br><span
+        style="color:#7a7e85;"><hr><br></span><span style="color:#7a7e85;">%md<br></span>&lt;center&gt;<br><br><span
+        style="color:#cf8e6d;">#&#32;</span>Data&#32;Classes&#32;and&#32;Case&#32;Classes<br><br>&lt;/center&gt;<br><br>In&#32;Python&#32;3.7&#32;they&#32;added&#32;Data&#32;Classe.&#32;They&#32;are&#32;similar&#32;to&#32;case&#32;classes&#32;in&#32;Scala<br><span
+        style="color:#7a7e85;"><hr><br></span><span style="color:#7a7e85;">%python<br></span><span
+        style="color:#cf8e6d;">from&#32;</span>dataclasses&#32;<span
+        style="color:#cf8e6d;">import&#32;</span>dataclass<br><br>country,&#32;city,&#32;zip_code&#32;=&#32;<span
+        style="color:#6aab73;">"Ukraine"</span>,&#32;<span style="color:#6aab73;">"Kyiv"</span>,&#32;<span
+        style="color:#6aab73;">"0200"<br></span><span style="color:#6aab73;"><br></span><span style="color:#b3ae60;">@dataclass</span>(<span
+        style="color:#aa4926;">frozen</span>=<span style="color:#cf8e6d;">True</span>)<br><span style="color:#cf8e6d;">class&#32;</span>DAddress:<br>&#32;&#32;&#32;&#32;country:&#32;<span
+        style="color:#8888c6;">str<br></span><span style="color:#8888c6;">&#32;&#32;&#32;&#32;</span>city:&#32;<span
+        style="color:#8888c6;">str<br></span><span style="color:#8888c6;">&#32;&#32;&#32;&#32;</span>zip_code:&#32;<span
+        style="color:#8888c6;">str<br></span><span style="color:#8888c6;"><br></span>first_da&#32;=&#32;DAddress(country,&#32;city,&#32;zip_code)<br>second_da&#32;=&#32;DAddress(country,&#32;city,&#32;zip_code)<br><br><span
+        style="color:#cf8e6d;">class&#32;</span>CAddress:<br>&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">def&#32;</span><span style="color:#b200b2;">__init__</span>(<span style="color:#94558d;">self</span>,&#32;country,&#32;city,&#32;zip_code):<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#94558d;">self</span>.country&#32;=&#32;country<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#94558d;">self</span>.city&#32;=&#32;city<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#94558d;">self</span>.zip_code&#32;=&#32;zip_code<br><br>first_ca&#32;=&#32;CAddress(country,&#32;city,&#32;zip_code)<br>second_ca&#32;=&#32;CAddress(country,&#32;city,&#32;zip_code)<br><br><br><span
+        style="color:#8888c6;">print</span>(<span style="color:#6aab73;">"Regular&#32;Class"</span>)<br><span
+        style="color:#8888c6;">print</span>(<span style="color:#6aab73;">"1)"</span>,&#32;first_ca)<br><span
+        style="color:#8888c6;">print</span>(<span style="color:#6aab73;">"2)"</span>,&#32;second_ca)<br><span
+        style="color:#8888c6;">print</span>(<span style="color:#6aab73;">"Equals"</span>,&#32;first_ca&#32;==&#32;second_ca)<br><span
+        style="color:#8888c6;">print</span>(<span style="color:#6aab73;">"----------------------"</span>)<br><span
+        style="color:#8888c6;">print</span>(<span style="color:#6aab73;">"Data&#32;Class"</span>)<br><span
+        style="color:#8888c6;">print</span>(<span style="color:#6aab73;">"1)"</span>,&#32;first_da)<br><span
+        style="color:#8888c6;">print</span>(<span style="color:#6aab73;">"2)"</span>,&#32;second_da)<br><span
+        style="color:#8888c6;">print</span>(<span style="color:#6aab73;">"Equals"</span>,&#32;first_da&#32;==&#32;second_da)<br><br><span
+        style="color:#7a7e85;"><hr><br></span><span style="color:#cf8e6d;">val&#32;</span>(country,&#32;city,&#32;zip_code)&#32;=&#32;(<span
+        style="color:#6aab73;">"Ukraine"</span>,&#32;<span style="color:#6aab73;">"Kyiv"</span>,&#32;<span
+        style="color:#6aab73;">"0200"</span>)<br><br><span style="color:#cf8e6d;">class&#32;</span>CAddress(<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;country:&#32;String,<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;city:&#32;String,<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;zip_code:&#32;String<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)<br><br><span
+        style="color:#cf8e6d;">val&#32;</span>first_ca&#32;=&#32;<span style="color:#cf8e6d;">new&#32;</span>CAddress(country,&#32;city,&#32;zip_code)<br><span
+        style="color:#cf8e6d;">val&#32;</span>second_ca&#32;=&#32;<span style="color:#cf8e6d;">new&#32;</span>CAddress(country,&#32;city,&#32;zip_code)<br><br><span
+        style="color:#cf8e6d;">case&#32;class&#32;</span>CCAddress(<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;country:&#32;String,<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;city:&#32;String,<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;zip_code:&#32;String<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;)<br><br><span
+        style="color:#cf8e6d;">val&#32;</span>first_cca&#32;=&#32;CCAddress(country,&#32;city,&#32;zip_code)<br><span
+        style="color:#cf8e6d;">val&#32;</span>second_cca&#32;=&#32;CCAddress(country,&#32;city,&#32;zip_code)<br><br><span
+        style="font-style:italic;">println</span>(<span style="color:#6aab73;">"Regular&#32;Class"</span>)<br><span
+        style="font-style:italic;">println</span>(<span style="color:#6aab73;">s"1)&#32;</span><span
+        style="color:#00b8bb;font-weight:bold;">$</span>first_ca<span style="color:#6aab73;">"</span>)<br><span
+        style="font-style:italic;">println</span>(<span style="color:#6aab73;">s"2)&#32;</span><span
+        style="color:#00b8bb;font-weight:bold;">$</span>second_ca<span style="color:#6aab73;">"</span>)<br><span
+        style="font-style:italic;">println</span>(<span style="color:#6aab73;">s"Equals&#32;</span><span
+        style="color:#00b8bb;font-weight:bold;">$</span>{first_ca&#32;==&#32;second_ca}<span
+        style="color:#6aab73;">"</span>)<br><span style="font-style:italic;">println</span>(<span
+        style="color:#6aab73;">"----------------------"</span>)<br><span style="font-style:italic;">println</span>(<span
+        style="color:#6aab73;">"Case&#32;Class"</span>)<br><span style="font-style:italic;">println</span>(<span
+        style="color:#6aab73;">s"1)&#32;</span><span style="color:#00b8bb;font-weight:bold;">$</span>first_cca<span
+        style="color:#6aab73;">"</span>)<br><span style="font-style:italic;">println</span>(<span
+        style="color:#6aab73;">s"2)&#32;</span><span style="color:#00b8bb;font-weight:bold;">$</span>second_cca<span
+        style="color:#6aab73;">"</span>)<br><span style="font-style:italic;">println</span>(<span
+        style="color:#6aab73;">s"Equals&#32;</span><span style="color:#00b8bb;font-weight:bold;">$</span>{first_cca&#32;==&#32;second_cca}<span
+        style="color:#6aab73;">"</span>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<br><span
+        style="color:#7a7e85;"><hr><br></span><span style="color:#7a7e85;">%md<br></span>&lt;center&gt;<br><br><span
+        style="color:#cf8e6d;">#&#32;</span>Typing<br><br>&lt;/center&gt;<br><span style="color:#7a7e85;"><hr><br></span><span
+        style="color:#7a7e85;">%python<br></span><span style="color:#7a7e85;"><br></span><span style="color:#cf8e6d;">class&#32;</span>Animal:<br>&#32;&#32;&#32;&#32;face:&#32;<span
+        style="color:#8888c6;">str<br></span><span style="color:#8888c6;"><br></span><span style="color:#8888c6;">&#32;&#32;&#32;&#32;</span><span
+        style="color:#cf8e6d;">def&#32;</span><span style="color:#56a8f5;">voice</span>(<span style="color:#94558d;">self</span>)&#32;-&gt;&#32;<span
+        style="color:#8888c6;">str</span>:<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span style="color:#cf8e6d;">return&#32;</span><span
+        style="color:#6aab73;">"Bruh"<br></span><span style="color:#6aab73;">&#32;&#32;&#32;&#32;<br></span><span
+        style="color:#6aab73;"><br></span><span style="color:#cf8e6d;">class&#32;</span>Duck(Animal):<br>&#32;&#32;&#32;&#32;face&#32;=&#32;<span
+        style="color:#2aacb8;">0<br></span><span style="color:#2aacb8;">&#32;&#32;&#32;&#32;<br></span><span
+        style="color:#2aacb8;">&#32;&#32;&#32;&#32;</span><span style="color:#cf8e6d;">def&#32;</span><span
+        style="color:#56a8f5;">voice</span>(<span style="color:#94558d;">self</span>):<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">return&#32;</span><span style="color:#2aacb8;">5<br></span><span
+        style="color:#2aacb8;"><br></span>duck&#32;=&#32;Duck()&#32;&#32;&#32;&#32;<br><span style="color:#8888c6;">print</span>(duck.face,&#32;duck.voice())<br>&#32;&#32;&#32;&#32;<br><span
+        style="color:#7a7e85;"><hr><br></span><span style="color:#cf8e6d;">trait&#32;</span>Animal&#32;{<br>&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">def&#32;</span><span style="color:#56a8f5;">face</span>:&#32;String<br><br>&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">def&#32;</span><span style="color:#56a8f5;">voice</span>():&#32;String&#32;=&#32;<span
+        style="color:#6aab73;">"bruh"<br></span><span style="color:#6aab73;"><br></span><span style="color:#6aab73;">&#32;&#32;&#32;&#32;</span><span
+        style="color:#cf8e6d;">def&#32;</span><span style="color:#56a8f5;">die</span>():&#32;String&#32;=&#32;<span
+        style="color:#6aab73;">"X_X"<br></span>}<br><br><span style="color:#cf8e6d;">class&#32;</span>Bird&#32;<span
+        style="color:#cf8e6d;">extends&#32;</span>Animal&#32;{<br>&#32;&#32;<span style="color:#cf8e6d;">def&#32;</span><span
+        style="color:#56a8f5;">face&#32;</span>=&#32;<span
+        style="color:#6aab73;">"ama&#32;bird&#32;mtfc"<br></span>}<br><br><span style="color:#cf8e6d;">class&#32;</span>Duck&#32;<span
+        style="color:#cf8e6d;">extends&#32;</span>Bird&#32;{<br>&#32;&#32;&#32;&#32;<span style="color:#cf8e6d;">override&#32;val&#32;</span><span
+        style="color:#c77dbb;font-style:italic;">face&#32;</span>=&#32;<span
+        style="color:#6aab73;">"(o-o)"<br></span>}<br><br><span style="color:#cf8e6d;">class&#32;</span>Lion&#32;<span
+        style="color:#cf8e6d;">extends&#32;</span>Animal&#32;{<br>&#32;&#32;&#32;&#32;<span style="color:#cf8e6d;">val&#32;</span><span
+        style="color:#c77dbb;font-style:italic;">face&#32;</span>=&#32;<span style="color:#6aab73;">"</span><span
+        style="color:#cf8e6d;">\uD83E\uDD81</span><span style="color:#6aab73;">"<br></span><span style="color:#6aab73;"><br></span><span
+        style="color:#6aab73;">&#32;&#32;&#32;&#32;</span><span style="color:#cf8e6d;">override&#32;def&#32;</span><span
+        style="color:#56a8f5;">voice</span>()&#32;=&#32;<span style="color:#6aab73;">"RRRRRRRR"<br></span><span
+        style="color:#6aab73;"><br></span><span style="color:#6aab73;">&#32;&#32;&#32;&#32;</span><span
+        style="color:#cf8e6d;">def&#32;</span><span style="color:#56a8f5;">eat</span>(lunch:&#32;Bird)&#32;=&#32;lunch.die()<br>}<br><br><span
+        style="color:#cf8e6d;">val&#32;</span>duck&#32;=&#32;<span
+        style="color:#cf8e6d;">new&#32;</span>Duck()<br><br><span
+        style="color:#cf8e6d;">val&#32;</span>lion&#32;=&#32;<span
+        style="color:#cf8e6d;">new&#32;</span>Lion()<br><br><span
+        style="color:#cf8e6d;">val&#32;</span>bird&#32;=&#32;<span
+        style="color:#cf8e6d;">new&#32;</span>Bird()<br><br><span style="font-style:italic;">println</span>(lion.eat(duck))<br><span
+        style="font-style:italic;">println</span>(lion.eat(bird))<br><span style="color:#7a7e85;"><hr><br></span><span
+        style="color:#7a7e85;">%md<br></span>&lt;center&gt;<br><br><span style="color:#cf8e6d;">#&#32;</span>A&#32;little&#32;bit&#32;of&#32;Scala<br><br>&lt;/center&gt;<br><span
+        style="color:#7a7e85;"><hr><br></span><span style="color:#7a7e85;">//&#32;val&#32;and&#32;def<br></span><span
+        style="color:#7a7e85;">//&#32;Referential&#32;transparency&#32;is&#32;a&#32;property&#32;of&#32;a&#32;function&#32;that&#32;allows&#32;it&#32;to&#32;be&#32;replaced&#32;by&#32;its&#32;equivalent&#32;output.&#32;It&#32;comes&#32;out&#32;of&#32;pure&#32;functions&#32;definition<br></span><span
+        style="color:#7a7e85;"><br></span><span
+        style="color:#cf8e6d;">import&#32;</span>java.time.LocalDate<br><br><span
+        style="color:#cf8e6d;">trait&#32;</span>Day&#32;{<br>&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">def&#32;</span><span style="color:#56a8f5;">day</span>:&#32;LocalDate<br>}<br><br><span
+        style="color:#cf8e6d;">class&#32;</span>Yesterday&#32;<span
+        style="color:#cf8e6d;">extends&#32;</span>Day&#32;{<br>&#32;&#32;&#32;&#32;<span style="color:#cf8e6d;">override&#32;def&#32;</span><span
+        style="color:#56a8f5;">day&#32;</span>=&#32;LocalDate.<span
+        style="font-style:italic;">now</span>().minusDays(<span style="color:#2aacb8;">1</span>)<br>}<br><br><span
+        style="color:#cf8e6d;">class&#32;</span>MyBD&#32;<span style="color:#cf8e6d;">extends&#32;</span>Day&#32;{<br>&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">override&#32;val&#32;</span><span
+        style="color:#c77dbb;font-style:italic;">day&#32;</span>=&#32;LocalDate.<span
+        style="font-style:italic;">parse</span>(<span style="color:#6aab73;">"2000-08-16"</span>)<br>}<br><br><br><span
+        style="color:#cf8e6d;">val&#32;</span>yesterday&#32;=&#32;&#32;&#32;<span style="color:#cf8e6d;">new&#32;</span>Yesterday()&#32;&#32;&#32;&#32;&#32;&#32;&#32;<br><span
+        style="color:#cf8e6d;">val&#32;</span>bd&#32;=&#32;<span
+        style="color:#cf8e6d;">new&#32;</span>MyBD()<br><br><span style="font-style:italic;">println</span>(yesterday.day)<br><span
+        style="font-style:italic;">println</span>(bd.<span
+        style="color:#c77dbb;font-style:italic;">day</span>)<br><br><span style="color:#7a7e85;"><hr><br></span><span
+        style="color:#cf8e6d;">import&#32;</span>scala.math.{<span style="font-style:italic;">pow</span>,&#32;<span
+        style="font-style:italic;">cbrt</span>}<br><br><span style="color:#cf8e6d;">val&#32;</span>numbers:&#32;Seq[Int]&#32;=&#32;Seq(<span
+        style="color:#2aacb8;">1</span>,&#32;<span style="color:#2aacb8;">3</span>,&#32;<span
+        style="color:#2aacb8;">10</span>,&#32;<span style="color:#2aacb8;">8</span>,&#32;-<span
+        style="color:#2aacb8;">5</span>)<br><br><span style="color:#cf8e6d;">def&#32;</span><span
+        style="color:#56a8f5;">plusNumber</span>(numerToAdd:&#32;Double)(originalNumber:&#32;Double)&#32;=&#32;numerToAdd&#32;+&#32;originalNumber<br><br><br>numbers<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.map((c:&#32;Int)&#32;=&gt;&#32;<span
+        style="font-style:italic;">pow</span>(c,&#32;<span style="color:#2aacb8;">2</span>))<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.map((c:&#32;Double)&#32;=&gt;&#32;plusNumber(<span
+        style="color:#2aacb8;">3.0</span>)(c))<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.map((c:&#32;Double)&#32;=&gt;&#32;<span
+        style="font-style:italic;">cbrt</span>(c))<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.reduce(_&#32;*&#32;_)<br><br><br><span
+        style="color:#7a7e85;"><hr><br></span><span style="color:#cf8e6d;">import&#32;</span>org.apache.spark.sql.ColumnName<br><br><span
+        style="color:#cf8e6d;">val&#32;</span>cols:&#32;Seq[ColumnName]&#32;=&#32;<span
+        style="font-style:italic;">List</span>(<br>&#32;&#32;&#32;&#32;<span
+        style="color:#6aab73;">$"departure_time"</span>,<br>&#32;&#32;&#32;&#32;<span style="color:#6aab73;">$"arrival_time"</span>,<br>&#32;&#32;&#32;&#32;<span
+        style="color:#6aab73;">$"eta"</span>,<br>&#32;&#32;&#32;&#32;<span style="color:#6aab73;">$"etd"</span>,<br>&#32;&#32;&#32;&#32;<span
+        style="color:#6aab73;">$"pta"<br></span>)<br><br><span
+        style="color:#cf8e6d;">val&#32;</span>df&#32;=&#32;Seq(<br>&#32;&#32;&#32;&#32;(<span style="color:#2aacb8;">1702313428561L</span>,&#32;<span
+        style="color:#2aacb8;">1702313428561L</span>,&#32;<span style="color:#2aacb8;">1702313428561L</span>,&#32;<span
+        style="color:#2aacb8;">1702313428561L</span>,&#32;<span style="color:#2aacb8;">1702313428561L</span>)<br>)<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.toDF(cols.map(_.toString):&#32;_*)<br><br>df.show(<span
+        style="color:#cf8e6d;">false</span>)<br><br>&#32;&#32;df<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;.filter(cols.map(c&#32;=&gt;&#32;c.isNotNull).reduce(_&#32;and&#32;_))<br><br><br><br><span
+        style="color:#7a7e85;"><hr><br></span><span style="color:#7a7e85;">//&#32;pattern&#32;matching<br></span><span
+        style="color:#cf8e6d;">import&#32;</span>scala.util.Random<br><br><span style="color:#cf8e6d;">val&#32;</span>x:&#32;Int&#32;=&#32;Random.nextInt(<span
+        style="color:#2aacb8;">10</span>)<br><br>x&#32;<span
+        style="color:#cf8e6d;">match&#32;</span>{<br>&#32;&#32;<span style="color:#cf8e6d;">case&#32;</span><span
+        style="color:#2aacb8;">0&#32;</span>=&gt;&#32;<span style="color:#6aab73;">"zero"<br></span><span
+        style="color:#6aab73;">&#32;&#32;</span><span style="color:#cf8e6d;">case&#32;</span><span
+        style="color:#2aacb8;">1&#32;</span>=&gt;&#32;<span style="color:#6aab73;">"one"<br></span><span
+        style="color:#6aab73;">&#32;&#32;</span><span style="color:#cf8e6d;">case&#32;</span><span
+        style="color:#2aacb8;">2&#32;</span>=&gt;&#32;<span style="color:#6aab73;">"two"<br></span><span
+        style="color:#6aab73;">&#32;&#32;</span><span style="color:#cf8e6d;">case&#32;</span>_&#32;=&gt;&#32;<span
+        style="color:#6aab73;">"other"<br></span>}<br><span style="color:#7a7e85;"><hr><br></span><span
+        style="color:#cf8e6d;">sealed&#32;trait&#32;</span>Notification<br><br><span style="color:#cf8e6d;">case&#32;class&#32;</span>Email(sender:&#32;String,&#32;title:&#32;String,&#32;body:&#32;String)&#32;<span
+        style="color:#cf8e6d;">extends&#32;</span>Notification<br><br><span
+        style="color:#cf8e6d;">case&#32;class&#32;</span>SMS(caller:&#32;String,&#32;message:&#32;String)&#32;<span
+        style="color:#cf8e6d;">extends&#32;</span>Notification<br><br><span
+        style="color:#cf8e6d;">case&#32;class&#32;</span>VoiceRecording(contactName:&#32;String,&#32;link:&#32;String)&#32;<span
+        style="color:#cf8e6d;">extends&#32;</span>Notification<br><br><span style="color:#cf8e6d;">def&#32;</span><span
+        style="color:#56a8f5;">showNotification</span>(notification:&#32;Notification):&#32;String&#32;=&#32;{<br>&#32;&#32;&#32;&#32;notification&#32;<span
+        style="color:#cf8e6d;">match&#32;</span>{<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">case&#32;</span>Email(sender,&#32;<span style="color:#6aab73;">"Important"</span>,&#32;_)&#32;=&gt;<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#6aab73;">s"It's&#32;important&#32;email"<br></span><span style="color:#6aab73;">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;</span><span
+        style="color:#cf8e6d;">case&#32;</span>Email(sender,&#32;title,&#32;_)&#32;=&gt;<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#6aab73;">s"You&#32;got&#32;an&#32;email&#32;from&#32;</span><span
+        style="color:#00b8bb;font-weight:bold;">$</span>sender<span
+        style="color:#6aab73;">&#32;with&#32;title:&#32;</span><span style="color:#00b8bb;font-weight:bold;">$</span>title<span
+        style="color:#6aab73;">"<br></span><span
+        style="color:#6aab73;">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;</span><span
+        style="color:#cf8e6d;">case&#32;</span>SMS(number,&#32;message)&#32;=&gt;<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#6aab73;">s"You&#32;got&#32;an&#32;SMS&#32;from&#32;</span><span
+        style="color:#00b8bb;font-weight:bold;">$</span>number<span
+        style="color:#6aab73;">!&#32;Message:&#32;</span><span
+        style="color:#00b8bb;font-weight:bold;">$</span>message<span style="color:#6aab73;">"<br></span><span
+        style="color:#6aab73;">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;</span><span style="color:#7a7e85;">//&#32;without&#32;that&#32;will&#32;raise&#32;an&#32;error&#32;"Match&#32;may&#32;not&#32;be&#32;exhaustive"<br></span><span
+        style="color:#7a7e85;">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;</span><span
+        style="color:#cf8e6d;">case&#32;</span>VoiceRecording(name,&#32;link)&#32;=&gt;<br>&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<span
+        style="color:#6aab73;">s"You&#32;received&#32;a&#32;Voice&#32;Recording&#32;from&#32;</span><span
+        style="color:#00b8bb;font-weight:bold;">$</span>name<span style="color:#6aab73;">!&#32;Click&#32;the&#32;link&#32;to&#32;hear&#32;it:&#32;</span><span
+        style="color:#00b8bb;font-weight:bold;">$</span>link<span style="color:#6aab73;">"<br></span><span
+        style="color:#6aab73;">&#32;&#32;&#32;&#32;</span>}<br>}<br><span style="color:#7a7e85;">//val&#32;someSms&#32;=&#32;SMS("12345",&#32;"Are&#32;you&#32;there?")<br></span><span
+        style="color:#7a7e85;">//val&#32;someVoiceRecording&#32;=&#32;VoiceRecording("Tom",&#32;"voicerecording.org/id/123")<br></span><span
+        style="color:#7a7e85;">//val&#32;importantEmail&#32;=&#32;Email("Tom",&#32;"Important",&#32;"Bruh")<br></span><span
+        style="color:#7a7e85;">//<br></span><span
+        style="color:#7a7e85;">//println(showNotification(someSms))&#32;<br></span><span
+        style="color:#7a7e85;">//<br></span><span style="color:#7a7e85;">//println(showNotification(someVoiceRecording))&#32;<br></span><span
+        style="color:#7a7e85;">//<br></span><span style="color:#7a7e85;">//println(showNotification(importantEmail))&#32;<br></span><span
+        style="color:#7a7e85;"><hr><br></span><span
+        style="color:#cf8e6d;">sealed&#32;trait&#32;</span>Device<br><br><span style="color:#cf8e6d;">case&#32;class&#32;</span>Phone(model:&#32;String)&#32;<span
+        style="color:#cf8e6d;">extends&#32;</span>Device&#32;{<br>&#32;&#32;&#32;&#32;<span style="color:#cf8e6d;">def&#32;</span><span
+        style="color:#56a8f5;">screenOff&#32;</span>=&#32;<span style="color:#6aab73;">"Turning&#32;screen&#32;off"<br></span>}<br><br><span
+        style="color:#cf8e6d;">case&#32;class&#32;</span>Computer(model:&#32;String)&#32;<span style="color:#cf8e6d;">extends&#32;</span>Device&#32;{<br>&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">def&#32;</span><span style="color:#56a8f5;">screenSaverOn&#32;</span>=&#32;<span
+        style="color:#6aab73;">"Turning&#32;screen&#32;saver&#32;on..."<br></span>}<br><br><span style="color:#cf8e6d;">def&#32;</span><span
+        style="color:#56a8f5;">goIdle</span>(device:&#32;Device):&#32;String&#32;=&#32;device&#32;<span
+        style="color:#cf8e6d;">match&#32;</span>{<br>&#32;&#32;&#32;&#32;<span style="color:#cf8e6d;">case&#32;</span>p:&#32;Phone&#32;=&gt;&#32;p.screenOff<br>&#32;&#32;&#32;&#32;<span
+        style="color:#cf8e6d;">case&#32;</span>c:&#32;Computer&#32;=&gt;&#32;c.screenSaverOn<br>}<br><span
+        style="color:#7a7e85;"><hr><br></span></div>
+</body>
+</html>
