@@ -13,5 +13,8 @@ with open("tests.txt", "w") as f:
     f.write(integers[int(len(integers) * 0.5)] + ",")
     f.write(integers[int(len(integers) * 0.75)] + ",")
     f.write(integers[-1] + ",")
-    f.write(random.choice(integers) + ",")
-    f.write('1')
+    f.write('1,')
+
+    for i in range(9):
+        f.write(random.choice(integers) + ",")
+    f.write(random.choice(integers))
