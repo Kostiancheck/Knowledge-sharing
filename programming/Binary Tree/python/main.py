@@ -1,6 +1,7 @@
 from time import perf_counter
+import csv
 
-SEARCH_ITEMS = [2621440,9337355,4299042,4929643,317513,2897570,423585,8410264,1]
+CSV_HEADERS = ["target", "type", "execution_time"]
 
 class TreeNode:
     """
@@ -155,9 +156,30 @@ def calc_time(func):
         func(*args, **kwargs)
         time_end = perf_counter()
         time_duration = time_end - time_start
-        print(f'{func.__name__} took {time_duration:.3f} seconds')
+        print(f'{func.__name__} took {time_duration*1_000_000} microseconds')
     return wrapper
 
+def write_to_csv(file_name, items):
+    with open(file_name, 'w', encoding='UTF8') as f:
+        writer = csv.writer(f)
+        writer.writerow(CSV_HEADERS)
+        writer.writerows(items)
+
+def calc_time_and_execute(func, num):
+    time_start = perf_counter()
+    result = func(num)
+    print(f"Searched for {num}: {result}")
+    time_end = perf_counter()
+    time_duration = (time_end - time_start) * 1_000_000
+    return time_duration
+
+def get_test_search_inputs():
+    search_inputs = []
+    with open("../tests.txt", "r") as f:
+        for line in f:
+            for num in line.strip().split(","):
+                search_inputs.append(int(num))
+    return search_inputs
 
 def test_tree():
     print("="*10,"Searching with Tree", "="*10)
@@ -166,14 +188,12 @@ def test_tree():
         for line in f:
             for num in line.strip().split(","):
                 tree.insert(int(num))
-    
-    @calc_time
-    def search():
-        for num in SEARCH_ITEMS:
-            result = tree.search(int(num))
-            print(f"Search for {num}: {result}")
-    search()
 
+    results = []
+    for num in get_test_search_inputs():
+        time_duration = calc_time_and_execute(tree.search, int(num))
+        results.append([num, 'binary_tree', time_duration])
+    write_to_csv('../python_tree_results.csv', results)
 
 def test_simply_search():
     print("="*10,"Searching with for loop", "="*10)
@@ -186,12 +206,11 @@ def test_simply_search():
         for line in f:
             for num in line.strip().split(","):
                 items.append(int(num))
-    @calc_time
-    def overall_search():
-        for num in SEARCH_ITEMS:
-            result = search(num)
-            print(f"Search for {num}: {result}")
-    overall_search()   
+    results = []
+    for num in get_test_search_inputs():
+        time_duration = calc_time_and_execute(search, int(num))
+        results.append([num, 'list', time_duration])
+    write_to_csv('../python_loop_results.csv', results)
     
 if __name__ == "__main__":
     test_tree()
