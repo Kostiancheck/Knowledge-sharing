@@ -16,8 +16,8 @@ object BinaryTreeTest {
     val before = System.nanoTime
     val result = block
     val after = System.nanoTime
-    val execTime = (after - before).toDouble.round / 1000
-    println("Elapsed time: " + execTime + " micro seconds")
+    val execTime = (after - before).toDouble.round
+    println("Elapsed time: " + execTime + " nano seconds")
     (execTime, result)
   }
 
@@ -69,8 +69,8 @@ object BinaryTreeTest {
   }
 
   def main(args: Array[String]): Unit = {
-    val intsPath = "programming/Binary Tree/integers.txt"
-    val targetPath = "programming/Binary Tree/tests.txt"
+    val intsPath = "/home/demaga/Projects/Knowledge-sharing/programming/Binary Tree/integers.txt"
+    val targetPath = "/home/demaga/Projects/Knowledge-sharing/programming/Binary Tree/tests.txt"
     val numbers = readIntsFromFile(intsPath)
     val targets = readIntsFromFile(targetPath)
     println(s"Number of ints: ${numbers.size}")
@@ -93,8 +93,8 @@ object BinaryTreeTest {
 
     println("============ Write results ============")
 
-    writeSpeedTestResults(btResults, "binary_tree", "programming/Binary Tree/scala_tree_results.csv")
-    writeSpeedTestResults(loopResults, "list", "programming/Binary Tree/scala_loop_results.csv")
+    writeSpeedTestResults(btResults, "binary_tree", "/home/demaga/Projects/Knowledge-sharing/programming/Binary Tree/scala_tree_results.csv")
+    writeSpeedTestResults(loopResults, "list", "/home/demaga/Projects/Knowledge-sharing/programming/Binary Tree/scala_loop_results.csv")
   }
 }
 

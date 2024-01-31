@@ -137,6 +137,7 @@ pub fn fn_vec_example() -> std::io::Result<()> {
         }
 
         let elapsed_time = now.elapsed();
+
         write!(
             loop_results,
             "{},vector,{}\n",

@@ -80,7 +80,7 @@ pub fn fn_array_example() -> std::io::Result<()> {
 
     let tests_split = tests_string.split(",");
 
-    let mut tests_integers_array = [0; 16];
+    let mut tests_integers_array = [0; 17];
 
     for (i, val) in tests_split.enumerate() {
         let val_int: i32 = val.parse().unwrap();
@@ -92,10 +92,10 @@ pub fn fn_array_example() -> std::io::Result<()> {
 
     println!("----------");
 
-    for test in &tests_integers_array {
+    for test in tests_integers_array {
         let now = Instant::now();
 
-        for integer in &integers_array {
+        for integer in integers_array {
             if test == integer {
                 break;
             }

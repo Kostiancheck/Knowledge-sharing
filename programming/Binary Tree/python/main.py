@@ -156,7 +156,7 @@ def calc_time(func):
         func(*args, **kwargs)
         time_end = perf_counter()
         time_duration = time_end - time_start
-        print(f'{func.__name__} took {time_duration*1_000_000} microseconds')
+        print(f'{func.__name__} took {time_duration*1_000_000_000} nanoseconds')
     return wrapper
 
 def write_to_csv(file_name, items):
@@ -170,7 +170,7 @@ def calc_time_and_execute(func, num):
     result = func(num)
     print(f"Searched for {num}: {result}")
     time_end = perf_counter()
-    time_duration = (time_end - time_start) * 1_000_000
+    time_duration = (time_end - time_start) * 1_000_000_000
     return time_duration
 
 def get_test_search_inputs():
