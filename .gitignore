@@ -6,3 +6,6 @@ __pycache__
 .terraform.*
 terraform.tfstate*
 env/
+target
+Cargo.lock
+.bsp
