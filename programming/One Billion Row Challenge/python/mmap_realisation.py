@@ -4,8 +4,8 @@ import time
 import mmap
 import concurrent.futures
 
-INPUT_FILE_PATH = "./temperatures.csv"
-OUTPUT_FILE_PATH = "./results.csv"
+INPUT_FILE_PATH = "../temperatures.csv"
+OUTPUT_FILE_PATH = "../results.csv"
 MEMORY_MAP_ALLOCATION_GRANULARITY = mmap.ALLOCATIONGRANULARITY
 
 

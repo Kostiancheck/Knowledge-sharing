@@ -36,7 +36,7 @@ def read_file(file_name: str, from_block: int, block_size: int) -> int:
 
 
 if __name__ == "__main__":
-    file_name = "temperatures.csv"
+    file_name = "../temperatures.csv"
 
     BLOCK_SIZE = 3_000_000 * 20
 
@@ -73,7 +73,7 @@ if __name__ == "__main__":
             cities[city]["sum"] += res[city]["sum"]
             cities[city]["count"] += res[city]["count"]
     
-    with open("test_bohdan.csv", "w") as f:
+    with open("../test_bohdan.csv", "w") as f:
         f.write("city,min,mean,max\n")
         for city in cities:
             row = f'{city},{cities[city]["min"]},{cities[city]["sum"]/cities[city]["count"]},{cities[city]["max"]}'
