@@ -106,7 +106,7 @@ func read_and_process(file_name string, from_block int64, block_size int, wg *sy
 	fmt.Println("Processed block", from_block)
 }
 
-func process_data(input_path string, output_path string) {
+func process_data_bh(input_path string, output_path string) {
 	var wg sync.WaitGroup
 
 	fmt.Println("Hello, World!")
@@ -175,5 +175,5 @@ func process_data(input_path string, output_path string) {
 }
 
 // func main() {
-// 	process_data("../../temp_min.csv", "test.csv")
+// 	process_data_bh("../../temp_min.csv", "test.csv")
 // }
