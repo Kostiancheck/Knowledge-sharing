@@ -1,0 +1,14 @@
+{
+    "manifest_version": 3,
+    "name": "Background script test",
+    "version": "1",
+    "background": {
+        "scripts": [
+            "background.js"
+        ],
+        "type": "module"
+    },
+    "permissions": [
+        "webNavigation"
+    ]
+}

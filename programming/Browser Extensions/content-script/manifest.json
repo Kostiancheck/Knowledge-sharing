@@ -1,0 +1,13 @@
+{
+    "manifest_version": 2,
+    "name": "Content script test",
+    "version": "1",
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*.google.com/*"
+            ],
+            "js": ["content-script.js"]
+        }
+    ]
+}
