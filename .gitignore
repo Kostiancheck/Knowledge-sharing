@@ -10,3 +10,4 @@ target
 Cargo.lock
 .bsp
 .obsidian
+.DS_Store
