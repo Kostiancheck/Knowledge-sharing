@@ -1,0 +1,10 @@
+/* Ensures the canvas takes up the full window */
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+/* Ensures the canvas displays properly */
+canvas {
+    display: block;
+}

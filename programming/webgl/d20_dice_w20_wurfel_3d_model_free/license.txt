@@ -1,0 +1,11 @@
+Model Information:
+* title:	D20 Dice (W20 Würfel) 3D model [FREE]
+* source:	https://sketchfab.com/3d-models/d20-dice-w20-wurfel-3d-model-free-3b44541db43e4e979efec290ec706cbc
+* author:	Don42 (https://sketchfab.com/Don42)
+
+Model License:
+* license type:	CC-BY-SA-4.0 (http://creativecommons.org/licenses/by-sa/4.0/)
+* requirements:	Author must be credited. Modified versions must have the same license. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "D20 Dice (W20 Würfel) 3D model [FREE]" (https://sketchfab.com/3d-models/d20-dice-w20-wurfel-3d-model-free-3b44541db43e4e979efec290ec706cbc) by Don42 (https://sketchfab.com/Don42) licensed under CC-BY-SA-4.0 (http://creativecommons.org/licenses/by-sa/4.0/)

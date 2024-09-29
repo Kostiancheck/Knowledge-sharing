@@ -1,0 +1,563 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 1146,
+      "max": [
+        0.8489555716514587,
+        0.9942668676376343,
+        0.8914014101028442
+      ],
+      "min": [
+        -0.8489555716514587,
+        -0.9942668676376343,
+        -0.8914014101028442
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 13752,
+      "componentType": 5126,
+      "count": 1146,
+      "max": [
+        0.9999991655349731,
+        1.0,
+        0.9914875626564026
+      ],
+      "min": [
+        -0.9999992251396179,
+        -1.0,
+        -0.9914876222610474
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 1146,
+      "max": [
+        0.9999995231628418,
+        0.9407522082328796,
+        0.9999744296073914,
+        1.0
+      ],
+      "min": [
+        -0.9938946962356567,
+        -0.9999788999557495,
+        -0.9828012585639954,
+        1.0
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 3,
+      "byteOffset": 18336,
+      "componentType": 5126,
+      "count": 1146,
+      "max": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "min": [
+        0.35686275362968445,
+        0.35686275362968445,
+        0.35686275362968445,
+        1.0
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 1146,
+      "max": [
+        1.0,
+        0.951229989528656
+      ],
+      "min": [
+        0.0,
+        0.0
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 2940,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 27504,
+      "componentType": 5126,
+      "count": 41589,
+      "max": [
+        0.7832070589065552,
+        0.760263979434967,
+        0.7709752321243286
+      ],
+      "min": [
+        -0.7749654054641724,
+        -0.7148345708847046,
+        -0.7761189341545105
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 526572,
+      "componentType": 5126,
+      "count": 41589,
+      "max": [
+        1.0,
+        0.9911659955978394,
+        0.991183876991272
+      ],
+      "min": [
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "byteOffset": 36672,
+      "componentType": 5126,
+      "count": 41589,
+      "max": [
+        1.0,
+        1.0,
+        0.9999995827674866,
+        1.0
+      ],
+      "min": [
+        -1.0,
+        -1.0,
+        -0.9999988675117493,
+        -1.0
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 3,
+      "byteOffset": 702096,
+      "componentType": 5126,
+      "count": 41589,
+      "max": [
+        0.3137255012989044,
+        0.3137255012989044,
+        0.3137255012989044,
+        1.0
+      ],
+      "min": [
+        0.30980393290519714,
+        0.30980393290519714,
+        0.30980393290519714,
+        1.0
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 9168,
+      "componentType": 5126,
+      "count": 41589,
+      "max": [
+        0.9911800622940063,
+        0.366790771484375
+      ],
+      "min": [
+        0.667180061340332,
+        0.05246024578809738
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 11760,
+      "componentType": 5125,
+      "count": 87279,
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "Don42 (https://sketchfab.com/Don42)",
+      "license": "CC-BY-SA-4.0 (http://creativecommons.org/licenses/by-sa/4.0/)",
+      "source": "https://sketchfab.com/3d-models/d20-dice-w20-wurfel-3d-model-free-3b44541db43e4e979efec290ec706cbc",
+      "title": "D20 Dice (W20 Würfel) 3D model [FREE]"
+    },
+    "generator": "Sketchfab-12.67.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 360876,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 341880,
+      "byteOffset": 360876,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 1025640,
+      "byteOffset": 702756,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 1367520,
+      "byteOffset": 1728396,
+      "byteStride": 16,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 3095916,
+      "uri": "scene.bin"
+    }
+  ],
+  "extensionsUsed": [
+    "KHR_texture_transform",
+    "KHR_materials_clearcoat"
+  ],
+  "images": [
+    {
+      "uri": "textures/Main_baseColor.png"
+    },
+    {
+      "uri": "textures/Main_metallicRoughness.png"
+    },
+    {
+      "uri": "textures/Main_normal.png"
+    },
+    {
+      "uri": "textures/Main_clearcoat_roughness.png"
+    },
+    {
+      "uri": "textures/Letters_baseColor.png"
+    },
+    {
+      "uri": "textures/Letters_metallicRoughness.png"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_clearcoat": {
+          "clearcoatFactor": 0.7796089623458111,
+          "clearcoatNormalTexture": {
+            "extensions": {
+              "KHR_texture_transform": {
+                "scale": [
+                  2.0000000000000027,
+                  2.0000000000000027
+                ]
+              }
+            },
+            "index": 2,
+            "scale": 0.3117542282027448
+          },
+          "clearcoatRoughnessFactor": 0.8,
+          "clearcoatRoughnessTexture": {
+            "extensions": {
+              "KHR_texture_transform": {
+                "scale": [
+                  2.0000000000000027,
+                  2.0000000000000027
+                ]
+              }
+            },
+            "index": 3
+          }
+        }
+      },
+      "name": "Main",
+      "normalTexture": {
+        "extensions": {
+          "KHR_texture_transform": {
+            "scale": [
+              2.0000000000000027,
+              2.0000000000000027
+            ]
+          }
+        },
+        "index": 2,
+        "scale": 0.3117542282027448
+      },
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.670240323195484,
+          0.670240323195484,
+          0.670240323195484,
+          1.0
+        ],
+        "baseColorTexture": {
+          "extensions": {
+            "KHR_texture_transform": {
+              "scale": [
+                2.0000000000000027,
+                2.0000000000000027
+              ]
+            }
+          },
+          "index": 0
+        },
+        "metallicRoughnessTexture": {
+          "extensions": {
+            "KHR_texture_transform": {
+              "scale": [
+                2.0000000000000027,
+                2.0000000000000027
+              ]
+            }
+          },
+          "index": 1
+        },
+        "roughnessFactor": 0.82
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_clearcoat": {
+          "clearcoatFactor": 0.25,
+          "clearcoatNormalTexture": {
+            "extensions": {
+              "KHR_texture_transform": {
+                "scale": [
+                  2.0000000000000027,
+                  2.0000000000000027
+                ]
+              }
+            },
+            "index": 2
+          },
+          "clearcoatRoughnessFactor": 1.0,
+          "clearcoatRoughnessTexture": {
+            "index": 3
+          }
+        }
+      },
+      "name": "Letters",
+      "normalTexture": {
+        "extensions": {
+          "KHR_texture_transform": {
+            "scale": [
+              2.0000000000000027,
+              2.0000000000000027
+            ]
+          }
+        },
+        "index": 2
+      },
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.68,
+          0.68,
+          0.68,
+          1.0
+        ],
+        "baseColorTexture": {
+          "extensions": {
+            "KHR_texture_transform": {
+              "scale": [
+                2.0000000000000027,
+                2.0000000000000027
+              ]
+            }
+          },
+          "index": 4
+        },
+        "metallicRoughnessTexture": {
+          "index": 5
+        }
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Icosphere_Main_0",
+      "primitives": [
+        {
+          "attributes": {
+            "COLOR_0": 3,
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TANGENT": 2,
+            "TEXCOORD_0": 4
+          },
+          "indices": 5,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Icosphere_Letters_0",
+      "primitives": [
+        {
+          "attributes": {
+            "COLOR_0": 9,
+            "NORMAL": 7,
+            "POSITION": 6,
+            "TANGENT": 8,
+            "TEXCOORD_0": 10
+          },
+          "indices": 11,
+          "material": 1,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.220446049250313e-16,
+        -1.0,
+        0.0,
+        0.0,
+        1.0,
+        2.220446049250313e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Sketchfab_model"
+    },
+    {
+      "children": [
+        2
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "103006ed25a542b2818dfd70abcb3212.fbx"
+    },
+    {
+      "children": [
+        3
+      ],
+      "name": "RootNode"
+    },
+    {
+      "children": [
+        4,
+        5
+      ],
+      "matrix": [
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.629206793918314e-05,
+        -99.99999999999868,
+        0.0,
+        0.0,
+        99.99999999999868,
+        -1.629206793918314e-05,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Icosphere"
+    },
+    {
+      "mesh": 0,
+      "name": "Icosphere_Main_0"
+    },
+    {
+      "mesh": 1,
+      "name": "Icosphere_Letters_0"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Sketchfab_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    },
+    {
+      "sampler": 0,
+      "source": 2
+    },
+    {
+      "sampler": 0,
+      "source": 3
+    },
+    {
+      "sampler": 0,
+      "source": 4
+    },
+    {
+      "sampler": 0,
+      "source": 5
+    }
+  ]
+}
