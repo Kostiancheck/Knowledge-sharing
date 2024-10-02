@@ -2,6 +2,8 @@ import * as THREE from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import * as TWEEN from '@tweenjs/tween.js';
+import {degToRad} from "three/src/math/MathUtils.js";
+import {Vector3} from "three";
 
 // Scene, Camera, Renderer
 const scene = new THREE.Scene();
@@ -10,6 +12,11 @@ const renderer = new THREE.WebGLRenderer({antialias: true});
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 renderer.outputEncoding = THREE.sRGBEncoding;
+
+//
+const oX = new Vector3(1, 0, 0)
+const oY = new Vector3(0, 1, 0)
+const oZ = new Vector3(0, 0, 1)
 
 // Light
 const light = new THREE.DirectionalLight(0xffffff, 100);
@@ -27,10 +34,22 @@ let model = new THREE.Object3D();
 const loader = new GLTFLoader();
 loader.load('d20_dice_w20_wurfel_3d_model_free/scene.gltf', (gltf) => {
     model = gltf.scene;
+    // model.rotateX(degToRad(30));
+    // model.rotateZ(degToRad(180));
+    model.rotateOnWorldAxis(oX, degToRad(45))
+    model.rotateOnWorldAxis(oZ, degToRad(180))
+    // // model.rotation.x = 0.3
     scene.add(model);
 }, undefined, (error) => {
     console.error('An error occurred loading the model:', error);
 });
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true; // for smooth controls
+controls.dampingFactor = 0.05;
+controls.screenSpacePanning = false;
+controls.minDistance = 1;
+controls.maxDistance = 5000;
 
 // Load background
 const backLoader = new THREE.TextureLoader();
@@ -44,7 +63,7 @@ camera.position.set(0, 0, 500);
 // Create a TWEEN.Group to manage the animations
 const tweenGroup = new TWEEN.Group();
 
-// // Create the tween animation for position and rotation
+// Create the tween animation for position and rotation
 // const createRotationTween = () => {
 //     return new TWEEN.Tween(
 //         {
@@ -53,51 +72,25 @@ const tweenGroup = new TWEEN.Group();
 //             zRotation: model.rotation.z
 //         }, tweenGroup)
 //         .to({
-//             xRotation: model.rotation.x + Math.PI,
-//             yRotation: model.rotation.y + Math.PI,
-//             zRotation: model.rotation.z + Math.PI
-//         }, 5000)
+//             xRotation: model.rotation.x + Math.PI * 7,
+//             yRotation: model.rotation.y + Math.PI * 7,
+//             zRotation: model.rotation.z + Math.PI * 7
+//         }, 10000)
 //         .onUpdate((coords) => {
 //             // Update rotation smoothly
 //             model.rotation.x = coords.xRotation;
 //             model.rotation.y = coords.yRotation;
 //             model.rotation.z = coords.zRotation;
 //         })
-//         .easing(TWEEN.Easing.Exponential.InOut)
+//         .easing(TWEEN.Easing.Sinusoidal.InOut)
 //         .onComplete(function () {
 //             createRotationTween().start();
 //         })
 // };
-
-
-// Using quaternions
-const createRotationTween = () => {
-    const startQuat = model.quaternion.clone(); // Clone current rotation as quaternion
-
-    // Create a target quaternion representing 180-degree (PI) rotation on each axis
-    const endQuat = new THREE.Quaternion().setFromEuler(
-        new THREE.Euler(
-            model.rotation.x + Math.PI * 2.5,  // Rotate by 180 degrees on x-axis
-            model.rotation.y + Math.PI * 2.5,  // Rotate by 180 degrees on y-axis
-            model.rotation.z + Math.PI * 2.5   // Rotate by 180 degrees on z-axis
-        )
-    );
-
-    return new TWEEN.Tween({ t: 0 }, tweenGroup) // Interpolating a scalar 't' from 0 to 1
-        .to({ t: 1 }, 5000)  // Duration of 5000ms
-        .onUpdate(({ t }) => {
-            // Spherical Linear Interpolation (SLERP) between start and end quaternions
-            model.quaternion.slerp(endQuat, t);
-        })
-        .easing(TWEEN.Easing.Exponential.InOut)
-        .onComplete(() => {
-            // After the tween completes, create another rotation to repeat the cycle
-            createRotationTween().start();
-        });
-};
-
-// Start the first tween
-createRotationTween().start();
+//
+//
+// // Start the first tween
+// createRotationTween().start();
 
 // Animation Loop
 const animate = () => {

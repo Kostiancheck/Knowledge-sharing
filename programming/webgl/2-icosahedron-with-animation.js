@@ -17,24 +17,24 @@ const light = new THREE.DirectionalLight(0xffffff, 20);
 light.position.set(-20, 300, 10);
 scene.add(light);
 
-// const lightHelper = new THREE.DirectionalLightHelper(light, 10);
-// scene.add(lightHelper);
+const lightHelper = new THREE.DirectionalLightHelper(light, 10);
+scene.add(lightHelper);
 
-// const light2 = new THREE.DirectionalLight(0x222222, 5);
-// light2.position.set(20, -150, 300);
-//
-// scene.add(light2);
-//
-// const lightHelper = new THREE.DirectionalLightHelper(light2, 10);
-// scene.add(lightHelper);
+const light2 = new THREE.DirectionalLight(0xffffff, 3);
+light2.position.set(20, -150, 300);
+scene.add(light2);
 
-// const ambLight = new THREE.AmbientLight(0xffffff, 0.1);
-// scene.add(ambLight);
+//
+const lightHelper2 = new THREE.DirectionalLightHelper(light2, 10);
+scene.add(lightHelper2);
+
+const ambLight = new THREE.AmbientLight(0xffffff, 0.1);
+scene.add(ambLight);
 
 // Temporary Model (Icosahedron as placeholder for d20)
 const cubeGeometry = new THREE.IcosahedronGeometry(200);
-// const material = new THREE.MeshNormalMaterial({ color: 'blue' });
-const material = new THREE.MeshStandardMaterial({color: 'blue'});
+const material = new THREE.MeshNormalMaterial({ color: 'blue' });
+// const material = new THREE.MeshStandardMaterial({color: 'blue'});
 const model = new THREE.Mesh(cubeGeometry, material);
 model.material.side = THREE.DoubleSide;
 model.rotation.x = degToRad(30);
@@ -53,18 +53,18 @@ const createRotationTween = () => {
         {
             xRotation: model.rotation.x,
             yRotation: model.rotation.y,
-            // zRotation: model.rotation.z
+            zRotation: model.rotation.z
         }, tweenGroup)
         .to({
             xRotation: model.rotation.x + Math.PI,
             yRotation: model.rotation.y + Math.PI,
-            // zRotation: model.rotation.z + Math.PI
+            zRotation: model.rotation.z + Math.PI
         }, 5000)
         .onUpdate((coords) => {
             // Update rotation smoothly
             model.rotation.x = coords.xRotation;
             model.rotation.y = coords.yRotation;
-            // model.rotation.z = coords.zRotation;
+            model.rotation.z = coords.zRotation;
         })
         .easing(TWEEN.Easing.Exponential.InOut)
         .onComplete(function () {
