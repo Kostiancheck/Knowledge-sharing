@@ -97,12 +97,12 @@ Taking a closer look at the `taxi_trips_file` asset on UI graph, there are thr
 4. You need to list jobs, assets and schedules in definition
 5. To create a task you need to create: asset, job, schedule, and optionally a partition in 4 different places if you use project structure from example. I think it's easier to keep all stuff for the task in one place, so you have asset (task), jobs (group of tasks) and schedules for them in one file, but I'm not sure it's a good practice.
 6. If you are going to use a lot of external computations I don't know how useful Dagster will be. For example, how you can use DB connection resource for your task if it runs on k8s cluster? Will it be a simple placeholder?
-7. Once I had a problem just because the order of params for asset ([GitHub issue](https://github.com/dagster-io/dagster/discussions/22576))
-8. I doesn't relate to Dagster but oh my god I hate duckdb. I had a lock issue several time because I've forgot to close Python Repl with duck db connection.
-9. "The job should include assets with the same partition." Why? It means that I will need to create even more jobs
-10. Why kinds are not added automatically based on resources?
-11. If assets represents some physical entity for example, a table, then what if I need multiple tasks that write to the same table. It means that I have multiple assets that represent same table? Bruh
-12. You can use resource (e.g. DuckDB connection) inside the code without using actual resource 🤷🏻‍♂️ so I won't be trackable
+7. You can use resource (e.g. DuckDB connection) inside the code without using actual resource 🤷🏻‍♂️ so I won't be trackable
+8. Once I had a problem just because the order of params for asset ([GitHub issue](https://github.com/dagster-io/dagster/discussions/22576))
+9. I doesn't relate to Dagster but oh my god I hate duckdb. I had a lock issue several time because I've forgot to close Python Repl with duck db connection.
+10. "The job should include assets with the same partition." Why? It means that I will need to create even more jobs
+11. Why kinds are not added automatically based on resources?
+12. If assets represents some physical entity for example, a table, then what if I need multiple tasks that write to the same table. It means that I have multiple assets that represent same table? Bruh
 
 
 ## Summary
@@ -112,5 +112,7 @@ It really looks like modern orchestrator, with a lot of things going on. It is s
 > UI is really nice but a bit confusing. I like to look at it but don't like to actually use it
 
 I don't like this dynamic vibe when a lot of things are not stricted and relies on users (dependency on unexisting assets, using resources inside the code without resource declaration, etc). Also it feels like it is one huge DAG instead of a lot small once and hierarchy confusing  makes it even more difficult. You have assets inside jobs, inside definitions, inside code locations. And you also have groups, but they are different to jobs. And don't forget about schedules and partitions to be a separate part but at the same time they relate to jobs 🤯
+
+I think for me it's just a bit difficult to tweak my brain to think about assets instead of tasks and I will not really understand it until I see some good examples of using Dagster.
 
 

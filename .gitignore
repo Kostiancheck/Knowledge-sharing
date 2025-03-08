@@ -11,3 +11,4 @@ Cargo.lock
 .bsp
 .obsidian
 .DS_Store
+.iml
