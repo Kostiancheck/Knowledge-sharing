@@ -1,0 +1,30 @@
+[project]
+name = "p-uv"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "alembic>=1.14.1",
+    "asyncpg>=0.30.0",
+    "celery>=5.4.0",
+    "elasticsearch>=8.17.1",
+    "fastapi>=0.115.10",
+    "psycopg2-binary>=2.9.10",
+    "pydantic[email]>=2.10.6",
+    "python-dotenv>=1.0.1",
+    "redis>=5.2.1",
+    "sqlalchemy>=2.0.38",
+    "sqlalchemy-utils>=0.41.2",
+    "uvicorn[standart]>=0.34.0",
+]
+
+[dependency-groups]
+dev = [
+    "black>=25.1.0",
+    "httpx>=0.28.1",
+    "mypy>=1.15.0",
+    "pytest>=8.3.4",
+    "pytest-asyncio>=0.25.3",
+    "ruff>=0.9.9",
+]
