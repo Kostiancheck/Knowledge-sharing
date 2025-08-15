@@ -11,4 +11,7 @@ Cargo.lock
 .bsp
 .obsidian
 .DS_Store
-.iml
+*.iml
+*.ipynb_checkpoints
+*.duckdb
+*.parquet
