@@ -6,6 +6,7 @@ __pycache__
 .terraform.*
 terraform.tfstate*
 env/
+out/
 target
 Cargo.lock
 .bsp
@@ -14,4 +15,5 @@ Cargo.lock
 *.iml
 *.ipynb_checkpoints
 *.duckdb
+*.duckdb.wal
 *.parquet
