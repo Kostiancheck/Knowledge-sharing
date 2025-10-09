@@ -132,22 +132,30 @@ Does this mean that all those dependencies are included in Obisidan/Github/any o
 >`github-markup` does _not_ handle rendering; it only chooses a markup library for use
 >https://github.com/github/markup/issues/533
 ## Alternatives
+
 mermaid-cli:
 - takes md files as input and outputs md files with rendered graphs as images
 - requires node and chrome to work (kmp)
+
 mermaid-ascii:
 - renders in terminal
 - input is still md file (`-_-`)
 - since it has 'interactive' feature, I guess also requires chrome
+
 [PlantUML](https://crashedmind.github.io/PlantUMLHitchhikersGuide/) :
 - feature-rich
 - overkill for the use case I initially described
+
 [Graph-Easy](http://github.com/ironcamel/Graph-Easy):
 - ancient
 - output is almost exactly what I want
 - input is horrendous perl code though ;C
 - no interactive mode
-Gnuplot
+
+[Gnuplot](http://www.gnuplot.info/):
+- oldschool
+- renders ascii in terminal
+
 ## Conclusions
 This tool is cool, but also a bit overengineered already. You need to be careful not to overcomplicate things, since the whole point is to make graphs/charts fast
 
