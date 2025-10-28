@@ -1,0 +1,13 @@
+[project]
+name = "cdc-python"
+version = "0.1.0"
+description = "Debezium HTTP receiver for CDC events"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.120.0",
+    "uvicorn[standard]>=0.38.0",
+]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"

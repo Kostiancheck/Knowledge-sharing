@@ -1,6 +1,24 @@
 [project]
 name = "knowledge-sharing"
 version = "0.1.0"
-description = "Add your description here"
+description = "High level pyproject.toml file. You can include other uv moduls as submodules here"
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "fastapi>=0.120.0",
+    "setuptools>=68",
+    "uvicorn>=0.38.0",
+    "wheel>=0.45.1",
+]
+
+
+[tool.uv]
+
+# Add all submodules as “editable” local dependencies
+[project.optional-dependencies]
+cdc = [
+    "cdc-python",
+]
+
+# Tell uv where local packages live (and make them editable)
+[tool.uv.sources]
+cdc-python = { path = "./db/cdc/python", editable = true }

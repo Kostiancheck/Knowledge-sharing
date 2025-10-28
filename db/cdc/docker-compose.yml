@@ -1,0 +1,56 @@
+# docker-compose.yml
+version: "3.9"
+services:
+  postgres:
+    image: postgres:16
+    container_name: pg
+    environment:
+      POSTGRES_USER: dbz
+      POSTGRES_PASSWORD: dbz
+      POSTGRES_DB: postgres
+    ports: [ "5432:5432" ]
+    command: [
+      "postgres",
+      "-c","wal_level=logical",
+      "-c","max_wal_senders=10",
+      "-c","max_replication_slots=10"
+    ]
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U dbz -d appdb" ]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx-proxy
+    depends_on:
+      py:
+        condition: service_started
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports: [ "8001:80" ]
+
+  debezium:
+    image: quay.io/debezium/server:3.3
+    container_name: debezium-server
+    depends_on:
+      postgres:
+        condition: service_healthy
+      nginx:
+        condition: service_started
+    volumes:
+      - ./debezium/application.properties:/debezium/config/application.properties:ro
+      - ./debezium/data:/debezium/data
+    environment:
+      TZ: UTC
+    ports: [ "8080:8080" ]
+
+  py:
+    build:
+      context: ./python
+    container_name: py
+    volumes:
+      - ./python/events.log:/app/events.log
+      - ./python/app.py:/app/app.py
+    ports: [ "8000:8000" ]
