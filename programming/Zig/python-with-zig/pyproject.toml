@@ -1,0 +1,31 @@
+[project]
+name = "python-with-zig"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Your Name",email = "you@example.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11,<4"
+dependencies = [
+]
+
+[tool.poetry]
+packages = [{include = "python_with_zig", from = "src"}]
+include = [ { path = "src/", format = "sdist" }, { path = "python_with_zig/*.so", format = "wheel" } ]
+
+[tool.poetry.build]
+script = "build.py"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0", "ziggy-pydust==0.23.2"]
+build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "ziggy-pydust (>=0.23.2,<0.24.0)"
+]
+
+[[tool.pydust.ext_module]]
+name = "example.hello"
+root = "hello.zig"

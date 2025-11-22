@@ -1,0 +1,1 @@
+You can compile it with `zig cc main.c -o main.exe`
