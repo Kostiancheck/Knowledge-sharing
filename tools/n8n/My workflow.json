@@ -1,0 +1,561 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## I'm a note \n**Double click** to edit me.\n_Just_ *some* __markdown__\n",
+        "height": 304,
+        "width": 464,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -624,
+        160
+      ],
+      "id": "43526c8c-fafb-4ab2-908d-0cbfb1f2b30c",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "databaseId": {
+          "__rl": true,
+          "value": "300b6771-be70-44dd-b4f7-6ebf5f39d51d",
+          "mode": "list",
+          "cachedResultName": "Knowledge sharing",
+          "cachedResultUrl": "https://www.notion.so/300b6771be7044ddb4f76ebf5f39d51d"
+        }
+      },
+      "type": "n8n-nodes-base.notionTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f0d2502b-c828-4bd7-9cf5-e7970536f544",
+      "name": "Notion Trigger",
+      "credentials": {
+        "notionApi": {
+          "id": "iUFdovG5dOzZeDVp",
+          "name": "Notion account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.Owner[0] }}",
+                    "rightValue": "gor.kosty@gmail.com",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "840c78f3-e55e-4811-913c-ddc5eadb5767"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Костянус"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "7b103265-0b15-4077-98d0-2d61d5d19000",
+                    "leftValue": "={{ $json.Owner[0] }}",
+                    "rightValue": "i.pitkevych182@gmail.com",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Іллянус"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "c70fad4b-1310-43bd-925d-c6ddd1c6c904",
+                    "leftValue": "={{ $json.Owner[0] }}",
+                    "rightValue": "demaga1234@gmail.com",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Богданус"
+            }
+          ]
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        448,
+        -288
+      ],
+      "id": "c25537cc-3c4d-4c5d-ac72-3e86ff923ead",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "9151fb8a-529e-4205-a389-7f4ec19b8020",
+              "leftValue": "={{ $json.Owner }}",
+              "rightValue": 1,
+              "operator": {
+                "type": "array",
+                "operation": "lengthEquals",
+                "rightType": "number"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "f1893dc1-b465-4324-9cb6-d7f2ce02da22",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"owner\": \"Костянус\"\n}\n",
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        784,
+        -480
+      ],
+      "id": "911a194e-bd12-4020-9788-0728e634b864",
+      "name": "Add Kostia"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"owner\": \"Іллянус\"\n}\n",
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        784,
+        -272
+      ],
+      "id": "dcf0b71d-9bdb-456d-aa5b-a39d904838e8",
+      "name": "Add Illia"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"owner\": \"Богданус\"\n}\n",
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        784,
+        -80
+      ],
+      "id": "38859496-2870-4d8e-97b4-fb49c6b5ccd0",
+      "name": "Add Bohdan"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Згенеруй короткий анекдот чи жарт в стилі баті про тупого програміста {{ $json.owner }} який працює над темою чи задачею {{ $json.Name }}. Буде плюсом, якщо в ньому буде каламбур. Окрім самого жарту не додавай більше ніякого тексту. Намагайся не використовувати форматування для тексту (курсив, напівжирний і тому подібне). Текст має бути не більше 90 слів"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [
+        1248,
+        -272
+      ],
+      "id": "62ee47d0-06ed-4eae-aee7-44c81fd11e6c",
+      "name": "Message a model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "WU2b1trvoSl379gg",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "243700865",
+        "text": "=🤡 🤡 🤡 \n{{ $json.content.parts[0].text }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1648,
+        -272
+      ],
+      "id": "66f1ab45-d9dc-4733-b93c-87bd881b812e",
+      "name": "Send a text message",
+      "webhookId": "8f11b1f2-8943-4413-a4ac-0382b01a131c",
+      "credentials": {
+        "telegramApi": {
+          "id": "U3pb1jpayzs60Dee",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "TKDi1WumM5OHWxAR",
+          "mode": "list",
+          "cachedResultName": "test",
+          "cachedResultUrl": "/projects/QyF4ZJelgcwXBp2I/datatables/TKDi1WumM5OHWxAR"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "data": "={{ JSON.stringify($json) }}"
+          },
+          "matchingColumns": [
+            "data"
+          ],
+          "schema": [
+            {
+              "id": "data",
+              "displayName": "data",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        976,
+        176
+      ],
+      "id": "655ae49d-af74-4eee-982f-e7d58de4f8c2",
+      "name": "Insert row"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "=/home/node/data/example_{{ $execution.id }}.json",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        1184,
+        400
+      ],
+      "id": "7595fe0f-c384-49f6-8b75-ea89174342ea",
+      "name": "Read/Write Files from Disk"
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "# Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor item in _input.all():\n  item.json.myNewField = 1\nreturn _input.all()"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        976,
+        608
+      ],
+      "id": "3cc7affe-2275-4e9b-9d4b-c88386412441",
+      "name": "Code in Python (Beta)"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "9151fb8a-529e-4205-a389-7f4ec19b8020",
+              "leftValue": "={{ $json.Owner }}",
+              "rightValue": 1,
+              "operator": {
+                "type": "array",
+                "operation": "lengthGt",
+                "rightType": "number"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        464,
+        496
+      ],
+      "id": "bf18f110-e2dd-42e9-ad61-373599755bde",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "operation": "toJson",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        976,
+        400
+      ],
+      "id": "31d90d60-7659-4079-aed7-5211e9fab6a6",
+      "name": "Convert to File"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Notion Trigger": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Add Kostia",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Add Illia",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Add Bohdan",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add Kostia": {
+      "main": [
+        [
+          {
+            "node": "Message a model1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add Illia": {
+      "main": [
+        [
+          {
+            "node": "Message a model1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add Bohdan": {
+      "main": [
+        [
+          {
+            "node": "Message a model1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model1": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert row": {
+      "main": [
+        []
+      ]
+    },
+    "Read/Write Files from Disk": {
+      "main": [
+        []
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Insert row",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Code in Python (Beta)",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "558d20a9-910e-4459-8773-29d21c1b05a7",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "16c1a19cdc94d46daa9b29ff44f66e8f4302a649aefe744c03d3786045b592aa"
+  },
+  "id": "XplUWiCTr8QwCzYn",
+  "tags": []
+}
