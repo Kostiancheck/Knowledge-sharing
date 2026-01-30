@@ -1,0 +1,17 @@
+MVP:
+- avoid transcoding!
+- выигрывать видео
+- capture
+	- ffmpeg
+	- h.265
+	- nvenc
+	- full desktop only, rescaled to 1080p
+	- 60fps, scale down to 30 if necessary
+	- research sound
+- networking
+	- UDP streams
+	- my hetzner vps
+	- fmp4 or MPEG2-TS container
+- client
+	- web browser
+	- play .mp4 h.265? (hls.js)
