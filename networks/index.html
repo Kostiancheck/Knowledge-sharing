@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebStream</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0a0a0a;
+      color: #d0d0d0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100dvh;
+      gap: 14px;
+      padding: 16px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .75rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      opacity: .5;
+    }
+
+    video {
+      width: min(90vw, 1280px);
+      aspect-ratio: 16 / 9;
+      background: #111;
+      border-radius: 10px;
+      box-shadow: 0 8px 48px rgba(0,0,0,.7);
+      display: block;
+    }
+
+    #status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .8rem;
+      padding: 5px 14px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #444;
+      flex-shrink: 0;
+      transition: background .4s;
+    }
+    .dot.live    { background: #e03; animation: blink 1.2s ease-in-out infinite; }
+    .dot.waiting { background: #f80; }
+    .dot.error   { background: #e03; }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: .3; }
+    }
+
+    #stats {
+      font-size: .7rem;
+      color: #555;
+      font-variant-numeric: tabular-nums;
+      min-height: 1.2em;
+    }
+  </style>
+</head>
+<body>
+
+  <header>⬡ WebStream</header>
+
+  <video id="video" controls autoplay muted playsinline></video>
+
+  <div id="status">
+    <div class="dot" id="dot"></div>
+    <span id="statusText">Connecting…</span>
+  </div>
+
+  <div id="stats"></div>
+
+<script>
+'use strict';
+
+// ── Elements ──────────────────────────────────────────────────────────────────
+const video      = document.getElementById('video');
+const dot        = document.getElementById('dot');
+const statusText = document.getElementById('statusText');
+const statsEl    = document.getElementById('stats');
+
+// ── Config ────────────────────────────────────────────────────────────────────
+//
+// CODEC STRING must match FFmpeg output:
+//   -profile:v baseline -level:v 3.1  →  avc1.42E01F
+//   -profile:v main     -level:v 4.0  →  avc1.4D4028
+//   -profile:v high     -level:v 4.0  →  avc1.640028
+//
+// Audio: AAC-LC (-c:a aac)  →  mp4a.40.2
+//
+const MIME = 'video/mp4; codecs="avc1.42E01F, mp4a.40.2"';
+
+// Live-edge settings — tune these for your network:
+const MAX_BEHIND_LIVE = 3;    // seconds: if we fall this far behind, seek forward
+const TARGET_BEHIND   = 0.5;  // seconds: where we jump to when seeking forward
+const BUFFER_TRIM_AGE = 8;    // seconds: how much old data to keep behind current time
+
+const WS_URL      = `ws:/localhost:8080/ws/view`;
+const RECONNECT_MS = 2_000;
+
+// ── Codec / MSE support check ─────────────────────────────────────────────────
+if (!window.MediaSource) {
+  setStatus('error', 'MediaSource Extensions not supported in this browser');
+  throw new Error('MSE unavailable');
+}
+if (!MediaSource.isTypeSupported(MIME)) {
+  setStatus('error', `Codec not supported: ${MIME}`);
+  throw new Error(`Unsupported codec: ${MIME}`);
+}
+
+// ── MSE plumbing ──────────────────────────────────────────────────────────────
+const mediaSource = new MediaSource();
+video.src = URL.createObjectURL(mediaSource);
+
+/** @type {SourceBuffer|null} */
+let sourceBuffer = null;
+
+/** @type {ArrayBuffer[]} */
+const appendQueue = [];
+
+let appending = false; // true while sourceBuffer.updating
+
+function flushQueue() {
+  if (appending || appendQueue.length === 0) return;
+  if (!sourceBuffer || sourceBuffer.updating) return;
+
+  appending = true;
+  try {
+    sourceBuffer.appendBuffer(appendQueue.shift());
+  } catch (err) {
+    console.error('appendBuffer error:', err);
+    appending = false;
+    // If we hit a QuotaExceededError, trim aggressively then retry.
+    if (err.name === 'QuotaExceededError') {
+      trimBuffer(true);
+    }
+  }
+}
+
+mediaSource.addEventListener('sourceopen', () => {
+  try {
+    sourceBuffer = mediaSource.addSourceBuffer(MIME);
+  } catch (err) {
+    setStatus('error', `addSourceBuffer failed: ${err.message}`);
+    return;
+  }
+
+  // 'sequence' mode: MSE assigns timestamps in append order.
+  // This is the correct mode for live streaming where pts continuity
+  // might not be guaranteed across reconnects.
+  sourceBuffer.mode = 'sequence';
+
+  sourceBuffer.addEventListener('updateend', () => {
+    appending = false;
+    trimBuffer(false);
+    seekToLiveEdge();
+    flushQueue();
+    renderStats();
+  });
+
+  sourceBuffer.addEventListener('error', err => {
+    console.error('SourceBuffer error:', err);
+  });
+
+  connectWS();
+});
+
+// ── Buffer management ─────────────────────────────────────────────────────────
+
+function bufferedEnd() {
+  if (!sourceBuffer || sourceBuffer.buffered.length === 0) return 0;
+  return sourceBuffer.buffered.end(sourceBuffer.buffered.length - 1);
+}
+
+/**
+ * Remove old data behind the playhead to keep memory usage bounded.
+ * @param {boolean} force  If true, trim more aggressively (QuotaExceededError recovery).
+ */
+function trimBuffer(force) {
+  if (!sourceBuffer || sourceBuffer.updating) return;
+  if (sourceBuffer.buffered.length === 0) return;
+
+  const current  = video.currentTime;
+  const keepFrom = force ? current - 2 : current - BUFFER_TRIM_AGE;
+  const bufStart = sourceBuffer.buffered.start(0);
+
+  if (keepFrom > bufStart + 0.5) {
+    try {
+      sourceBuffer.remove(bufStart, keepFrom);
+      appending = true; // updateend will fire
+    } catch (err) {
+      console.warn('remove error:', err);
+    }
+  }
+}
+
+/**
+ * If the viewer has fallen too far behind the live edge, jump forward.
+ * This keeps latency low and avoids stalling on a fast network.
+ */
+function seekToLiveEdge() {
+  if (!sourceBuffer || sourceBuffer.updating) return;
+  const end = bufferedEnd();
+  if (end - video.currentTime > MAX_BEHIND_LIVE) {
+    video.currentTime = Math.max(end - TARGET_BEHIND, 0);
+  }
+}
+
+// ── Stats ─────────────────────────────────────────────────────────────────────
+function renderStats() {
+  const end  = bufferedEnd();
+  const lag  = Math.max(end - video.currentTime, 0).toFixed(2);
+  const qlen = appendQueue.length;
+  statsEl.textContent =
+    `buffer end ${end.toFixed(2)}s  │  lag ${lag}s  │  queue ${qlen}`;
+}
+
+// ── WebSocket ─────────────────────────────────────────────────────────────────
+function connectWS() {
+  const ws = new WebSocket(WS_URL);
+  ws.binaryType = 'arraybuffer';
+
+  ws.onopen = () => {
+    setStatus('waiting', 'Waiting for stream…');
+  };
+
+  ws.onmessage = ({ data }) => {
+    setStatus('live', 'LIVE');
+    appendQueue.push(data);
+    flushQueue();
+
+    // Resume playback if it was paused (e.g. after reconnect gap).
+    if (video.paused) {
+      video.play().catch(() => { /* autoplay policy; user must click */ });
+    }
+  };
+
+  ws.onclose = () => {
+    setStatus('waiting', `Reconnecting in ${RECONNECT_MS / 1000}s…`);
+    setTimeout(connectWS, RECONNECT_MS);
+  };
+
+  ws.onerror = err => {
+    console.error('WebSocket error:', err);
+    setStatus('error', 'Connection error');
+  };
+}
+
+// ── UI helpers ────────────────────────────────────────────────────────────────
+function setStatus(state, text) {
+  statusText.textContent = text;
+  dot.className = 'dot ' + state;
+}
+</script>
+</body>
+</html>
