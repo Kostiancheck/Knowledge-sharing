@@ -122,6 +122,7 @@ Resume builders and templates
 2. [https://zety.com/resume-templates](https://zety.com/resume-templates)
 3. [https://novoresume.com/resume-templates](https://novoresume.com/resume-templates)
 4. [https://www.canva.com/design/DAFr0-Y2TIg/kR50T3dTwSL9lSoK2GOZlA/edit](https://www.canva.com/design/DAFr0-Y2TIg/kR50T3dTwSL9lSoK2GOZlA/edit)
+5. [https://withresumeai.com/](https://withresumeai.com/) — Free ATS checker (3/day anonymous, 10/day free account) + open State of ATS 2026
 
 # Final tips
 
