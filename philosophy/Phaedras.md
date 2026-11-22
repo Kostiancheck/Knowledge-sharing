@@ -1,1 +1,0 @@
-What an incomprehensible being you are, Socrates
