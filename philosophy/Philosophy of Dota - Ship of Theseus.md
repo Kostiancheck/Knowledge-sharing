@@ -68,7 +68,7 @@ I don't know if it works, although I did find myself in similar situations befor
 
 His another interesting idea is 'Essential indexicals'.
 
-<from Wikipedia>
+\<from Wikipedia>
 
 Essential indexicals (I, here, and now) are parts of language that cannot be paraphrased away. They are seen as locating beliefs and are essential to understanding the speaker's belief. Perry presents a now-famous example to illustrate his point:
 
