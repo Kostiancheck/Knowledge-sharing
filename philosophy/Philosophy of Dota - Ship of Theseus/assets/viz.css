@@ -1,0 +1,295 @@
+/* ==========================================================================
+   Viz framework styles (shared) + per-figure sections below.
+   ========================================================================== */
+
+:root {
+  --viz-sky-top: #0f1620;
+  --viz-sky-bottom: #2a2631;
+  --viz-sun: #ece4cc;
+  --viz-land: #2d3640;
+  --viz-water: #1d3947;
+  --viz-water-deep: #142a35;
+  --viz-foam: #cfe3ee;
+  --viz-sail: #cbbfa6;
+  --viz-rope: #8d7c69;
+}
+
+/* ---------- figure shell ---------- */
+.viz { margin: 2.4em 0 2.8em; counter-increment: figure; }
+.article { counter-reset: figure; }
+
+.viz-body {
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  overflow: hidden;
+  font-family: var(--sans);
+}
+@media (max-width: 600px) {
+  .viz-body { border-radius: 0; border-left: 0; border-right: 0; }
+}
+
+.viz-stage { position: relative; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; }
+/* First SVG sets the height; extra SVG layers stack on top of it. */
+.viz-stage > svg { display: block; width: 100%; height: auto; }
+.viz-stage > svg ~ svg { position: absolute; inset: 0; height: 100%; }
+
+.viz .viz-body noscript, .viz-error {
+  display: block; padding: 2rem; color: var(--muted); font-size: .95rem;
+}
+
+.viz figcaption {
+  margin: .75rem .25rem 0;
+  font: .88rem/1.5 var(--sans);
+  color: var(--muted);
+}
+.viz figcaption::before {
+  content: "Fig. " counter(figure);
+  font-weight: 600; color: var(--fg); margin-right: .5em;
+}
+@media (max-width: 600px) { .viz figcaption { margin: .75rem 1.25rem 0; } }
+
+/* ---------- controls bar ---------- */
+.viz-controls {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.25rem;
+  padding: .9rem 1.1rem;
+  border-top: 1px solid var(--rule);
+  font: .86rem/1.3 var(--sans);
+}
+.viz-controls__spacer { flex: 1 1 auto; }
+.viz-controls__buttons { display: flex; gap: .5rem; }
+
+.viz-btn {
+  appearance: none; cursor: pointer;
+  font: 500 .84rem/1 var(--sans);
+  color: var(--fg);
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: .55rem .95rem;
+  transition: border-color .15s, background .15s, color .15s, transform .1s;
+}
+.viz-btn:hover:not(:disabled) { border-color: color-mix(in srgb, var(--fg) 35%, transparent); }
+.viz-btn:active:not(:disabled) { transform: translateY(1px); }
+.viz-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.viz-btn:disabled { opacity: .45; cursor: default; }
+.viz-btn--primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.viz-btn--primary:hover:not(:disabled) { border-color: var(--accent); filter: brightness(1.08); }
+
+/* ---------- progress ---------- */
+.viz-progress { flex: 1 1 260px; min-width: 200px; }
+.viz-progress__label {
+  display: flex; justify-content: space-between; gap: 1rem;
+  margin-bottom: .45rem; color: var(--muted);
+}
+.viz-progress__value { color: var(--fg); font-variant-numeric: tabular-nums; font-weight: 600; }
+.viz-progress__track {
+  height: 6px; border-radius: 99px; overflow: hidden;
+  background: color-mix(in srgb, var(--fg) 10%, transparent);
+}
+.viz-progress__fill {
+  height: 100%; background: var(--accent);
+  transform-origin: 0 50%; transform: scaleX(0);
+  transition: transform .35s cubic-bezier(.2, .8, .2, 1);
+}
+
+/* ---------- legend ---------- */
+.viz-legend { display: flex; gap: 1rem; list-style: none; margin: 0; padding: 0; color: var(--muted); }
+.viz-legend li { display: flex; align-items: center; gap: .4rem; }
+.viz-legend__swatch { width: 18px; height: 10px; border-radius: 2px; display: inline-block; }
+
+/* ---------- stepper ---------- */
+.viz-steps {
+  display: flex; gap: 0; max-width: 100%; overflow-x: auto;
+  border: 1px solid var(--rule); border-radius: 999px; background: var(--bg);
+  padding: 3px; scrollbar-width: none;
+}
+.viz-steps::-webkit-scrollbar { display: none; }
+.viz-steps__btn {
+  appearance: none; flex: 0 0 auto; cursor: pointer;
+  display: inline-flex; align-items: center; gap: .4rem;
+  font: 500 .82rem/1 var(--sans); color: var(--muted);
+  background: none; border: 0; border-radius: 999px;
+  padding: .5rem .8rem;
+  transition: background .15s, color .15s;
+}
+.viz-steps__num {
+  display: inline-grid; place-items: center; width: 1.25rem; height: 1.25rem; border-radius: 50%;
+  font-size: .7rem; font-weight: 600;
+  background: color-mix(in srgb, var(--fg) 8%, transparent);
+}
+.viz-steps__btn:hover { color: var(--fg); }
+.viz-steps__btn.is-past .viz-steps__num { background: color-mix(in srgb, var(--accent) 25%, transparent); color: var(--fg); }
+.viz-steps__btn.is-active { background: var(--fg); color: var(--bg); }
+.viz-steps__btn.is-active .viz-steps__num { background: var(--accent); color: #fff; }
+.viz-steps__btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+/* ---------- slider ---------- */
+.viz-slider { display: inline-flex; align-items: center; gap: .6rem; color: var(--muted); font: .84rem/1 var(--sans); }
+.viz-slider__value { min-width: 2.6em; color: var(--fg); font-weight: 600; font-variant-numeric: tabular-nums; }
+.viz-slider__input {
+  appearance: none; -webkit-appearance: none; width: 130px; height: 6px; border-radius: 99px; cursor: pointer;
+  background: linear-gradient(to right, var(--accent) var(--fill, 0%), color-mix(in srgb, var(--fg) 14%, transparent) var(--fill, 0%));
+}
+.viz-slider__input::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%;
+  background: var(--fg); border: 3px solid var(--bg); box-shadow: 0 0 0 1px var(--rule);
+}
+.viz-slider__input::-moz-range-thumb {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--fg); border: 3px solid var(--bg); box-shadow: 0 0 0 1px var(--rule);
+}
+.viz-slider__input:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+/* ---------- question panel ---------- */
+.viz-panel {
+  border-top: 1px solid var(--rule);
+  padding: 1.4rem 1.25rem 1.5rem;
+  background: color-mix(in srgb, var(--accent) 6%, var(--panel));
+  opacity: 0; transform: translateY(-6px);
+  transition: opacity .4s ease, transform .4s ease;
+}
+.viz-panel.is-open { opacity: 1; transform: none; }
+.viz-ask__q {
+  font: 600 1.35rem/1.3 var(--serif);
+  margin: 0 0 1rem;
+}
+.viz-ask__options { display: flex; flex-wrap: wrap; gap: .6rem; }
+.viz-btn--choice { font-size: .92rem; padding: .7rem 1.15rem; }
+.viz-btn--choice.is-chosen { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.viz-ask__reply {
+  margin-top: 1.1rem; max-width: 62ch;
+  font: 1.02rem/1.65 var(--serif);
+}
+.viz-ask__reply p { margin: 0 0 .7em; }
+.viz-ask__reply p:last-child { margin-bottom: 0; }
+.viz-ask__reply.is-in { animation: viz-fade-in .45s ease both; }
+.viz-ask__footer { margin-top: 1.1rem; display: flex; gap: .5rem; }
+@keyframes viz-fade-in { from { opacity: 0; transform: translateY(4px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .viz-panel, .viz-progress__fill { transition: none; }
+  .viz-ask__reply.is-in { animation: none; }
+}
+
+/* ==========================================================================
+   Fig: Ship of Theseus  (prefix: sot-)
+   ========================================================================== */
+
+.sot-ship {
+  transform-origin: 50% 68%;
+  animation: sot-bob 6.5s ease-in-out infinite;
+  will-change: transform;
+}
+.sot-front { pointer-events: none; }
+
+@keyframes sot-bob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(3px) rotate(.5deg); }
+}
+
+.sot-sky-top    { stop-color: var(--viz-sky-top); }
+.sot-sky-bottom { stop-color: var(--viz-sky-bottom); }
+.sot-sun   { fill: var(--viz-sun); }
+.sot-land  { fill: var(--viz-land); }
+.sot-sea   { fill: var(--viz-water-deep); }
+.sot-shadow { fill: #000; fill-opacity: .18; }
+
+.sot-wave { transform-box: view-box; }
+.sot-wave--a { fill: var(--viz-water); fill-opacity: .6; animation: sot-drift-a 7s linear infinite; }
+.sot-wave--b { fill: var(--viz-water-deep); fill-opacity: .55; animation: sot-drift-b 11s linear infinite; }
+.sot-foam { fill: none; stroke: var(--viz-foam); stroke-opacity: .35; stroke-width: 1.2; animation: sot-drift-a 7s linear infinite; }
+@keyframes sot-drift-a { to { transform: translateX(-100px); } }
+@keyframes sot-drift-b { to { transform: translateX(140px); } }
+
+.sot-mast  { fill: #5a3d24; }
+.sot-yard  { stroke: #5a3d24; stroke-width: 5; stroke-linecap: round; }
+.sot-sail  { fill: var(--viz-sail); }
+.sot-sail-stripe { fill: var(--accent); fill-opacity: .8; }
+.sot-sail-shade { fill: #000; fill-opacity: .07; }
+.sot-rope  { stroke: var(--viz-rope); stroke-width: 1; fill: none; }
+.sot-flag  { fill: var(--accent); }
+.sot-trim  { fill: none; stroke: #2a1a0e; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
+
+/* planks */
+.sot-plank { outline: none; }
+.sot-plank.is-old { cursor: pointer; }
+.sot-plank-edge { fill: none; stroke: #1b120a; stroke-opacity: .6; stroke-width: 1; transition: stroke .12s, stroke-width .12s; }
+.sot-plank.is-old:hover .sot-plank-edge,
+.sot-plank.is-old:focus-visible .sot-plank-edge { stroke: #ffd98a; stroke-opacity: 1; stroke-width: 2.4; }
+.sot-plank.is-old:hover .sot-plank-body,
+.sot-plank.is-old:focus-visible .sot-plank-body { filter: brightness(1.18); }
+
+.sot-plank.is-old { transform-box: fill-box; transition: transform .15s ease-out; }
+.sot-plank.is-old:hover { transform: translateY(-1.5px); }
+
+.sot-grain-old { fill: none; stroke: #1c140d; stroke-opacity: .4; stroke-width: .8; }
+.sot-grain-new { fill: none; stroke: #8a5a2b; stroke-opacity: .32; stroke-width: .7; }
+.sot-stain { fill: #2e2618; fill-opacity: .28; }
+.sot-rot   { fill: #160e07; fill-opacity: .7; }
+.sot-hole  { fill: #070403; }
+.sot-moss  { fill: #4f6128; fill-opacity: .55; }
+.sot-crack { fill: none; stroke: #0f0904; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+.sot-rust  { fill: none; stroke: #8b4513; stroke-opacity: .5; stroke-width: 1.6; stroke-linecap: round; }
+.sot-nail-old { fill: #6a3a18; stroke: #2b170a; stroke-width: .6; }
+.sot-nail-new { fill: #e3e6e9; stroke: #6d747a; stroke-width: .6; }
+.sot-lap-shadow { fill: #000; fill-opacity: .28; }
+.sot-lap-light  { fill: #fff; fill-opacity: .14; }
+.sot-hull-overlay { pointer-events: none; }
+.sot-texture { mix-blend-mode: multiply; opacity: .5; }
+
+/* old planks floating in the sea */
+.sot-float {
+  transform-box: fill-box; transform-origin: center;
+  animation: sot-float 4s ease-in-out infinite;
+}
+@keyframes sot-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(2px) rotate(.8deg); }
+}
+.sot-plank.is-flotsam { transform-box: fill-box; transform-origin: center; }
+.sot-plank.is-flotsam .sot-plank-body { filter: brightness(.82) saturate(.8); }
+
+.sot-plank.is-arriving {
+  transform-box: fill-box; transform-origin: center;
+  animation: sot-arrive .5s .2s cubic-bezier(.2, .8, .2, 1) both;
+}
+@keyframes sot-arrive { from { opacity: 0; transform: translateY(-12px); } }
+.sot-plank.is-arriving .sot-plank-edge { animation: sot-flash 1.4s .25s ease-out both; }
+@keyframes sot-flash { from { stroke: #fff3c9; stroke-width: 3; stroke-opacity: 1; } }
+
+.sot-ripple {
+  fill: none; stroke: var(--viz-foam); stroke-width: 1.5;
+  transform-box: fill-box; transform-origin: center;
+  animation: sot-ripple 1.2s ease-out forwards;
+}
+@keyframes sot-ripple { from { transform: scale(.15); opacity: .9; } to { transform: scale(1.6); opacity: 0; } }
+
+/* the finished ship gets a faint glow */
+.sot-ship.is-complete .sot-hull { filter: drop-shadow(0 0 6px rgba(255, 220, 150, .45)); }
+
+/* ==========================================================================
+   Fig: Self-model  (prefix: sm-)
+   ========================================================================== */
+
+.sm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); }
+@media (max-width: 640px) { .sm-grid { grid-template-columns: 1fr; } }
+.sm-panel { position: relative; background: var(--bg); }
+.sm-label {
+  position: absolute; top: .7rem; left: .9rem; z-index: 1;
+  font: 600 .7rem/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--faint);
+  pointer-events: none;
+}
+.sm-canvas { display: block; width: 100%; aspect-ratio: 46 / 34; }
+.sm-controls { flex-direction: column; align-items: stretch; gap: .8rem; }
+.sm-controls .sm-row { align-items: center; }
+.sm-row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .4rem 1rem; }
+.sm-note { margin: 0; font: 1rem/1.45 var(--serif); }
+.sm-stats { color: var(--muted); font-variant-numeric: tabular-nums; white-space: pre; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sot-ship, .sot-wave--a, .sot-wave--b, .sot-foam, .sot-float { animation: none; }
+  .sot-plank.is-old { transition: none; }
+  .sot-plank.is-arriving, .sot-plank.is-arriving .sot-plank-edge { animation: none; }
+  .sot-ripple { display: none; }
+}
