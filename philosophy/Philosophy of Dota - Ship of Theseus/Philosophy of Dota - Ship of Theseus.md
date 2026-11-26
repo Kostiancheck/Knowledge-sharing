@@ -1,6 +1,6 @@
 # Ship of Theseus
 
-Dota is one of my favorite examples of the [Theseus's Paradox](https://en.wikipedia.org/wiki/Ship_of_Theseus), because I actually witnessed it myself as it was unfolding. I don't think there is a _single_ element in the game that remained unchanged since its first release in 2003, or even since the first version I played - 6.67c released in 2010.
+Dota is one of my favorite examples of [Theseus's Paradox](https://en.wikipedia.org/wiki/Ship_of_Theseus), because I actually witnessed it myself as it was unfolding. I don't think there is a _single_ element in the game that has remained unchanged since its first release in 2003, or even since the first version I played - 6.67c released in 2010.
 
 ## What's gone
 
@@ -16,7 +16,7 @@ The point is, even if we are very strict with our definition of what constitutes
 
 ## What's left
 
-One could argue that sure concrete details might've changed, but abstract ideas and relationships are still the same. It is still a game about two teams of 5 people coming together in an effort to destroy each other's Ancient (both the teams and the Ancient were called differently back then, but whatever). That is correct. On the hero level, Lion is still a nuker/disabler. His role in the game is mostly the same.
+One could argue that sure, concrete details might've changed, but abstract ideas and relationships are still the same. It is still a game about two teams of 5 people coming together in an effort to destroy each other's Ancient (both the teams and the Ancient were called differently back then, but whatever). That is correct. On the hero level, Lion is still a nuker/disabler. His role in the game is mostly the same.
 
 This is not the main point of the article, but I also find it interesting that some of the _frequencies_ hasn't changed. Runes spawn every 2 minutes, creepwaves spawn every 30 seconds, neutral creeps spawn every minute. Kind of like how some [samples survive throughout the years](https://www.youtube.com/watch?v=Jaj4B3lLh9Y), but music as a whole changes drastically.
 
@@ -30,7 +30,7 @@ Any definition like this would be brittle and there could very well be a version
 
 So you can't really define Dota. You can only identify it. This is not unique to Dota. You would think it is easy to define chess, because it has a fairly simple and concise set of rules, but if you actually try, it will turn out to be borderline impossible. Any proper definition would have to cover both Gen Z kids playing bullet on their phones, and two old dudes playing on a physical board in the park. Yet anyone can easily identify chess when they see it.
 
-Anything that changes _once_ already risks to lose its precise identity. And things that have changed so many times as Dota become so abstract you can't even put it into words.
+Anything that changes _once_ already risks to lose its precise identity. And things that have changed so many times as Dota become so abstract you can't even put it into words. "You can't step into the same river twice."
 
 https://www.youtube.com/watch?v=BGrfhsxxmdE
 
@@ -56,26 +56,31 @@ Here are some important excerpts from 'I Am a Strange Loop' by Douglas Hofstadte
 
 <game about feedback loops/>
 
+I love this quote from John Perry (again):
+
+> I once followed a trail of sugar on a supermarket floor, pushing my cart down the aisle on one side of a tall counter and back the aisle on the other, seeking the shopper with the torn sack to tell him he was making a mess. With each trip around the counter, the trail became thicker. But I seemed unable to catch up. Finally it dawned on me. I was the shopper I was trying to catch.
+
+He calls words like 'I' essential indexicals, because without it he wouldn't be able to realize he was the one with ripped bag. Certain ideas are just impossible without self-reference.
+
 Perception and intelligence are really good for survival. Self-perception is very useful too. What about identity?
 
-When we defined Dota, we did it externally. We didn't assume that Dota has its own understanding of what it is, because that would be ridiculous. Why isn't it ridiculous to think this way about ourselves then? 
+Identity is important for survival too, but not only for survival of an individual, but for survival of a group. Identity accelerates communication: I, you, we, them - all of these exist only to speed up the conversation. And so are names, professions, other labels people might want to use when referencing you personally or as part of group.
 
-I asked - what makes Dota _Dota_?
-And then I asked - what makes me _me_?
+This is identity. It is a leaky but very useful abstraction. In other terms, there is no really such a thing as identity, in the same way as there is no really such a thing as a hash map. It does not mean that we should stop using one or the other - both are very useful leaky abstractions.
 
-This change looks innocent, but self-reference breaks it, just like self-reference breaks statements like 'I am lying'.
+Consciousness on the other hand is not that useful for survival, if at all. I believe it is just a side effect of intelligence and self-perception. 
 
-Identity is important for survival too, but not for survival of an individual, but for survival of a group. Identity accelerates communication: I, you, we, them - all of these exist only to speed up the conversation. And so are names, professions, other labels people might want to use when referencing you personally or as part of group.
+So to sum up, the ability for perception is evolutionary. From that eventually comes the ability to perceive yourself. The ability to assign identities is also evolutionary. One of the identities one assigns is oneself's. From all that abilities and possible some additional unknown mechanisms, consciousness emerges.
 
-This is identity. Consciousness on the other hand is not that useful for survival, if at all. I believe it is just a side effect of intelligence and self-perception.
-
-Another big reason is that it is a very useful, albeit leaky, abstraction. When you cut your finger you say 'my finger hurts', you don't say 'this blob of cells is damaged, some of the cells are split open, some dead, and now these cells are separated from these cells right here'. But the reality is it was always about the cells, it was never about you.
-
-In other terms, there is no really such a thing as identity, in the same way as there is no really such a thing as a hash map. It does not mean that we should stop using one or the other - both are very useful leaky abstractions.
+To sum up the sum up, identity isn't real and never has been. We are just so used to this abstraction that we confuse it for the real thing. Consciousness might or might not be real, but if it is, it definitely has 'levels' and emerges from the evolutionary need for identity.
 
 ## Good news
 
-The good news is abstractions never die. There are infinitely more abstractions than concrete objects. At the same time, most of those abstractions are useless/uninteresting. But once an interesting abstraction emerges, it sticks. Even if not a single instance fits this abstraction anymore, in the eternal Universe there will be place and time where it manifests again.
+It might be weird thinking of yourself as an abstraction, but I think it's a good thing.
+
+Abstractions never die. There are infinitely more abstractions than concrete objects. At the same time, most of those abstractions are useless/uninteresting/impossible to materialize. But once an interesting abstraction emerges, it sticks. Even if not a single instance fits this abstraction anymore, in the eternal Universe there will be time and place where it manifests again.
+
+Think about it as an improved version of [the eternal recurrence](https://web.stanford.edu/~jsabol/existentialism/materials/nietzsche-gay-science-hurry.pdf). Once identity is established once, it will come back to reality over and over again. Some lifetimes will be exactly the same, some slightly different.
 
 ## Bonus material
 
@@ -85,14 +90,18 @@ The good news is abstractions never die. There are infinitely more abstractions 
 
 I don't know if it works, although I did find myself in similar situations before.
 
-His another interesting idea is 'Essential indexicals'.
+[Douglas Hofstadter](https://en.wikipedia.org/wiki/Douglas_Hofstadter) is also the creator of "Hofstadter's Law", widely used in programming world although rarely named:
 
-\<from Wikipedia>
+> Hofstadter's law: It always takes longer than you expect, even when you take into account Hofstadter's law.
 
-Essential indexicals (I, here, and now) are parts of language that cannot be paraphrased away. They are seen as locating beliefs and are essential to understanding the speaker's belief. Perry presents a now-famous example to illustrate his point:
+There is also a pretty cool website about MOBA games called ['Lane Pushing Games'](https://lanepushinggames.com/moba/defense-of-the-ancients) that features DotA and Deadlock.
 
-> I once followed a trail of sugar on a supermarket floor, pushing my cart down the aisle on one side of a tall counter and back the aisle on the other, seeking the shopper with the torn sack to tell him he was making a mess. With each trip around the counter, the trail became thicker. But I seemed unable to catch up. Finally it dawned on me. I was the shopper I was trying to catch.
+## Recommended reading
 
-In this example, the pronoun "I" is essentially indexical because it allowed Perry to realize that it was he himself making the mess. This realization caused him to change his behavior. Essential indexicals create the impetus for action. They cannot be paraphrased away while retaining their immediacy. If Perry were to say "Perry realized that Perry was making a mess", it would still not be essentially indexical because Perry would still have to understand that he himself is Perry. Without that extra step, there would be no reason for him to change his action. "I" is the only essential indexical in that situation.
+Directly related:
+- "A Dialogue on Personal Identity and Immortality" by John Perry
+- "I Am a Strange Loop" by Douglas Hofstadter, chapter 6 - 'Of Selves and Symbols'
 
-</from Wikipedia>
+Other:
+- "Gay Science" by Friedrich Nietzsche. The book is legendary in a way. It features the first appearance of Zarathustra and 'God is dead' quote. I only included it here because of chapter 341, where the concept of eternal recurrence is described
+- "Gödel, Escher, Bach: An Eternal Golden Braid" by Douglas Hofstadter. I would only recommend it if you really like the idea of self-reference and want to see more examples. Or, if you really want to understand Gödel's incompleteness theorem. But generally "I Am a Strange Loop" is a much nicer read.

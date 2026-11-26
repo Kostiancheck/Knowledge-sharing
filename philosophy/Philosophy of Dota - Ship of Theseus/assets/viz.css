@@ -124,6 +124,23 @@
 .viz-steps__btn.is-active .viz-steps__num { background: var(--accent); color: #fff; }
 .viz-steps__btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 
+/* ---------- slider ---------- */
+.viz-slider { display: inline-flex; align-items: center; gap: .6rem; color: var(--muted); font: .84rem/1 var(--sans); }
+.viz-slider__value { min-width: 2.6em; color: var(--fg); font-weight: 600; font-variant-numeric: tabular-nums; }
+.viz-slider__input {
+  appearance: none; -webkit-appearance: none; width: 130px; height: 6px; border-radius: 99px; cursor: pointer;
+  background: linear-gradient(to right, var(--accent) var(--fill, 0%), color-mix(in srgb, var(--fg) 14%, transparent) var(--fill, 0%));
+}
+.viz-slider__input::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%;
+  background: var(--fg); border: 3px solid var(--bg); box-shadow: 0 0 0 1px var(--rule);
+}
+.viz-slider__input::-moz-range-thumb {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--fg); border: 3px solid var(--bg); box-shadow: 0 0 0 1px var(--rule);
+}
+.viz-slider__input:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
 /* ---------- question panel ---------- */
 .viz-panel {
   border-top: 1px solid var(--rule);
@@ -265,6 +282,7 @@
 }
 .sm-canvas { display: block; width: 100%; aspect-ratio: 46 / 34; }
 .sm-controls { flex-direction: column; align-items: stretch; gap: .8rem; }
+.sm-controls .sm-row { align-items: center; }
 .sm-row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .4rem 1rem; }
 .sm-note { margin: 0; font: 1rem/1.45 var(--serif); }
 .sm-stats { color: var(--muted); font-variant-numeric: tabular-nums; white-space: pre; }

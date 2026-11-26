@@ -152,6 +152,28 @@
     return { el, set: (i) => set(i, false), get value() { return value; } };
   }
 
+  /**
+   * Labelled range slider: slider({label, min, max, step, value, format(v), onInput(v)}).
+   * Returns {el, value, set(v)}.
+   */
+  function slider(opts) {
+    const { min = 0, max = 1, step = 1 } = opts;
+    const input = h('input', {
+      type: 'range', class: 'viz-slider__input', min, max, step, value: opts.value ?? min,
+      'aria-label': opts.label,
+    });
+    const out = h('output', { class: 'viz-slider__value' });
+    const show = () => {
+      const v = +input.value;
+      out.textContent = opts.format ? opts.format(v) : String(v);
+      input.style.setProperty('--fill', ((v - min) / (max - min || 1)) * 100 + '%');
+    };
+    input.addEventListener('input', () => { show(); if (opts.onInput) opts.onInput(+input.value); });
+    show();
+    const el = h('label', { class: 'viz-slider' }, h('span', { class: 'viz-slider__label' }, opts.label), input, out);
+    return { el, get value() { return +input.value; }, set(v) { input.value = v; show(); } };
+  }
+
   /** Small legend: legend([{label, swatch: 'css-class'}]) */
   function legend(items) {
     return h('ul', { class: 'viz-legend' },
@@ -259,5 +281,5 @@
   if (document.readyState === 'complete') start();
   else document.addEventListener('DOMContentLoaded', start);
 
-  window.Viz = { define, h, svg, rng, lerp, clamp, shuffle, reducedMotion, button, progress, legend, steps };
+  window.Viz = { define, h, svg, rng, lerp, clamp, shuffle, reducedMotion, button, progress, legend, steps, slider };
 })();

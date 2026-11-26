@@ -151,6 +151,10 @@ blockquote p:last-child { margin-bottom: 0; }
 .excerpt p:last-child { margin-bottom: 0; }
 .excerpt blockquote { margin: 1.2em 0; }
 
+ul.reading { margin: 0 0 1.15em; padding-left: 1.2em; }
+ul.reading li { margin-bottom: .35em; }
+ul.reading li::marker { color: var(--accent); }
+
 hr.end {
   border: 0; margin: 3.5rem 0 1.5rem; text-align: center; color: var(--faint);
 }
@@ -179,3 +183,9 @@ hr.end::after { content: "∎"; font-size: 1.2rem; }
   .toc a:hover { color: var(--fg); }
   .toc a.is-active { color: var(--fg); border-left-color: var(--accent); }
 }
+
+p.reading-group {
+  margin: 0 0 .4em;
+  font: 600 .78rem/1.4 var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+}
+ul.reading + p.reading-group { margin-top: 1.6em; }
